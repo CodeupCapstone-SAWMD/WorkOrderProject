@@ -29,10 +29,10 @@ PRIMARY KEY (`id`)
 CREATE TABLE `inventory`
 (
  `id`       INT unsigned NOT NULL AUTO_INCREMENT,
- `name`     TEXT NOT NULL ,
- `size`     VARCHAR(45) NOT NULL ,
- `price`    INT unsigned NOT NULL ,
- `quantity` INT unsigned NOT NULL ,
+ `name`     TEXT NOT NULL,
+ `size`     VARCHAR(45) NOT NULL,
+ `price`    DECIMAL(7,2) NOT NULL,
+ `quantity` INT unsigned NOT NULL,
 PRIMARY KEY (`id`)
 );
 
@@ -58,8 +58,8 @@ CREATE TABLE `users`
  `street_number` INT NOT NULL,
  `street_name` varchar(45) NOT NULL,
  `city`           varchar(45) NOT NULL,
- `zip`            INT unsigned NOT NULL,
- `phone_number`   INT unsigned NOT NULL,
+ `zipcode`        BIGINT NOT NULL,
+ `phone_number`   TEXT NOT NULL,
  `role_id`        INT unsigned NOT NULL,
 PRIMARY KEY (`id`),
 KEY `fkIdx_80` (`role_id`),
@@ -72,13 +72,13 @@ CREATE TABLE `work_order`
 (
  `id`             INT unsigned NOT NULL AUTO_INCREMENT,
  `description`    text NOT NULL,
- `notes`          text NOT NULL,
+ `notes`          text NULL,
  `category_id`    INT unsigned NOT NULL,
  `status_id`      INT unsigned NOT NULL,
  `customer_id`    INT unsigned NOT NULL,
  `street_number` INT unsigned NOT NULL,
- `street_name` INT unsigned NOT NULL,
- `zip_code` INT unsigned NOT NULL,
+ `street_name` VARCHAR(45) NOT NULL,
+ `zipcode` BIGINT NOT NULL,
  `submitted_date` DATE NOT NULL,
  `employee_id`    INT unsigned NOT NULL,
 PRIMARY KEY (`id`),

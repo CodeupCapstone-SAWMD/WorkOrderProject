@@ -13,5 +13,9 @@
       <place><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("executeUpdate").withParameters("java.lang.String", "int[]").definedInClass("java.sql.Statement"))]]></place>
       <place><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("executeUpdate").withParameters("java.lang.String", "java.lang.String[]").definedInClass("java.sql.Statement"))]]></place>
     </injection>
+    <injection language="GenericSQL" injector-id="xml">
+      <display-name>version</display-name>
+      <place><![CDATA[xmlTag().withLocalName(string().equalTo("version")).withNamespace(string().equalTo("http://maven.apache.org/POM/4.0.0"))]]></place>
+    </injection>
   </component>
 </application>

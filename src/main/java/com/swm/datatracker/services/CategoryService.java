@@ -1,6 +1,7 @@
 package com.swm.datatracker.services;
 
 import com.swm.datatracker.models.Category;
+import com.swm.datatracker.respositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

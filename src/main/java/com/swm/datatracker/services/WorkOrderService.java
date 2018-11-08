@@ -2,14 +2,14 @@ package com.swm.datatracker.services;
 
 import com.swm.datatracker.models.WorkOrder;
 import org.springframework.stereotype.Service;
-import com.swm.datatracker.services.WorkOrderRepo;
+import com.swm.datatracker.respositories.WorkOrderRepository;
 
 @Service
 public class WorkOrderService {
 
-    private WorkOrderRepo workOrderRepo;
+    private WorkOrderRepository workOrderRepo;
 
-    public WorkOrderService(WorkOrderRepo workOrderRepo){
+    public WorkOrderService(WorkOrderRepository workOrderRepo){
         this.workOrderRepo = workOrderRepo;
     }
 

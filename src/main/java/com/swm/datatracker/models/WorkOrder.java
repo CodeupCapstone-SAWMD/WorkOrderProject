@@ -5,13 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-//@Entity
-//@Table(name = "work_orders")
+@Entity
+@Table(name = "work_orders")
 public class WorkOrder {
 
-    @Id
-    @GeneratedValue
-    private long Id;
+    @Id @GeneratedValue
+    private long id;
 
     @Column(nullable = false, length = 254)
     private String description;
@@ -20,13 +19,13 @@ public class WorkOrder {
     private String notes;
 
     @OneToOne
-    private long categoryId;
+    private Category categoryId;
 
     @OneToOne
-    private long status;
+    private Status statusId;
 
     @OneToOne
-    private long requestUserId;
+    private User requestUserId;
 
     @Column(nullable = false)
     private long streetNumber;
@@ -37,24 +36,25 @@ public class WorkOrder {
     @Column(nullable = false)
     private long zipCode;
 
-    @Column(nullable = false)
+    @Column
     private Date submittedDate;
 
     public WorkOrder(){};
 
-    // constructor without date
-    public WorkOrder(String description, String notes, long categoryId, long status, long requestUserId, long streetNumber, String streetName, long zipCode) {
+    public WorkOrder(long id, String description, String notes, Category categoryId, Status statusId, User requestUserId, long streetNumber, String streetName, long zipCode, Date submittedDate) {
+        this.id = id;
         this.description = description;
         this.notes = notes;
         this.categoryId = categoryId;
-        this.status = status;
+        this.statusId = statusId;
         this.requestUserId = requestUserId;
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.zipCode = zipCode;
+        this.submittedDate = submittedDate;
     }
 
-    // constructor with all fields
+    // constructor with all fields except id
     public WorkOrder(String description, String notes, long categoryId, long status, long requestUserId, long streetNumber, String streetName, long zipCode, Date submittedDate) {
         this.description = description;
         this.notes = notes;
@@ -67,12 +67,24 @@ public class WorkOrder {
         this.submittedDate = submittedDate;
     }
 
+    // constructor without id or date
+    public WorkOrder(String description, String notes, long categoryId, long status, long requestUserId, long streetNumber, String streetName, long zipCode) {
+        this.description = description;
+        this.notes = notes;
+        this.categoryId = categoryId;
+        this.status = status;
+        this.requestUserId = requestUserId;
+        this.streetNumber = streetNumber;
+        this.streetName = streetName;
+        this.zipCode = zipCode;
+    }
+
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getDescription() {
@@ -147,3 +159,4 @@ public class WorkOrder {
         this.submittedDate = submittedDate;
     }
 }
+

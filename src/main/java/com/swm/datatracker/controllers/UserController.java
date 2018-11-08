@@ -15,7 +15,6 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private UserService userService;
 
-//    test
 
     public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
         this.users = users;

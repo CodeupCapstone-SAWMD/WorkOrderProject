@@ -46,8 +46,8 @@ public class CategoryService {
     }
 
     //SEARCHES DATABASE FOR INVENTORY BASED ON NAME OR SIZE
-    public List<Category> searchCategoriesByDescription(String term){
-        return categoryRepo.findCategoriesByDescription(term);
+    public List<Category> searchCategoriesByName(String term){
+        return categoryRepo.findCategoriesByNameContains(term);
     }
 
 

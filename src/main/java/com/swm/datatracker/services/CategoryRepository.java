@@ -10,5 +10,5 @@ import java.util.List;
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
     List<Category> findCategoriesById(long id);
-    List<Category> findCategoriesByDescription(String term);
+    List<Category> findCategoriesByNameContains(String term);
 }

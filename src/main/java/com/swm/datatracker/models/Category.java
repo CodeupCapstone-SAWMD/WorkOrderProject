@@ -12,20 +12,20 @@ public class Category {
     private long id;
 
     @Column(nullable = false)
-    private String description;
+    private String name;
 
 //-------------------------------------------- CONSTRUCTORS ---------------------------------------------\\
 
     public Category() {
     }
 
-    public Category(String description) {
-        this.description = description;
+    public Category(String name) {
+        this.name = name;
     }
 
-    public Category(long id, String description) {
+    public Category(long id, String name) {
         this.id = id;
-        this.description = description;
+        this.name = name;
     }
 
 //------------------------------------------------------------------------------------------------------\\
@@ -41,12 +41,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
 

@@ -40,7 +40,21 @@ public class WorkOrder {
     @Column(nullable = false)
     private Date submittedDate;
 
+    public WorkOrder(){};
 
+    // constructor without date
+    public WorkOrder(String description, String notes, long categoryId, long status, long requestUserId, long streetNumber, String streetName, long zipCode) {
+        this.description = description;
+        this.notes = notes;
+        this.categoryId = categoryId;
+        this.status = status;
+        this.requestUserId = requestUserId;
+        this.streetNumber = streetNumber;
+        this.streetName = streetName;
+        this.zipCode = zipCode;
+    }
+
+    // constructor with all fields
     public WorkOrder(String description, String notes, long categoryId, long status, long requestUserId, long streetNumber, String streetName, long zipCode, Date submittedDate) {
         this.description = description;
         this.notes = notes;

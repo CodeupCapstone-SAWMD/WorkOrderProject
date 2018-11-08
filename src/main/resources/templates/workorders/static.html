@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head('List of Work Orders')">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<description>
+    <div th:replace="fragments/navbar :: myNav"></div>
+    <h1>Trashy Tech</h1>
+    <div>
+        <!--<div class="card" th:each="post : ${posts}">-->
+        <!--<h2 th:text="${post.title}"></h2>-->
+        <!--<p th:text="${post.body}"></p>-->
+        <!--&lt;!&ndash;<p th:text="${post.user.email}"></p>&ndash;&gt;-->
+        <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
+        <!--<br />-->
+        <!--</div>-->
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</description>
+</html>

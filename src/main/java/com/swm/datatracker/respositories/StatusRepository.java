@@ -1,4 +1,4 @@
-package com.swm.datatracker.services;
+package com.swm.datatracker.respositories;
 
 import com.swm.datatracker.models.Status;
 import org.springframework.data.repository.CrudRepository;

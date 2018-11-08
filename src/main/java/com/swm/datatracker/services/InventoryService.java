@@ -2,6 +2,7 @@ package com.swm.datatracker.services;
 
 
 import com.swm.datatracker.models.Inventory;
+import com.swm.datatracker.respositories.InventoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

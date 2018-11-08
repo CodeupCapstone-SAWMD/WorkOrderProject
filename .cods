@@ -1,2 +1,2 @@
 BUILD_COMMAND='./mvnw package'
-JAR_FILE=$(find target -name \*.jar)
+JAR_FILE=target/datatracker-0.0.1-SNAPSHOT.jar

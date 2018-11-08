@@ -18,10 +18,9 @@ public class WorkOrderController {
     }
 
     // Controller for static test page //
-    @GetMapping("/index")
+    @GetMapping("/")
     public String staticPage() {
         return "static";
     }
-
-
+    
 }

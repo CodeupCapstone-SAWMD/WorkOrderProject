@@ -1,20 +1,24 @@
 package com.swm.datatracker.models;
 
 
+import org.hibernate.jdbc.Work;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
     private String name;
 
-//-------------------------------------------- CONSTRUCTORS ---------------------------------------------\\
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="category")
+    private List<WorkOrder> workOrders;
 
     public Category() {
     }
@@ -27,11 +31,6 @@ public class Category {
         this.id = id;
         this.name = name;
     }
-
-//------------------------------------------------------------------------------------------------------\\
-
-
-//-------------------------------------------- GETTERS/SETTERS ---------------------------------------------\\
 
     public long getId() {
         return id;
@@ -49,8 +48,12 @@ public class Category {
         this.name = name;
     }
 
+    public List<WorkOrder> getWorkOrders() {
+        return this.workOrders;
+    }
 
-//------------------------------------------------------------------------------------------------------\\
-
+    public void setWorkOrders(List<WorkOrder> workOrders) {
+        this.workOrders = workOrders;
+    }
 
 }

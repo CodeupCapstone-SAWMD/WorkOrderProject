@@ -4,7 +4,6 @@ import com.swm.datatracker.models.User;
 import com.swm.datatracker.respositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -22,8 +21,6 @@ public class UserService {
     }
 
     public User save(User user) {
-//        post.setId(posts.size() + 1);
-//        posts.add(post);
         return usersRepo.save(user);
     }
 

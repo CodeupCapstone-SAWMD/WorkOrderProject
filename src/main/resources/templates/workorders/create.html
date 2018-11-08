@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head('WorkOrder')"></head>
+<body>
+    <div th:replace="fragments/navbar :: myNav"></div>
+    <h1>Create page</h1>
+
+    <!--<form th:action="@{/workorder/create}" th:method="post" th:object="${post}">-->
+        <!--<h4>Title</h4>-->
+        <!--<input th:field="*{title}"/>-->
+        <!--<br />-->
+        <!--<h4>Body</h4>-->
+        <!--<textarea th:field="*{body}"/>-->
+        <!--<br />-->
+        <!--<input type="submit" />-->
+    <!--</form>-->
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

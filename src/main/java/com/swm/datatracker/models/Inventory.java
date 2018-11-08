@@ -3,7 +3,7 @@ package com.swm.datatracker.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "inventories")
+@Table(name = "inventory")
 public class Inventory {
 
 //----------------------------------- ANNOTATIONS FOR DATABASE TABLE -----------------------------------\\

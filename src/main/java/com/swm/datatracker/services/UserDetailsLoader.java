@@ -21,6 +21,8 @@ public class UserDetailsLoader implements UserDetailsService {
             throw new UsernameNotFoundException("No user found for " + username);
         }
 
-        return new UserWithRoles(user);
+//        return new UserWithRoles(user);
+        return new UserWithRoles(user, roles.ofUserWith(username)); // This is the only change
+
     }
 }

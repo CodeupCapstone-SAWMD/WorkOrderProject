@@ -37,25 +37,37 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/ads") // user's home page, it can be any URL
+                .defaultSuccessUrl("/home") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
+
                 /* Logout configuration */
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?logout") // append a query string value
+
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/ads") // anyone can see the home and the ads pages
+                .antMatchers("/", "/work-order/create") // anyone can see the home work order create page
                 .permitAll()
+
+                /* PAGES FOR EMPLOYEES */
+                .and()
+                .authorizeRequests()
+                .antMatchers(
+                        "/employee/{id}/index",
+                        "employee/{id}/show"
+                ).hasAuthority("ROLE_EDITOR")
+
                 /* Pages that require athentication */
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/ads/create", // only authenticated users can create ads
-                        "/ads/{id}/edit" // only authenticated users can edit ads
+                        "/admin/{id}/index", // only admins can view all work orders
+                        "/admin/{id}/show/{woID}", // only admins can view any one work order
+                        "/admin/{id}/create"
                 )
-                .authenticated()
+                .hasAuthority("ROLE_ADMIN")
         ;
     }
 }

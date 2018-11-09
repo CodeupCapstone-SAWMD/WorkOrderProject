@@ -6,7 +6,7 @@
     <groupId>com.swm</groupId>
     <artifactId>datatracker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>datatracker</name>
     <description>Waste Management Data Tracker</description>

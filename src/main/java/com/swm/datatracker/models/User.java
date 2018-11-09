@@ -42,6 +42,9 @@ public class User {
     @Column(nullable = false)
     private String phoneNumber;
 
+    @Column(nullable = false)
+    private UserRole role;
+
     public User() {
     }
 

@@ -51,6 +51,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/work-order/create") // anyone can see the home work order create page
                 .permitAll()
 
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/admin/home",
+//                        "/admin/orders",
+//                        "/employee/home",
+//                        "/employee/orders",
+//                        "/user/profile",
+//                        "/user/create"
+//                )
+
                 /* PAGES FOR EMPLOYEES */
                 .and()
                 .authorizeRequests()
@@ -63,6 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
+                        "/admin/home",
                         "/admin/{id}/index", // only admins can view all work orders
                         "/admin/{id}/show/{woID}", // only admins can view any one work order
                         "/admin/{id}/create"

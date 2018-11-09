@@ -42,13 +42,24 @@ public class User {
     @Column(nullable = false)
     private String phoneNumber;
 
-//    @Column(nullable = false)
+//    @OneToOne()
+//    @JoinColumn(name="user_id")
 //    private UserRole role;
+
+    // THIS WORKS SO FAR
+
+//    @ManyToOne
+////    @JoinColumn(name="user_id")
+//    private UserRole role;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private UserRole userRole;
 
     public User() {
     }
 
-    public User(String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber) {
+    public User(String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole role) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -59,9 +70,10 @@ public class User {
         this.city = city;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
+        this.userRole = role;
     }
 
-    public User(long id, String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber) {
+    public User(long id, String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole role) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -73,6 +85,7 @@ public class User {
         this.city = city;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
+        this.userRole = role;
     }
 
     public User(User copy) {
@@ -87,6 +100,7 @@ public class User {
         this.city = copy.city;
         this.zipcode = copy.zipcode;
         this.phoneNumber = copy.phoneNumber;
+        this.userRole = copy.userRole;
     }
 
     public long getId() {
@@ -175,6 +189,14 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public UserRole getRole() {
+        return userRole;
+    }
+
+    public void setRole(UserRole role) {
+        this.userRole = role;
     }
 
 }

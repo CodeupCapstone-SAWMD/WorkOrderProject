@@ -1,6 +1,7 @@
 package com.swm.datatracker.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user_roles")
@@ -10,22 +11,32 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "user_id")
-    private long userId;
+//    @Column(name = "user_id")
+//    private long userId;
 
+//    @Column(name = "user_id")
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
+//    private List<User> users;
+//
+    // THIS WORKS SO FAR
     @Column(name = "role")
     private String role;
 
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userRole")
+    private List<User> users;
 
-    public UserRole(long id, long userId, String role) {
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy="userrole")
+//    private List<User> users;
+
+    public UserRole(long id, List<User> users, String role) {
         this.id = id;
-        this.userId = userId;
+        this.users = users;
         this.role = role;
     }
 
-    public UserRole(long userId, String role) {
-        this.userId = userId;
+    public UserRole(List<User> users, String role) {
+        this.users = users;
         this.role = role;
     }
 
@@ -39,29 +50,37 @@ public class UserRole {
         this.id = id;
     }
 
-    public String getRole() {
+    public String getRoleName() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRoleName(String roleName) {
         this.role = role;
     }
 
-    public long getUserId() {
-        return userId;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public static UserRole admin(User user) {
-        return new UserRole(user.getId(), "ROLE_ADMIN");
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
+//
+//    public List<User> getUsers() {
+//        return this.users;
+//    }
+
+    public static UserRole admin(List<User> users) {
+        return new UserRole(users, "ROLE_ADMIN");
     }
-    public static UserRole editor(User user) {
-        return new UserRole(user.getId(), "ROLE_EDITOR");
+    public static UserRole editor(List<User> users) {
+        return new UserRole(users, "ROLE_EDITOR");
     }
-    public static UserRole user(User user) {
-        return new UserRole(user.getId(), "ROLE_USER");
+    public static UserRole user(List<User> users) {
+        return new UserRole(users, "ROLE_USER");
     }
 }

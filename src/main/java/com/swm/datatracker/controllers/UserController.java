@@ -24,7 +24,12 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
+    public String defaultRoute(Model vModel) {
+        return "/users/home";
+    }
+
+    @GetMapping("/users/home")
     public String routeUserHome(Model vModel) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Object creds = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -41,7 +46,7 @@ public class UserController {
 //            return "redirect:/admin/home";
 //        }
 
-        return "/home";
+        return "/users/home";
     }
 
     @GetMapping("/sign-up")

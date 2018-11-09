@@ -2,7 +2,7 @@ package com.swm.datatracker.models;
 
 import javax.persistence.*;
 
-//test
+//test2
 
 @Entity
 @Table(name="users")

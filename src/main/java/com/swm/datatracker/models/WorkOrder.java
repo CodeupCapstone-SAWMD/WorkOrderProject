@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Locale;
 
 @Entity
-@Table(name = "work_orders")
+@Table(name = "work_order")
 public class WorkOrder {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private long id;
 
     @Column(nullable = false, length = 254)
@@ -18,10 +19,12 @@ public class WorkOrder {
     @Column(nullable = false)
     private String notes;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="category_id")
     private Category category;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="status_id")
     private Status status;
 
     @OneToOne

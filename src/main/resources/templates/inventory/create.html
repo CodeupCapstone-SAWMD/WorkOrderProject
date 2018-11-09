@@ -4,24 +4,28 @@
 <body>
 <div th:replace="fragments/navbar :: myNav"></div>
 
-<form th:action="@{/inventory/create}" th:method="post" th:object="${inventory}">
-    Name:
-    <input th:field="*{name}" />
-    <br />
-    Size:
-    <textarea th:field="*{size}" />
-    <br />
+<div>
+    <form th:action="@{/inventory/create}" th:method="post" th:object="${inventory}">
+        <div th:class="form-group">
+            <label th:for="name">Name</label>
+            <input th:type="text" th:class="form-control" th:field="*{name}" th:placeholder="Name"/>
 
-    Price:
-    <textarea th:field="*{price}" />
-    <br />
+            <label th:for="size">Size</label>
+            <input th:type="text" th:class="form-control" th:placeholder="Size" th:field="*{size}" />
 
-    Inventory Quantity:
-    <textarea th:field="*{quantity}" />
-    <br />
+            <label th:for="price">Price</label>
+            <input th:type="text" th:class="form-control" th:placeholder="Price" th:field="*{price}" />
 
-    <input type="submit" />
-</form>
+            <label th:for="Quantity">Quantity</label>
+            <input th:type="text" th:class="form-control" th:placeholder="Quantity" th:field="*{quantity}" />
+
+            <br/>
+            <input type="submit" />
+
+        </div>
+
+    </form>
+</div>
 
 <div th:replace="fragments/footer :: footer"></div>
 </body>

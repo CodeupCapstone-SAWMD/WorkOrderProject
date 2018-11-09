@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head('Inventory')"></head>
+<body>
+<div th:replace="fragments/navbar :: myNav"></div>
+
+<form th:action="@{/inventory/create}" th:method="post" th:object="${inventory}">
+    Name:
+    <input th:field="*{name}" />
+    <br />
+    Size:
+    <textarea th:field="*{size}" />
+    <br />
+
+    Price:
+    <textarea th:field="*{price}" />
+    <br />
+
+    Inventory Quantity:
+    <textarea th:field="*{quantity}" />
+    <br />
+
+    <input type="submit" />
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

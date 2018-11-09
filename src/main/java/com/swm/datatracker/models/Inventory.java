@@ -22,7 +22,7 @@ public class Inventory {
     private double price;
 
     @Column
-    private long inventoryQuantity;
+    private long quantity;
 
 //------------------------------------------------------------------------------------------------------\\
 
@@ -33,19 +33,19 @@ public class Inventory {
     public Inventory() {
     }
 
-    public Inventory(String name, String size, double price, long inventoryQuantity) {
+    public Inventory(String name, String size, double price, long quantity) {
         this.name = name;
         this.size = size;
         this.price = price;
-        this.inventoryQuantity = inventoryQuantity;
+        this.quantity = quantity;
     }
 
-    public Inventory(long id, String name, String size, double price, long inventoryQuantity) {
+    public Inventory(long id, String name, String size, double price, long quantity) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.price = price;
-        this.inventoryQuantity = inventoryQuantity;
+        this.quantity = quantity;
     }
 //------------------------------------------------------------------------------------------------------\\
 
@@ -83,12 +83,12 @@ public class Inventory {
         this.price = price;
     }
 
-    public long getInventoryQuantity() {
-        return inventoryQuantity;
+    public long getQuantity() {
+        return quantity;
     }
 
-    public void setInventoryQuantity(long inventoryQuantity) {
-        this.inventoryQuantity = inventoryQuantity;
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
     }
 
 

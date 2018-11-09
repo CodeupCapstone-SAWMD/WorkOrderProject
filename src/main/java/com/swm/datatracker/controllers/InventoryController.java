@@ -45,7 +45,7 @@ public class InventoryController {
 
 
     //Takes all of the inventory from the database
-    @GetMapping("#")
+    @GetMapping("/inventory")
     public String inventoryIndex(Model vModel) {
         vModel.addAttribute("inventory", inventorySvc.all());
         return "inventory/index";

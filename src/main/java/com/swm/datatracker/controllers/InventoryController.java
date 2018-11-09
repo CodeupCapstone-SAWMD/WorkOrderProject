@@ -51,59 +51,59 @@ public class InventoryController {
         return "inventory/index";
     }
 
-
-    //Directs user to the form to create a new inventory object
-    @GetMapping("#")
-    public String showCreateForm(Model vModel) {
-        vModel.addAttribute("inventory", new Inventory());
-        return "inventory/create";
-    }
-
-    /**
-     1) Takes the user's input, creates the inventory item, adds it to the database, redirects the user to the inventory page
-     2) using the authentication method we can request parameters from the inventory list
-     3) take the item and add it to the list
-     4) and get the id of the user who added the item and set it to them
-     5) Create a User object variable that takes the SecurityContextHolder; get the context, get authentication, get principal
-     this will get info from the JSP(view)
-     */
-
-    @PostMapping("#")
-    public String createInventoryItem(@ModelAttribute Inventory item){
-
-        User loguser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        inventorySvc.create(item);
-        return "redirect:/inventory";
-    }
-
-    //Finds a inventory id, redirects to the edit page
-    //to update the form you have to know which id (parameter) you are looking for
-    @GetMapping("#")
-    public String showUpdateForm(@PathVariable int id, Model viewModel){
-        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
-        return "inventory/edit";
-    }
-    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
-    @PostMapping("#")
-    public String updateForm(@ModelAttribute Inventory item){
-        inventorySvc.edit(item);
-        return "redirect:/inventory";
-    }
-
-    //search for inventory based on terms in name or size
-    @GetMapping("#")
-    public String showResults(@PathVariable String term, Model viewModel){
-        viewModel.addAttribute("inventory",inventorySvc.searchDBNameOrSize(term));
-        return "inventory/index";
-    }
-
-    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
-    @PostMapping("#")
-    public String deleteInventory(@PathVariable int id){
-        Inventory inventory = inventorySvc.findOne(id);
-        inventorySvc.delete(inventory);
-        return "/inventory";
-    }
+//
+//    //Directs user to the form to create a new inventory object
+//    @GetMapping("#")
+//    public String showCreateForm(Model vModel) {
+//        vModel.addAttribute("inventory", new Inventory());
+//        return "inventory/create";
+//    }
+//
+//    /**
+//     1) Takes the user's input, creates the inventory item, adds it to the database, redirects the user to the inventory page
+//     2) using the authentication method we can request parameters from the inventory list
+//     3) take the item and add it to the list
+//     4) and get the id of the user who added the item and set it to them
+//     5) Create a User object variable that takes the SecurityContextHolder; get the context, get authentication, get principal
+//     this will get info from the JSP(view)
+//     */
+//
+//    @PostMapping("#")
+//    public String createInventoryItem(@ModelAttribute Inventory item){
+//
+//        User loguser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        inventorySvc.create(item);
+//        return "redirect:/inventory";
+//    }
+//
+//    //Finds a inventory id, redirects to the edit page
+//    //to update the form you have to know which id (parameter) you are looking for
+//    @GetMapping("#")
+//    public String showUpdateForm(@PathVariable long id, Model viewModel){
+//        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
+//        return "inventory/edit";
+//    }
+//    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
+//    @PostMapping("#")
+//    public String updateForm(@ModelAttribute Inventory item){
+//        inventorySvc.edit(item);
+//        return "redirect:/inventory";
+//    }
+//
+//    //search for inventory based on terms in name or size
+//    @GetMapping("#")
+//    public String showResults(@PathVariable String term, Model viewModel){
+//        viewModel.addAttribute("inventory",inventorySvc.searchDBNameOrSize(term));
+//        return "inventory/index";
+//    }
+//
+//    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
+//    @PostMapping("#")
+//    public String deleteInventory(@PathVariable long id){
+//        Inventory inventory = inventorySvc.findOne(id);
+//        inventorySvc.delete(inventory);
+//        return "/inventory";
+//    }
 
 
 }

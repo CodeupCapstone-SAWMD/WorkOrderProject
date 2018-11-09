@@ -1,0 +1,17 @@
+{
+	contact1: {
+		firstname: "";
+		lastname: "";
+		homephoneNumber: "";
+		cellphoneNumber: "";
+		workphoneNumber: "";
+		email: "";
+		homeaddress: "";
+		workaddress: "";
+		distro: "";
+		speedDialNum: "";
+	}
+
+
+
+}

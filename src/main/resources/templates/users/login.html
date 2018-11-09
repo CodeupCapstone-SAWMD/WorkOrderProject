@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Log In</title>
-</head>
+<head th:replace="fragments/header :: head('Login')"></head>
 <body>
 <h1>Log In</h1>
 <div th:if="${param.error}">

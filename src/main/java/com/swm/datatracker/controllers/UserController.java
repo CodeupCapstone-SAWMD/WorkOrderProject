@@ -21,11 +21,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-
-//    public UserController(UserService userService) {
-//        this.userService = userService;
-//    }
-
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());

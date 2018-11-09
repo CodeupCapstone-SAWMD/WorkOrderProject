@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue
+    @Column(name="id")
     private long id;
 
     @Column(nullable = false, unique = true, length = 45)
@@ -41,6 +42,9 @@ public class User {
     @Column(nullable = false)
     private String phoneNumber;
 
+//    @Column(nullable = false)
+//    private UserRole role;
+
     public User() {
     }
 
@@ -72,17 +76,17 @@ public class User {
     }
 
     public User(User copy) {
-        id = copy.id;
-        username = copy.username;
-        email = copy.email;
-        password = copy.password;
-        firstName = copy.firstName;
-        lastName = copy.lastName;
-        streetNumber = copy.streetNumber;
-        streetName = copy.streetName;
-        city = copy.city;
-        zipcode = copy.zipcode;
-        phoneNumber = copy.phoneNumber;
+        this.id = copy.id;
+        this.username = copy.username;
+        this.email = copy.email;
+        this.password = copy.password;
+        this.firstName = copy.firstName;
+        this.lastName = copy.lastName;
+        this.streetNumber = copy.streetNumber;
+        this.streetName = copy.streetName;
+        this.city = copy.city;
+        this.zipcode = copy.zipcode;
+        this.phoneNumber = copy.phoneNumber;
     }
 
     public long getId() {

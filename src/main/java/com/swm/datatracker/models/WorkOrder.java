@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Locale;
 
 @Entity
-@Table(name = "work_orders")
+@Table(name = "work_order")
 public class WorkOrder {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private long id;
 
     @Column(nullable = false, length = 254)
@@ -18,14 +19,19 @@ public class WorkOrder {
     @Column(nullable = false)
     private String notes;
 
-    @OneToOne
-    private Category categoryId;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="status_id")
+    private Status status;
 
     @OneToOne
-    private Status statusId;
+    private User customer;
 
     @OneToOne
-    private User requestUserId;
+    private User employee;
 
     @Column(nullable = false)
     private long streetNumber;
@@ -41,13 +47,14 @@ public class WorkOrder {
 
     public WorkOrder(){};
 
-    public WorkOrder(long id, String description, String notes, Category categoryId, Status statusId, User requestUserId, long streetNumber, String streetName, long zipCode, Date submittedDate) {
+    public WorkOrder(long id, String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, Date submittedDate) {
         this.id = id;
         this.description = description;
         this.notes = notes;
-        this.categoryId = categoryId;
-        this.statusId = statusId;
-        this.requestUserId = requestUserId;
+        this.category = category;
+        this.status = status;
+        this.customer = customer;
+        this.employee = employee;
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.zipCode = zipCode;
@@ -55,12 +62,13 @@ public class WorkOrder {
     }
 
     // constructor with all fields except id
-    public WorkOrder(String description, String notes, long categoryId, long status, long requestUserId, long streetNumber, String streetName, long zipCode, Date submittedDate) {
+    public WorkOrder(String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, Date submittedDate) {
         this.description = description;
         this.notes = notes;
-        this.categoryId = categoryId;
+        this.category = category;
         this.status = status;
-        this.requestUserId = requestUserId;
+        this.customer = customer;
+        this.employee = employee;
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.zipCode = zipCode;
@@ -68,12 +76,13 @@ public class WorkOrder {
     }
 
     // constructor without id or date
-    public WorkOrder(String description, String notes, long categoryId, long status, long requestUserId, long streetNumber, String streetName, long zipCode) {
+    public WorkOrder(String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode) {
         this.description = description;
         this.notes = notes;
-        this.categoryId = categoryId;
+        this.category = category;
         this.status = status;
-        this.requestUserId = requestUserId;
+        this.customer = customer;
+        this.employee = employee;
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.zipCode = zipCode;
@@ -103,28 +112,36 @@ public class WorkOrder {
         this.notes = notes;
     }
 
-    public long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public long getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(long status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public long getRequestUserId() {
-        return requestUserId;
+    public User getCustomer() {
+        return customer;
     }
 
-    public void setRequestUserId(long requestUserId) {
-        this.requestUserId = requestUserId;
+    public void setCustomer(User customer) {
+        this.customer = customer;
+    }
+
+    public User getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(User employee) {
+        this.employee = employee;
     }
 
     public long getStreetNumber() {

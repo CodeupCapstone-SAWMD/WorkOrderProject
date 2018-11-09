@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home") // user's home page, it can be any URL
+                .defaultSuccessUrl("/") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
 
                 /* Logout configuration */
@@ -48,7 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/work-order/create", "/inventory","/inventory/create") // anyone can see the home work order create page
+
+                .antMatchers("/sign-up", "users/*", "/login", "/", "/inventory", "/inventory/*", "/work-order", "/work-order/*") // anyone can see the home work order create page
                 .permitAll()
 
 //                .and()
@@ -67,7 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/employee/{id}/index",
-                        "employee/{id}/show"
+                        "/employee/{id}/show"
                 ).hasAuthority("ROLE_EDITOR")
 
                 /* Pages that require athentication */

@@ -1,6 +1,7 @@
 package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.User;
+import com.swm.datatracker.models.UserRole;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.management.relation.Role;
 
 @Controller
 public class UserController {
@@ -20,6 +23,31 @@ public class UserController {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
     }
+
+    @GetMapping("/")
+    public String defaultRoute(Model vModel) {
+        return "users/home";
+    }
+
+//    @GetMapping("/users/home")
+//    public String routeUserHome(Model vModel) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Object creds = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//
+//
+////        UserRole usersRole = currentUser.getRole();
+////        String role = usersRole.getRoleName();
+////
+////        vModel.addAttribute("user", currentUser);
+////        System.out.println(role);
+////
+////        if (role.equals("ROLE_ADMIN")) {
+////            return "redirect:/admin/home";
+////        }
+//
+//        return "/users/home";
+//    }
 
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){

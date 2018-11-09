@@ -18,7 +18,7 @@ public class Inventory {
     @Column(nullable = false)
     private String size;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 7, scale = 2)
     private double price;
 
     @Column

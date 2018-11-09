@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/work-order/create", "/inventory") // anyone can see the home work order create page
+                .antMatchers("/", "/work-order/create", "/inventory","/inventory/create") // anyone can see the home work order create page
                 .permitAll()
 
 //                .and()

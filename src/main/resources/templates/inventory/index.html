@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head('Inventory')">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+</head>
+<body>
+    <div th:replace="fragments/navbar :: myNav"></div>
+    <h1>Inventory List</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity Available</th>
+                <th scope="col">Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${inventory}">
+                <th scope="row" th:text="${item.name}"></th>
+                <td th:text="${item.size}"></td>
+                <td th:text="'$'+ ${item.price}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td>
+                <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit">Edit</button>
+                <button class="btn btn-danger" th:name="delete" th:type="submit" th:value="Delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

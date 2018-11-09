@@ -32,7 +32,7 @@ CREATE TABLE `inventory`
  `name`     TEXT NOT NULL,
  `size`     VARCHAR(45) NOT NULL,
  `price`    DECIMAL(7,2) NOT NULL,
- `quantity` INT unsigned NOT NULL,
+ `inventoryQuantity` INT unsigned NOT NULL,
 PRIMARY KEY (`id`)
 );
 

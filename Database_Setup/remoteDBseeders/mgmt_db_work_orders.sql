@@ -1,5 +1,9 @@
 use mgmt_db;
+
 truncate work_order;
+
+alter table work_order modify description text;
+alter table work_order modify notes text null;
 
 insert into work_order (id, description, notes, status_id, customer_id, street_number, street_name, zip_code, submitted_date, employee_id, category_id) values (1, 'Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.', 5, 2, '14', 'Amoth', 65517, '2018-10-05', 2, 2);
 insert into work_order (id, description, notes, status_id, customer_id, street_number, street_name, zip_code, submitted_date, employee_id, category_id) values (2, 'Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh.', 'Aenean auctor gravida sem.', 6, 2, '209', 'Portage', 42509, '2018-06-14', 3, 3);

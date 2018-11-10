@@ -5,15 +5,74 @@
     <div th:replace="fragments/navbar :: myNav"></div>
     <h1>Create page</h1>
 
-    <!--<form th:action="@{/workorder/create}" th:method="post" th:object="${post}">-->
-        <!--<h4>Title</h4>-->
-        <!--<input th:field="*{title}"/>-->
+    <form th:action="@{/work-order/create}" th:method="post" th:object="${workorder}">
+        <h4>Description</h4>
+        <input th:field="*{description}"/>
+        <br />
+        <h4>Notes</h4>
+        <textarea th:field="*{notes}"/>
+        <br />
+        <h4>Category</h4>
+        <textarea th:field="*{category}"/>
+        <br />
+        <h4>Status</h4>
+        <textarea th:field="*{status}"/>
+        <br />
+        <h4>Customer</h4>
+        <textarea th:field="*{customer}"/>
+        <br />
+        <h4>Employee</h4>
+        <textarea th:field="*{employee}"/>
+        <br />
+        <h4>Street Number</h4>
+        <textarea th:field="*{streetNumber}"/>
+        <br />
+        <h4>Street Name</h4>
+        <textarea th:field="*{streetName}"/>
+        <br />
+        <h4>Zip Code</h4>
+        <textarea th:field="*{zipCode}"/>
+        <br />
+        <!--<h4>Submitted Date</h4>-->
+        <!--<textarea th:field="*{submittedDate}"/>-->
         <!--<br />-->
-        <!--<h4>Body</h4>-->
-        <!--<textarea th:field="*{body}"/>-->
-        <!--<br />-->
-        <!--<input type="submit" />-->
-    <!--</form>-->
+        <input type="submit" />
+    </form>
+
+    <!--@Column(nullable = false, length = 254)-->
+    <!--private String description;-->
+
+    <!--@Column(nullable = false)-->
+    <!--private String notes;-->
+
+    <!--@ManyToOne-->
+    <!--@JoinColumn(name="category_id")-->
+    <!--private Category category;-->
+
+    <!--@ManyToOne-->
+    <!--@JoinColumn(name="status_id")-->
+    <!--private Status status;-->
+
+    <!--@OneToOne-->
+    <!--private User customer;-->
+
+    <!--@OneToOne-->
+    <!--private User employee;-->
+
+    <!--@Column(nullable = false)-->
+    <!--private long streetNumber;-->
+
+    <!--@Column(nullable = false, length = 100)-->
+    <!--private String streetName;-->
+
+    <!--@Column(nullable = false)-->
+    <!--private long zipCode;-->
+
+    <!--@Column-->
+    <!--private Date submittedDate;-->
+    <!---->
+
+
 
     <div th:replace="fragments/footer :: footer"></div>
 </body>

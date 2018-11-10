@@ -5,6 +5,39 @@
     <div th:replace="fragments/navbar :: myNav"></div>
     <h1>A single work order page</h1>
 
+    <form th:action="@{/work-order/create}" th:method="post" th:object="${workorder}">
+        <h4>Description</h4>
+        <input th:field="*{description}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{notes}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{category}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{status}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{customer}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{employee}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{streetNumber}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{streetName}"/>
+        <br />
+        <h4>notes</h4>
+        <textarea th:field="*{zipCode}"/>
+        <br />
+        <!--<h4>notes</h4>-->
+        <!--<textarea th:field="*{submittedDate}"/>-->
+        <!--<br />-->
+        <input type="submit" />
+    </form>
     <!--<div>-->
         <!--<h2 th:text="${post.title}"></h2>-->
         <!--<p th:text="${post.body}"></p>-->

@@ -3,6 +3,7 @@ package com.swm.datatracker.controllers;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.UserRole;
 import com.swm.datatracker.respositories.UserRepository;
+import com.swm.datatracker.respositories.WorkOrderRepository;
 import com.swm.datatracker.services.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,12 +17,14 @@ import javax.management.relation.Role;
 public class UserController {
     private UserRepository users;
     private PasswordEncoder passwordEncoder;
+    private WorkOrderRepository workOrderRepository;
     private UserService userService;
 
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository users, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
+        this.workOrderRepository = workOrderRepository;
     }
 
     @GetMapping("/")
@@ -62,7 +65,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
-        return "users/sign-up";
+        return "/users/sign-up";
     }
 
     @PostMapping("/sign-up")
@@ -73,18 +76,22 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @RequestMapping(path = "/profile", method = RequestMethod.GET)
+//    @RequestMapping(path = "/users/profile", method = RequestMethod.GET)
+    @GetMapping("/users/profile")
     public String userProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         vModel.addAttribute("user", user);
-        return "users/profile";
+//        vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
+        vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
+        return "/users/profile";
     }
 
-    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
+//    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
+    @GetMapping("/users/profile/edit")
     public String editUser(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         vModel.addAttribute("user", user);
-        return "users/edit";
+        return "/users/edit";
     }
 
 

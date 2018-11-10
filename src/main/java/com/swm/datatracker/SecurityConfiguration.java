@@ -48,7 +48,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/sign-up", "users/*", "/login", "/", "/inventory", "/inventory/*", "/work-order", "/work-order/*") // anyone can see the home work order create page
+                .antMatchers("/sign-up",
+                        "/users/**",
+                        "/login",
+                        "/**",
+                        "/inventory",
+                        "/inventory/**",
+                        "/work-order",
+                        "/work-order/**") // anyone can see the home work order create page
                 .permitAll()
 
 //                .and()
@@ -63,24 +70,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                )
 
                 /* PAGES FOR EMPLOYEES */
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/emp",
-                        "/emp/profile",
-                        "/emp/work-orders"
-                ).hasAuthority("ROLE_EDITOR")
-
-                /* Pages that require athentication */
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/admin/home",
-                        "/admin/{id}/index", // only admins can view all work orders
-                        "/admin/{id}/show/{woID}", // only admins can view any one work order
-                        "/admin/{id}/create"
-                )
-                .hasAuthority("ROLE_ADMIN")
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/emp",
+//                        "/emp/profile",
+//                        "/emp/work-orders"
+//                ).hasAuthority("ROLE_EDITOR")
+//
+//                /* Pages that require athentication */
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/admin/home",
+//                        "/admin/{id}/index", // only admins can view all work orders
+//                        "/admin/{id}/show/{woID}", // only admins can view any one work order
+//                        "/admin/{id}/create"
+//                )
+//                .hasAuthority("ROLE_ADMIN")
         ;
     }
 }

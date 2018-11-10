@@ -3,18 +3,20 @@
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
-<description>
+<body>
 <div th:replace="fragments/navbar :: myNav"></div>
 <h1>List of Work Orders</h1>
 <div>
-    <!--<div class="card" th:each="post : ${posts}">-->
-        <!--<h2 th:text="${post.title}"></h2>-->
-        <!--<p th:text="${post.body}"></p>-->
-        <!--&lt;!&ndash;<p th:text="${post.user.email}"></p>&ndash;&gt;-->
+    <div class="card" th:each="workorder : ${workorders}">
+        <h2 th:text="${workorder.category.name}"></h2>
+        <p th:text="${workorder.description}"></p>
+        <p th:text="${workorder.getSubmittedDate()}"></p>
+
+        <!--<p th:text="${post.user.email}"></p>-->
         <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
-        <!--<br />-->
-    <!--</div>-->
+        <br />
+    </div>
 </div>
 <div th:replace="fragments/footer :: footer"></div>
-</description>
+</body>
 </html>

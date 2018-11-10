@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('WorkOrder')"></head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
-    <div th:replace="fragments/navbar :: myNav"></div>
+<div th:replace="partials :: myNav"></div>
     <h1>A single work order page</h1>
 
 
@@ -29,6 +29,6 @@
     </div>
 
 
-    <div th:replace="fragments/footer :: footer"></div>
+<th:block th:replace="partials :: scripts" />
 </body>
 </html>

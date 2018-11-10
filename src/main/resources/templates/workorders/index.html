@@ -1,10 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('List of Work Orders')">
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
-<div th:replace="fragments/navbar :: myNav"></div>
+<div th:replace="partials :: myNav"></div>
 <h1>List of Work Orders</h1>
 <div>
     <div class="card" th:each="workorder : ${workorders}">
@@ -17,6 +14,6 @@
         <br />
     </div>
 </div>
-<div th:replace="fragments/footer :: footer"></div>
+<th:block th:replace="partials :: scripts" />
 </body>
 </html>

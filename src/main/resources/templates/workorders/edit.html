@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <th:block th:include="fragments/header :: head('Edit a Work Order')"></th:block>
-</head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
 <div class="container">
-    <div th:replace="fragments/navbar :: myNav"></div>
+    <div th:replace="partials :: myNav"></div>
     <h1>Edit a Work Order</h1>
     <form th:action="@{/work-order/{id}/edit(id=${workorder.id})}" th:method="POST" th:object="${workorder}">
         <div class="form-group">
@@ -57,7 +55,7 @@
         </div>
     </form>
 
-    <div th:replace="fragments/footer :: footer"></div>
+    <th:block th:replace="partials :: scripts" />
 
 </div>
 </body>

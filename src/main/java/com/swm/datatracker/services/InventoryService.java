@@ -45,8 +45,8 @@ public class InventoryService {
     }
 
 //DELETES THE INVENTORY OBJECT (ROW) OUT OF THE DATABASE
-    public void delete(Inventory inventory){
-        inventoryRepo.delete(inventory);
+    public void delete(long id){
+        inventoryRepo.delete(id);
     }
 
 

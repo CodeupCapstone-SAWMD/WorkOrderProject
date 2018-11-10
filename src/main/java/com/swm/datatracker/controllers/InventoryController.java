@@ -52,6 +52,13 @@ public class InventoryController {
     }
 
 
+    @GetMapping("/inventory/{id}")
+    public String individualPost(@PathVariable int id, Model vModel) {
+        vModel.addAttribute("post", inventorySvc.findOne(id));
+        return "inventory/show";
+    }
+
+
     //Directs user to the form to create a new inventory object
     @GetMapping("/inventory/create")
     public String showCreateForm(Model vModel) {
@@ -75,20 +82,20 @@ public class InventoryController {
         inventorySvc.create(item);
         return "redirect:/inventory";
     }
-//
-//    //Finds a inventory id, redirects to the edit page
-//    //to update the form you have to know which id (parameter) you are looking for
-//    @GetMapping("#")
-//    public String showUpdateForm(@PathVariable long id, Model viewModel){
-//        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
-//        return "inventory/edit";
-//    }
-//    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
-//    @PostMapping("#")
-//    public String updateForm(@ModelAttribute Inventory item){
-//        inventorySvc.edit(item);
-//        return "redirect:/inventory";
-//    }
+
+    //Finds a inventory id, redirects to the edit page
+    //to update the form you have to know which id (parameter) you are looking for
+    @GetMapping("/inventory/${id}/edit")
+    public String showUpdateForm(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
+        return "inventory/edit";
+    }
+    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
+    @PostMapping("/inventory/${id}/edit")
+    public String updateForm(@ModelAttribute Inventory item){
+        inventorySvc.edit(item);
+        return "redirect:/inventory/"+ item.getId();
+    }
 //
 //    //search for inventory based on terms in name or size
 //    @GetMapping("#")
@@ -97,12 +104,10 @@ public class InventoryController {
 //        return "inventory/index";
 //    }
 //
-//    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
-//    @PostMapping("#")
-//    public String deleteInventory(@PathVariable long id){
-//        Inventory inventory = inventorySvc.findOne(id);
-//        inventorySvc.delete(inventory);
-//        return "/inventory";
+    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
+//    @PostMapping("/inventory/${id}/delete")
+//    public void deleteInventoryItem(@PathVariable long id){
+//        inventorySvc.delete(id);
 //    }
 
 

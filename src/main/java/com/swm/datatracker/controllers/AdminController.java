@@ -22,4 +22,9 @@ public class AdminController {
 
         return "/admin/work-orders";
     }
+
+    @GetMapping("/admin/profile")
+    public String adminProfile(Model vModel) {
+        return "/admin/profile";
+    }
 }

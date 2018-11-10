@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('Register')"></head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
+<div th:replace="partials :: myNav"></div>
 <div class="container">
-    <div th:replace="fragments/navbar :: myNav"></div>
+
 
     <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
@@ -52,5 +53,6 @@
     </div>
 </form>
 </div>
+<th:block th:replace="partials :: scripts" />
 </body>
 </html>

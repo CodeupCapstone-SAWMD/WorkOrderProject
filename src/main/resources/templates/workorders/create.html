@@ -44,61 +44,15 @@
             <label for="streetName">Street Name</label>
             <input id="streetName" type="text" th:field="*{streetName}" />
         </div>
-        <!--<div class="form-group">-->
-            <!--<label for="city">City</label>-->
-            <!--<input id="city" type="text" th:field="*{city}" />-->
-        <!--</div>-->
         <div class="form-group">
             <label for="zipcode">Zipcode</label>
             <input id="zipCode" type="number" th:field="*{zipCode}" />
         </div>
 
         <div class="form-group">
-            <input value="Sign me up!" type="submit" />
+            <input value="Submit" type="submit" />
         </div>
     </form>
 </div>
 </body>
 </html>
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head th:replace="fragments/header :: head">-->
-    <!--<meta charset="UTF-8"/>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div th:replace="fragments/navbar :: myNav"></div>-->
-    <!--<h1>Create page</h1>-->
-
-    <!--<form th:action="@{/work-order/create}" th:method="post" th:object="${workorder}">-->
-        <!--<h4>Description</h4>-->
-        <!--<textarea th:field="*{description}"/>-->
-        <!--<br />-->
-        <!--<h4>Notes</h4>-->
-        <!--<textarea th:field="*{notes}"/>-->
-        <!--<br />-->
-        <!--<h4>Category</h4>-->
-        <!--<input th:field="*{category}"/>-->
-        <!--<br />-->
-        <!--<h4>Status</h4>-->
-        <!--<input th:field="*{status}"/>-->
-        <!--<br />-->
-        <!--<h4>Customer</h4>-->
-        <!--<textarea th:field="*{customer}"/>-->
-        <!--<br />-->
-        <!--<h4>Employee</h4>-->
-        <!--<textarea th:field="*{employee}"/>-->
-        <!--<br />-->
-        <!--<h4>Street Number</h4>-->
-        <!--<textarea th:field="*{streetNumber}"/>-->
-        <!--<br />-->
-        <!--<h4>Street Name</h4>-->
-        <!--<textarea th:field="*{streetName}"/>-->
-        <!--<br />-->
-        <!--<h4>Zip Code</h4>-->
-        <!--<textarea th:field="*{zipCode}"/>-->
-        <!--<br />-->
-        <!--<input type="submit" />-->
-    <!--</form>-->
-    <!--<div th:replace="fragments/footer :: footer"></div>-->
-<!--</body>-->
-<!--</html>-->

@@ -22,10 +22,10 @@
                 <a class="nav-link" href="/inventory">Inventory</a>
             </li>
             <li sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" href="/admin/work-orders">Work Orders</a>
+                <a class="nav-link" href="/workorders">Work Orders</a>
             </li>
             <li sec:authorize="hasRole('ROLE_EDITOR')">
-                <a class="nav-link" href="/emp/work-orders">Work Orders</a>
+                <a class="nav-link" href="/workorders">Work Orders</a>
             </li>
             <li sec:authorize="hasRole('ROLE_USER')">
                 <a class="nav-link" th:href="@{/users/profile}">Profile</a>
@@ -36,17 +36,14 @@
             <li sec:authorize="hasRole('ROLE_EDITOR')">
                 <a class="nav-link" th:href="@{/emp/profile}">Profile</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="!hasRole('ROLE_ADMIN')">
                 <a class="nav-link" href="/contact">Contact</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="!hasRole('ROLE_ADMIN')">
                 <a class="nav-link" href="/about">About</a>
             </li>
             <li sec:authorize="isAuthenticated()">
-                <!--<form th:action="@{/logout}" th:method="post">-->
-                <!--<button class="btn">Logout</button>-->
-                <!--</form>-->
-                <a class="nav-link" href="/login?logout">Logout</a>
+                <input type="submit" id="logout" value="Logout" class="nav-link btn-link hoverCursor border-0" form="logoutForm" />
             </li>
             <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
@@ -60,6 +57,8 @@
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
+    <form th:action="@{/logout}" method="post" id="logoutForm" class="d-none">
+    </form>
 </nav>
 
 <th:block th:fragment="scripts">

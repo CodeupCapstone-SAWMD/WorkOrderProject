@@ -25,6 +25,8 @@ public class AdminController {
 
     @GetMapping("/admin/profile")
     public String adminProfile(Model vModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        vModel.addAttribute("user", user);
         return "/admin/profile";
     }
 }

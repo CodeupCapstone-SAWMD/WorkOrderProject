@@ -3,7 +3,8 @@
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
 <div th:replace="partials :: myNav"></div>
-    <h1>Inventory List</h1>
+<div class="container">
+    <h1 class="my-4">Inventory List</h1>
 
     <table class="table table-striped">
         <thead>
@@ -28,7 +29,7 @@
             </tr>
         </tbody>
     </table>
-
+</div>
 <th:block th:replace="partials :: scripts" />
 </body>
 </html>

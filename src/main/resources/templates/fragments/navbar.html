@@ -16,27 +16,43 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/home">Profile</a>
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link" href="/inventory">Inventory</a>
             </li>
             <li sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="nav-link" href="/admin/work-orders">Work Orders</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/home">Contact</a>
+            <li sec:authorize="hasRole('ROLE_EDITOR')">
+                <a class="nav-link" href="/emp/work-orders">Work Orders</a>
+            </li>
+            <li sec:authorize="hasRole('ROLE_USER')">
+                <a class="nav-link" th:href="@{/user/profile}">Profile</a>
+            </li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link" th:href="@{/admin/profile}">Profile</a>
+            </li>
+            <li sec:authorize="hasRole('ROLE_EDITOR')">
+                <a class="nav-link" th:href="@{/emp/profile}">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/home">About</a>
+                <a class="nav-link" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
             </li>
             <li sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn">Logout</button>
-                </form>
+                <!--<form th:action="@{/logout}" th:method="post">-->
+                    <!--<button class="btn">Logout</button>-->
+                <!--</form>-->
+                <a class="nav-link" href="/login?logout">Logout</a>
             </li>
             <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="nav-link" href="/sign-up">Register</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

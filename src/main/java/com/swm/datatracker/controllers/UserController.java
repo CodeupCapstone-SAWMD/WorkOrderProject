@@ -49,6 +49,16 @@ public class UserController {
 //        return "/users/home";
 //    }
 
+    @GetMapping("/contact")
+    public String showContactForm(Model vModel) {
+        return "contact";
+    }
+
+    @GetMapping("/about")
+    public String showAboutPage(Model vModel) {
+        return "about";
+    }
+
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());

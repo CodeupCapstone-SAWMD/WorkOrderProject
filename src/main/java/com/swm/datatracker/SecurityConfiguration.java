@@ -67,8 +67,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/employee/{id}/index",
-                        "/employee/{id}/show"
+                        "/emp",
+                        "/emp/profile",
+                        "/emp/work-orders"
                 ).hasAuthority("ROLE_EDITOR")
 
                 /* Pages that require athentication */

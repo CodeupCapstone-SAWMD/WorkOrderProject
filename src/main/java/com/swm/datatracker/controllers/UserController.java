@@ -26,27 +26,37 @@ public class UserController {
 
     @GetMapping("/")
     public String defaultRoute(Model vModel) {
-        return "/users/home";
+        return "users/home";
     }
 
-    @GetMapping("/users/home")
-    public String routeUserHome(Model vModel) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Object creds = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-
-
-//        UserRole usersRole = currentUser.getRole();
-//        String role = usersRole.getRoleName();
+//    @GetMapping("/users/home")
+//    public String routeUserHome(Model vModel) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Object creds = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //
-//        vModel.addAttribute("user", currentUser);
-//        System.out.println(role);
 //
-//        if (role.equals("ROLE_ADMIN")) {
-//            return "redirect:/admin/home";
-//        }
+//
+////        UserRole usersRole = currentUser.getRole();
+////        String role = usersRole.getRoleName();
+////
+////        vModel.addAttribute("user", currentUser);
+////        System.out.println(role);
+////
+////        if (role.equals("ROLE_ADMIN")) {
+////            return "redirect:/admin/home";
+////        }
+//
+//        return "/users/home";
+//    }
 
-        return "/users/home";
+    @GetMapping("/contact")
+    public String showContactForm(Model vModel) {
+        return "contact";
+    }
+
+    @GetMapping("/about")
+    public String showAboutPage(Model vModel) {
+        return "about";
     }
 
     @GetMapping("/sign-up")

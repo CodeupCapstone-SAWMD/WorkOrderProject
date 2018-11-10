@@ -28,6 +28,9 @@ public class InventoryService {
         return inventoryRepo.findAll();
     }
 
+    public Inventory findOne(long id){
+        return inventoryRepo.findOne(id);
+    }
 
 //--------------------- UPDATES ---------------------\\
 
@@ -56,9 +59,23 @@ public class InventoryService {
     }
 
 //SEARCHES DATABASE FOR INVENTORY BASED ON NAME OR SIZE
-    public List<Inventory> searchDBNameOrSize(String term1, String term2){
-        return inventoryRepo.findInventoryByNameContainsOrSizeContains(term1, term2);
+    public List<Inventory> searchDBNameOrSize(String term){
+        return inventoryRepo.findInventoryByNameContainsOrSizeContains(term, term);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

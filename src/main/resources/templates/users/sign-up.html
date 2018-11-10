@@ -3,39 +3,53 @@
 <head th:replace="fragments/header :: head('Register')"></head>
 <body>
 <div class="container">
-<h1>Create an account</h1>
+    <div th:replace="fragments/navbar :: myNav"></div>
+
+    <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+    <div class="form-group">
     <label for="username">Username</label>
     <input id="username" th:field="*{username}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="email">Email</label>
     <input id="email" th:field="*{email}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="firstname">First Name</label>
     <input id="firstname" type="text" th:field="*{firstName}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="lastname">Last Name</label>
     <input id="lastname" type="text" th:field="*{lastName}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="streetNumber">Street Number</label>
     <input id="streetNumber" type="number" th:field="*{streetNumber}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="streetName">Street Name</label>
     <input id="streetName" type="text" th:field="*{streetName}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="city">City</label>
     <input id="city" type="text" th:field="*{city}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="zipcode">Zipcode</label>
     <input id="zipcode" type="number" th:field="*{zipcode}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <label for="phoneNumber">Phone Number</label>
     <input id="phoneNumber" type="text" th:field="*{phoneNumber}" />
-    <br/>
+    </div>
+    <div class="form-group">
     <input value="Sign me up!" type="submit" />
+    </div>
 </form>
 </div>
 </body>

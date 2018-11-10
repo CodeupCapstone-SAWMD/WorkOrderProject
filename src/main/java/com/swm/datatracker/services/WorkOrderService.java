@@ -35,8 +35,6 @@ public class WorkOrderService {
 
 
     public WorkOrder save(WorkOrder workOrder) {
-//        post.setId(posts.size() + 1);
-//        posts.add(post);
         return workOrderRepo.save(workOrder);
     }
 
@@ -45,11 +43,11 @@ public class WorkOrderService {
     }
 
     public void delete(long id){
-        WorkOrder deletedPost = workOrderRepo.findOne(id);
-        Iterable<WorkOrder> updatedPosts = workOrderRepo.findAll();
-        for(WorkOrder currentPost : updatedPosts){
-            if (currentPost.getId() == deletedPost.getId()){
-                workOrderRepo.delete(currentPost.getId());
+        WorkOrder deletedWorkOrder = workOrderRepo.findOne(id);
+        Iterable<WorkOrder> updatedWorkOrders = workOrderRepo.findAll();
+        for(WorkOrder currentWorkOrder : updatedWorkOrders){
+            if (currentWorkOrder.getId() == deletedWorkOrder.getId()){
+                workOrderRepo.delete(currentWorkOrder.getId());
             }
         }
     }

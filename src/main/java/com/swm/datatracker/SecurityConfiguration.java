@@ -48,7 +48,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/","/workorders", "/work-order/create") // anyone can see the home work order create page
+
+//                .antMatchers("/sign-up", "users/*", "/login", "/", "/inventory", "/inventory/*", "/work-order", "/work-order/create","/work-order/1", "/workorders") // anyone can see the home work order create page
+                .antMatchers("/*","/workorders", "/work-order/1") // anyone can see the home work order create page
                 .permitAll()
 
 //                .and()
@@ -66,8 +68,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/employee/{id}/index",
-                        "employee/{id}/show"
+                        "/emp",
+                        "/emp/profile",
+                        "/emp/work-orders"
                 ).hasAuthority("ROLE_EDITOR")
 
                 /* Pages that require athentication */

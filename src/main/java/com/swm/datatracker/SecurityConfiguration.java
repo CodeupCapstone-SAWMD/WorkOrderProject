@@ -54,8 +54,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/**",
                         "/inventory",
                         "/inventory/**",
+                        "/workorders",
                         "/work-order",
+                        "/work-order/1",
                         "/work-order/**") // anyone can see the home work order create page
+
                 .permitAll()
 
 //                .and()

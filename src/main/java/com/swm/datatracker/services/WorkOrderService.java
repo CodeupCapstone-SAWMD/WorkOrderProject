@@ -1,8 +1,13 @@
 package com.swm.datatracker.services;
 
+import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.WorkOrder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import com.swm.datatracker.respositories.WorkOrderRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class WorkOrderService {
@@ -24,4 +29,46 @@ public class WorkOrderService {
     public WorkOrder saveOrUpdate(WorkOrder workOrder){
         return workOrderRepo.save(workOrder);
     }
+
+
+    //Copied similar format from the Springblog Posts
+
+
+    public WorkOrder save(WorkOrder workOrder) {
+        return workOrderRepo.save(workOrder);
+    }
+
+    public WorkOrder edit(WorkOrder post){
+        return workOrderRepo.save(post);
+    }
+
+    public void delete(long id){
+        WorkOrder deletedWorkOrder = workOrderRepo.findOne(id);
+        Iterable<WorkOrder> updatedWorkOrders = workOrderRepo.findAll();
+        for(WorkOrder currentWorkOrder : updatedWorkOrders){
+            if (currentWorkOrder.getId() == deletedWorkOrder.getId()){
+                workOrderRepo.delete(currentWorkOrder.getId());
+            }
+        }
+    }
+
+    public Iterable<WorkOrder> userWorkOrders() {
+        Iterable<WorkOrder> allWorkOrders = findAll();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<WorkOrder> userWorkOrderList = new ArrayList<>();
+        for(WorkOrder currentWorkOrder : allWorkOrders){
+            if(currentWorkOrder.getCustomer().getId() == user.getId()){
+                userWorkOrderList.add(currentWorkOrder);
+            }
+        }
+        return userWorkOrderList;
+    }
+
+
+
+    public List<WorkOrder> search (String string){
+        return workOrderRepo.findAllByCategoryContainsOrDescriptionContainsOrCustomerContains(string, string, string);
+    }
+
+
 }

@@ -1,25 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('Edit Work Order')"></head>
-<description>
+<head>
+    <th:block th:include="fragments/header :: head('Edit a Work Order')"></th:block>
+</head>
+<body>
+<div class="container">
     <div th:replace="fragments/navbar :: myNav"></div>
-    <h1>Create page</h1>
+    <h1>Edit a Work Order</h1>
+    <form th:action="@{/work-order/{id}/edit(id=${workorder.id})}" th:method="POST" th:object="${workorder}">
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input id="description" type="text" th:field="*{description}" />
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <input id="notes" type="text" th:field="*{notes}" />
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input id="category" type="text"  th:field="*{category}" />
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <input id="status" type="text" th:field="*{status}" />
+        </div>
+        <div class="form-group">
+            <label for="customer">Customer</label>
+            <input id="customer" type="text" th:field="*{customer}" />
+        </div>
+        <div class="form-group">
+            <label for="employee">Employee</label>
+            <input id="employee" type="" th:field="*{employee}" />
+            <!--<select name="employee" size="1" th:each="employee: ${employees}">-->
+            <!--<option><span class="font-italic" th:text="${employee.firstName}"></span></option>-->
+            <!--</select>-->
+        </div>
+        <div class="form-group">
+            <label for="streetNumber">Street Number</label>
+            <input id="streetNumber" type="text" th:field="*{streetNumber}" />
+        </div>
+        <div class="form-group">
+            <label for="streetName">Street Name</label>
+            <input id="streetName" type="text" th:field="*{streetName}" />
+        </div>
+        <!--<div class="form-group">-->
+        <!--<label for="city">City</label>-->
+        <!--<input id="city" type="text" th:field="*{city}" />-->
+        <!--</div>-->
+        <div class="form-group">
+            <label for="zipcode">Zipcode</label>
+            <input id="zipCode" type="number" th:field="*{zipCode}" />
+        </div>
 
-    <!--<form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="post" th:object="${post}">-->
-        <!--Title:-->
-        <!--<input th:field="*{title}" />-->
-        <!--<br />-->
-        <!--Description:-->
-        <!--<textarea th:field="*{body}" />-->
-        <!--<br />-->
-        <!--<button class="btn" th:action="submit">Save edits</button>-->
-    <!--</form>-->
-
-    <!--<form th:action="@{/posts/{id}/delete(id=${post.id})}" th:method="post" th:object="${post}">-->
-         <!--<button class="btn btn-warning" th:action="submit">Delete Post</button>-->
-    <!--</form>-->
+        <div class="form-group">
+            <input value="Sign me up!" type="submit" />
+        </div>
+    </form>
 
     <div th:replace="fragments/footer :: footer"></div>
 
-</description>
+</div>
+</body>
 </html>

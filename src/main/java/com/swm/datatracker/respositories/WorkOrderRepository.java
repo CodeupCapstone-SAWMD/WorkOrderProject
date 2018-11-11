@@ -3,7 +3,6 @@ package com.swm.datatracker.respositories;
 import com.swm.datatracker.models.Status;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.WorkOrder;
-import javafx.animation.Animation;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

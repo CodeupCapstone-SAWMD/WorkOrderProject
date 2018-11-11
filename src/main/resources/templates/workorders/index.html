@@ -8,15 +8,16 @@
 <h1>List of Work Orders</h1>
 <div>
     <div class="card" th:each="workorder : ${workorders}">
-        <h2 th:text="${workorder.category.name}"></h2>
-        <p th:text="${workorder.description}"></p>
-        <p th:text="${workorder.getSubmittedDate()}"></p>
-
-        <!--<p th:text="${post.user.email}"></p>-->
-        <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
-        <br />
+        <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+        <p>Category: <span th:text="${workorder.category.name}"></span></p>
+        <p>Description: <span th:text="${workorder.description}"></span></p>
+        <p>Notes: <span th:text="${workorder.notes}"></span></p>
+        <p>Employee: <span th:text="${workorder.employee}"></span></p>
     </div>
 </div>
 <div th:replace="fragments/footer :: footer"></div>
+<script>
+
+</script>
 </body>
 </html>

@@ -15,7 +15,22 @@
             <a class="nav-link active show" data-toggle="tab" href="#profile">Personal Info</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#orders">Order History</a>
+            <a class="nav-link" data-toggle="tab" href="#orders">All Orders</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#pending">Pending Assnmt.</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#processing">Processing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#reviewed">Reviewed</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#canceled">Canceled</a>
+        </li>
+        <li class="nave-item">
+            <a class="nav-link" data-toggle="tab" href="#complete">Complete Orders</a>
         </li>
     </ul>
     <div id="myTabContent" class="tab-content">
@@ -56,12 +71,102 @@
                     <th scope="col">Status</th>
                     <th scope="col"></th>
                 </tr>
-                <tr style="font-size:15px" th:each="order : ${orders}">
+                <tr style="font-size:15px" th:each="order : ${allOrders}">
                     <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
                     <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                     <td th:text="${order.category.name}"></td>
                     <td th:text="${order.status.name}"></td>
-                    <td><a th:href="@{/work-orders/view/{id}(id=${order.id})}">View</a></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade mt-4" id="pending">
+            <table class="table table-hover">
+                <tr class="table-primary">
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr style="font-size:15px" th:each="order : ${pendingAssignmentOrders}">
+                    <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
+                    <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
+                    <td th:text="${order.category.name}"></td>
+                    <td th:text="${order.status.name}"></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade mt-4" id="processing">
+            <table class="table table-hover">
+                <tr class="table-primary">
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr style="font-size:15px" th:each="order : ${processingOrders}">
+                    <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
+                    <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
+                    <td th:text="${order.category.name}"></td>
+                    <td th:text="${order.status.name}"></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade mt-4" id="reviewed">
+            <table class="table table-hover">
+                <tr class="table-primary">
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr style="font-size:15px" th:each="order : ${inReview}">
+                    <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
+                    <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
+                    <td th:text="${order.category.name}"></td>
+                    <td th:text="${order.status.name}"></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade mt-4" id="canceled">
+            <table class="table table-hover">
+                <tr class="table-primary">
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr style="font-size:15px" th:each="order : ${canceledOrders}">
+                    <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
+                    <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
+                    <td th:text="${order.category.name}"></td>
+                    <td th:text="${order.status.name}"></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade mt-4" id="complete">
+            <table class="table table-hover">
+                <tr class="table-primary">
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+                <tr style="font-size:15px" th:each="order : ${completeOrders}">
+                    <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
+                    <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
+                    <td th:text="${order.category.name}"></td>
+                    <td th:text="${order.status.name}"></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>
                 </tr>
             </table>
         </div>

@@ -3,20 +3,19 @@
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
 <div th:replace="partials :: myNav"></div>
-    <h1>A single work order page</h1>
+<div class="container">
+    <h1 class="my-4"><span th:text="${'Work Order ID: ' + workorder.id}"></span></h1>
 
-
-    <div class="row justify-content-center">
-        <div class="card m-1" style="width: 18rem">
+    <!--<div class="w-100 row justify-content-center">-->
+        <div class="card m-1 w-100 justify-content-center" style="width: 18rem">
             <div class="card-body">
-                <p class="card-title"><b>Submitted Date:</b> <span class="font-italic" th:text="${workorder.submittedDate}"></span></p>
-
+                <p class="card-title"><b>Submitted Date:</b> <span class="font-italic" th:text="${#dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></span></p>
                 <p class="card-title"><b>Description:</b> <span class="font-italic" th:text="${workorder.description}"></span></p>
                 <p class="card-text"><b>Notes:</b> <span th:text="${workorder.notes}"></span></p>
-                <p class="card-text"><b>Category:</b> <span th:text="${workorder.category}"></span></p>
-                <p class="card-title"><b>Work Order Status:</b> <span class="font-italic" th:text="${workorder.status}"></span></p>
-                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer}"></span></p>
-                <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee}"></span></p>
+                <p class="card-text"><b>Category:</b> <span th:text="${workorder.category.name}"></span></p>
+                <p class="card-title"><b>Work Order Status:</b> <span class="font-italic" th:text="${workorder.status.name}"></span></p>
+                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>
+                <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
                 <p class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>
                 <p class="card-text"><b>Zip Code:</b> <span th:text="${workorder.zipCode}"></span></p>
@@ -26,9 +25,9 @@
                 <!--</ul>-->
             </div>
         </div>
-    </div>
-
+    <!--</div>-->
 
 <th:block th:replace="partials :: scripts" />
+</div>
 </body>
 </html>

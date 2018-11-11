@@ -1,7 +1,9 @@
 package com.swm.datatracker.respositories;
 
+import com.swm.datatracker.models.Status;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.WorkOrder;
+import javafx.animation.Animation;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -18,5 +20,8 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
     List<WorkOrder> findAllByUser(Long id);
 
     List<WorkOrder> findAllByCustomer(User user);
+
+
+    List<WorkOrder> findAllByStatus(Status status);
 
 }

@@ -2,6 +2,7 @@ package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.UserRole;
+import com.swm.datatracker.respositories.RolesRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
 import com.swm.datatracker.services.UserService;
@@ -12,19 +13,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.Role;
+import javax.management.relation.RoleResult;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
-    private UserRepository users;
+    private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private WorkOrderRepository workOrderRepository;
     private UserService userService;
+    private RolesRepository userRolesRepository;
 
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository) {
-        this.users = users;
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository) {
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.workOrderRepository = workOrderRepository;
+        this.userRolesRepository = userRolesRepository;
     }
 
     @GetMapping("/")
@@ -72,7 +78,19 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        users.save(user);
+        userRepository.save(user);
+
+        // FIND THE ID OF THE LAST USER
+        List<User> users = userRepository.findAll();
+        User last = users.get(users.size() - 1);
+
+        // CREATE AND SAVE ROLE FOR NEWEST USER
+        UserRole newUser = new UserRole();
+        newUser.setRole("ROLE_USER");
+        newUser.setUserId(last.getId());
+        
+        userRolesRepository.save(newUser);
+
         return "redirect:/login";
     }
 

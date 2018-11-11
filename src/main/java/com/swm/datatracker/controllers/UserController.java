@@ -90,7 +90,6 @@ public class UserController {
         newUser.setUserId(last.getId());
 
         userRolesRepository.save(newUser);
-
         return "redirect:/login";
     }
 

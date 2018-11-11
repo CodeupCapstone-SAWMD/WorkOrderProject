@@ -1,5 +1,6 @@
 package com.swm.datatracker.respositories;
 
+import com.swm.datatracker.models.UserRole;
 import org.springframework.data.repository.CrudRepository;
 import com.swm.datatracker.models.User;
 
@@ -13,6 +14,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByUsername(String username);
 
+    List<User> findAllByUserRole(UserRole userRole);
 
     List<User> findAllByEmailContainsOrUsernameContains(String string, String string2);
 }

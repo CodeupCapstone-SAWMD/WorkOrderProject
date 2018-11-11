@@ -85,13 +85,13 @@ public class InventoryController {
 
     //Finds a inventory id, redirects to the edit page
     //to update the form you have to know which id (parameter) you are looking for
-    @GetMapping("/inventory/${id}/edit")
+    @GetMapping("/inventory/{id}/edit")
     public String showUpdateForm(@PathVariable long id, Model viewModel){
         viewModel.addAttribute("inventory", inventorySvc.findOne(id));
         return "inventory/edit";
     }
     //User updates changes to the inventory, edits the inventory in database and displays new inventory list
-    @PostMapping("/inventory/${id}/edit")
+    @PostMapping("/inventory/{id}/edit")
     public String updateForm(@ModelAttribute Inventory item){
         inventorySvc.edit(item);
         return "redirect:/inventory/"+ item.getId();

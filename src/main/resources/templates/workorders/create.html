@@ -25,11 +25,21 @@
         </div>
         <div class="form-group">
             <label for="category">Category</label>
-            <input id="category" type="text" class="form-control" th:field="*{category}" />
+            <!--<input id="category" type="text" class="form-control" th:field="*{category}" />-->
+            <select id="category" name="category" size="1" >
+                <option th:each="currentCategory: ${category}">
+                    <span class="font-italic" th:text="${currentCategory.id}"></span>
+                </option>
+            </select>
         </div>
         <div class="form-group">
             <label for="status">Status</label>
-            <input id="status" type="text" class="form-control" th:field="*{status}" />
+            <!--<input id="status" type="text" class="form-control" th:field="${workorder.status.name}" />-->
+            <select id="status" name="status" size="1" >
+                <option th:each="currentStatus: ${status}">
+                    <span class="font-italic" th:text="${currentStatus.id}"></span>
+                </option>
+            </select>
         </div>
         <div class="form-group">
             <label for="customer">Customer</label>
@@ -38,7 +48,7 @@
         <div class="form-group">
             <label for="employee">Employee</label>
             <input id="employee" type="text" class="form-control" th:field="*{employee}" />
-            <!--<select name="employee" size="1" th:each="employee: ${employees}">-->
+            <!--<select id="employees" name="employees" size="1" th:each="employee: ${employees}">-->
                 <!--<option><span class="font-italic" th:text="${employee.firstName}"></span></option>-->
             <!--</select>-->
         </div>

@@ -2,9 +2,8 @@ package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.WorkOrder;
-import com.swm.datatracker.respositories.RolesRepository;
-import com.swm.datatracker.respositories.UserRepository;
-import com.swm.datatracker.respositories.WorkOrderRepository;
+import com.swm.datatracker.respositories.*;
+import com.swm.datatracker.services.UserService;
 import com.swm.datatracker.services.WorkOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +17,13 @@ import java.util.Date;
 public class WorkOrderController {
     @Autowired
     private UserRepository userRepo;
-    private RolesRepository rolesRepo;
+    private UserService userService;
+
+    @Autowired
+    private CategoryRepository categoryRepo;
+
+    @Autowired
+    private StatusRepository statusRepo;
 
     private WorkOrderRepository workOrderRepository;
     private WorkOrderService workOrderService;
@@ -54,6 +59,10 @@ public class WorkOrderController {
 //        vModel.addAttribute("employees", userRepo.findAllByUserRoleContains(2));
 //        System.out.println((rolesRepo.findAllByRoleContains("user")));
         vModel.addAttribute("workorder", workOrder);
+//        System.out.println(statusRepo.findAll());
+        vModel.addAttribute("status", statusRepo.findAll());
+        vModel.addAttribute("category", categoryRepo.findAll());
+//        System.out.println(userService.findAllEmployees());
         return "workorders/create";
     }
 

@@ -5,14 +5,20 @@
 </head>
 <body>
 <div th:replace="fragments/navbar :: myNav"></div>
-<h1>List of Work Orders</h1>
-<div>
-    <div class="card" th:each="workorder : ${workorders}">
-        <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
-        <p>Category: <span th:text="${workorder.category.name}"></span></p>
-        <p>Description: <span th:text="${workorder.description}"></span></p>
-        <p>Notes: <span th:text="${workorder.notes}"></span></p>
-        <p>Employee: <span th:text="${workorder.employee}"></span></p>
+<h1 class="text-center text-light">List of Work Orders</h1>
+<div class="row justify-content-center">
+    <div class="card m-1" style="width: 18rem;" th:each="workorder : ${workorders}">
+        <ul class="card-body d-flex flex-column" >
+            <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+            <p>Category: <span th:text="${workorder.category.name}"></span></p>
+            <p>Description: <span th:text="${workorder.description}"></span></p>
+            <p>Notes: <span th:text="${workorder.notes}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <ul class="nav nav-pills justify-content-center mt-auto form-group">
+                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>
+                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+            </ul>
+        </ul>
     </div>
 </div>
 <div th:replace="fragments/footer :: footer"></div>

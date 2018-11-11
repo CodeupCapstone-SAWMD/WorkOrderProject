@@ -88,7 +88,7 @@ public class UserController {
         UserRole newUser = new UserRole();
         newUser.setRole("ROLE_USER");
         newUser.setUserId(last.getId());
-        
+
         userRolesRepository.save(newUser);
 
         return "redirect:/login";

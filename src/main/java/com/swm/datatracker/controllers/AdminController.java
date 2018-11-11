@@ -14,19 +14,19 @@ public class AdminController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         vModel.addAttribute("user", currentUser);
-        return "/admin/home";
+        return "admin/home";
     }
 
     @GetMapping("/admin/work-orders")
     public String adminWorkOrders(Model vModel) {
 
-        return "/admin/work-orders";
+        return "admin/work-orders";
     }
 
     @GetMapping("/admin/profile")
     public String adminProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         vModel.addAttribute("user", user);
-        return "/admin/profile";
+        return "admin/profile";
     }
 }

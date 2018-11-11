@@ -65,7 +65,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());
-        return "/users/sign-up";
+        return "users/sign-up";
     }
 
     @PostMapping("/sign-up")
@@ -83,7 +83,7 @@ public class UserController {
         vModel.addAttribute("user", user);
 //        vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
         vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
-        return "/users/profile";
+        return "users/profile";
     }
 
 //    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
@@ -91,7 +91,7 @@ public class UserController {
     public String editUser(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         vModel.addAttribute("user", user);
-        return "/users/edit";
+        return "users/edit";
     }
 
 

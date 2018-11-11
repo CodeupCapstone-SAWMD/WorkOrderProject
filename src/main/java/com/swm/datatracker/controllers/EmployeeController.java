@@ -13,7 +13,7 @@ public class EmployeeController {
     public String empProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         vModel.addAttribute("user", user);
-        return "/emp/profile";
+        return "emp/profile";
     }
 }
 

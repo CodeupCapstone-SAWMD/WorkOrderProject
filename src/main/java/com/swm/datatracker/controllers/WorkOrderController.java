@@ -46,7 +46,7 @@ public class WorkOrderController {
     public String worOrderId(@PathVariable long id, Model vModel) {
 //        System.out.println(workOrderService.findOne(id));
         vModel.addAttribute("workorder", workOrderService.findOne(id));
-        return "/workorders/show";
+        return "workorders/show";
     }
 
     @GetMapping("/work-order/create")

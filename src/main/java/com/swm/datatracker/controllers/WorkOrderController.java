@@ -90,6 +90,7 @@ public class WorkOrderController {
         List<User> userList = userRepo.findAll();
         List<User> custs = new ArrayList<>();
             for (User u : userList) {
+//                System.out.println(u.getRole());
                 if (u.getRole().getRoleName().equals("ROLE_USER")) {
                     custs.add(u);
                 }

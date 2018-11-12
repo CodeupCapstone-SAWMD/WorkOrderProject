@@ -5,9 +5,10 @@
 
 <div th:replace="partials :: myNav"></div>
 <div class="container">
+
     <h1 class="my-4 text-center text-light"><span th:text="${'Work Order ID: ' + workorder.id}"></span></h1>
-
-
+ <div class="row">
+    <div class="col-12 col-md-6">
     <!--<div class="w-100 row justify-content-center">-->
         <div class="card m-1 w-100 justify-content-center" style="width: 18rem">
             <div class="card-body">
@@ -19,7 +20,7 @@
                 <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>
                 <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
 
-                <p class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
+                <p id="strNum" class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>
                 <p class="card-text"><b>Zip Code:</b> <span th:text="${workorder.zipCode}"></span></p>
                 <ul class="nav nav-pills justify-content-center mt-auto form-group">
@@ -28,9 +29,67 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="col-12 col-md-6">
+            <div class="" style="width:400px;height:400px;margin:0 auto;" id="map"></div>
+    </div>
+ </div>
+
+
     <!--</div>-->
 
 <th:block th:replace="partials :: scripts" />
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_2LRyC5ZwBjRISdMpZnp7R8Sw4Jpspsc"></script>
+    <script th:inline="javascript">
+        (function() {
+
+                // GENERAL MAP OPTIONS
+                var mapOptions = {
+                    zoom: 19,
+                    mapTypeId: "satellite"
+                };
+
+            // var strNum = $('#strNum').val();
+
+            var rest2 = "6957 Sebastopol Ave, Sebastopol, CA, 95472";
+
+            var strNum = [[${workorder.streetNumber}]];
+            var strName = [[${workorder.streetName}]];
+            var city = "Schertz";
+            var state = "TX";
+            var zip = [[${workorder.zipCode}]];
+
+            var addy = strNum + " " + strName + ", " + city + ", "  + state + ", " + zip;
+            console.log(addy);
+
+            // console.log(rest1);
+            var bistro = {lat: 38.4019, lng: -122.8238};
+
+
+
+            // CREATE GEOCODE OBJECT INSTANCE
+                var geocoder = new google.maps.Geocoder();
+
+                // CREATE GOOGLE MAP OBJECT INSTANCE
+                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+                // GEOCODE LOAD RETURN INFO
+                geocoder.geocode({"address": addy}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                    } else {
+                        alert("Geocoding was not successful - STATUS: " + status);
+                    }
+                });
+
+            var marker = new google.maps.Marker({
+                position: bistro,
+                map: map,
+                animation: google.maps.Animation.DROP
+            });
+
+            })();
+    </script>
 </div>
 </body>
 </html>

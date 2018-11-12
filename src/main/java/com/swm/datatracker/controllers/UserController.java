@@ -1,8 +1,10 @@
 package com.swm.datatracker.controllers;
 
+import com.swm.datatracker.models.Status;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.UserRole;
 import com.swm.datatracker.respositories.RolesRepository;
+import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
 import com.swm.datatracker.services.UserService;
@@ -22,12 +24,14 @@ public class UserController {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private WorkOrderRepository workOrderRepository;
+    private StatusRepository statusRepository;
     private UserService userService;
     private RolesRepository userRolesRepository;
 
 
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository) {
         this.userRepository = userRepository;
+        this.statusRepository = statusRepository;
         this.passwordEncoder = passwordEncoder;
         this.workOrderRepository = workOrderRepository;
         this.userRolesRepository = userRolesRepository;
@@ -100,7 +104,8 @@ public class UserController {
     public String userProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         vModel.addAttribute("user", user);
-//        vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
+
+        // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
         vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
         return "users/profile";
     }

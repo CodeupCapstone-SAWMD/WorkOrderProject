@@ -43,7 +43,14 @@ public class WorkOrderController {
 
     @GetMapping("/workorders")
     public String workorders(Model vModel) {
-        vModel.addAttribute("workorders", workOrderService.findAll());
+//        vModel.addAttribute("workorders", workOrderService.findAll());
+        vModel.addAttribute("submitted", workOrderService.statusList(1));
+        vModel.addAttribute("pending", workOrderService.statusList(2));
+        vModel.addAttribute("processing", workOrderService.statusList(3));
+        vModel.addAttribute("review", workOrderService.statusList(4));
+        vModel.addAttribute("complete", workOrderService.statusList(5));
+        vModel.addAttribute("cancelled", workOrderService.statusList(6));
+
         return "workorders/index";
     }
 
@@ -70,9 +77,10 @@ public class WorkOrderController {
     public String createPost(@ModelAttribute WorkOrder workOrder) {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Date currentDate = new Date();
-        System.out.println(currentDate);
+//        System.out.println(currentDate);
 //        workOrder.setCustomer(userRepo.findOne(user.getId()));
         workOrder.setSubmittedDate(currentDate);
+        workOrder.setStatus(statusRepo.findOne((long) 1));
         WorkOrder newWorkOrder = workOrderService.save(workOrder);
         return "redirect:/workorders";
     }
@@ -80,13 +88,15 @@ public class WorkOrderController {
     @GetMapping("/work-order/{id}/edit")
     public String editWorkOrder(@PathVariable long id, Model vModel) {
         vModel.addAttribute("workorder", workOrderService.findOne(id));
+        vModel.addAttribute("status", statusRepo.findAll());
+        vModel.addAttribute("category", categoryRepo.findAll());
         return "workorders/edit";
     }
 
     @PostMapping("/work-order/{id}/edit")
     public String updatePost(@ModelAttribute WorkOrder workOrder) {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        post.setUser(userRepository.findOne(user.getId()));
+//        workOrder.setUser(userRepository.findOne(user.getId()));
         WorkOrder updatedWorkOrder = workOrderService.edit(workOrder);
         return "redirect:/work-order/" + updatedWorkOrder.getId();
     }
@@ -107,7 +117,7 @@ public class WorkOrderController {
 //
     @GetMapping("/workorders/user-posts")
     public String userPosts(Model vModel) {
-        vModel.addAttribute("postings", workOrderService.userWorkOrders());
+        vModel.addAttribute("workorders", workOrderService.userWorkOrders());
         return "workorders/index";
 //
     }

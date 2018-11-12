@@ -13,9 +13,9 @@
 
                 <p class="card-title"><b>Description:</b> <span class="font-italic" th:text="${workorder.description}"></span></p>
                 <p class="card-text"><b>Notes:</b> <span th:text="${workorder.notes}"></span></p>
-                <p class="card-text"><b>Category:</b> <span th:text="${workorder.category}"></span></p>
-                <p class="card-title"><b>Work Order Status:</b> <span class="font-italic" th:text="${workorder.status}"></span></p>
-                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer}"></span></p>
+                <p class="card-text"><b>Category:</b> <span th:text="${workorder.category.name}"></span></p>
+                <p class="card-title"><b>Work Order Status:</b> <span class="font-italic" th:text="${workorder.status.name}"></span></p>
+                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.lastName}"></span></p>
                 <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee}"></span></p>
                 <p class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>

@@ -4,6 +4,7 @@ import com.swm.datatracker.models.Inventory;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.InventoryService;
+import org.springframework.security.access.method.P;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -112,14 +113,24 @@ public class InventoryController {
     }
 
 
-//    @GetMapping("/work-order/{id}")
-//    public long decrement(long id){
-//       Inventory item = inventorySvc.findOne(id);
-//       long currentQuantity = item.getQuantity();
-//       inventorySvc.decrementInventory(currentQuantity,);
-//    }
+    @GetMapping("/inventory/{id}/decrement/{quantity}")
+    public String decrement(@PathVariable long id, @PathVariable long quantity){
+       Inventory item = inventorySvc.findOne(id);
+       long currentQuantity = item.getQuantity();
+        item.setQuantity(currentQuantity - quantity);
+        inventorySvc.edit(item);
+        System.out.println(inventorySvc.findOne(id).getQuantity());
+       return "redirect:/inventory/{id}/edit";
+    }
 
-
-
+    @GetMapping("/inventory/{id}/increment/{quantity}")
+    public String increment(@PathVariable long id, @PathVariable long quantity){
+        Inventory item = inventorySvc.findOne(id);
+        long currentQuantity = item.getQuantity();
+        item.setQuantity(currentQuantity + quantity);
+        inventorySvc.edit(item);
+        System.out.println(inventorySvc.findOne(id).getQuantity());
+        return "redirect:/inventory/{id}/edit";
+    }
 
 }

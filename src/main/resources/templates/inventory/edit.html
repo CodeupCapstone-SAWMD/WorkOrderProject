@@ -29,10 +29,17 @@
                 <br/>
                 <input type="submit" />
                 <!--<input type="hidden" id="inventoryId" th:value="${inventory.id}"/>-->
-                <button id="subtract-item" class="btn btn-warning">Subtract</button>
             </div>
 
         </form>
+        <!--<form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post" th:object="${requestedQuantity}">-->
+
+        <!--</form>-->
+        <!--&lt;!&ndash;<form th:class="card-body" th:action="@{/inventory/{id}/increment(id=${inventory.id})}" th:method="post" th:object="${requestedQuantity}">&ndash;&gt;-->
+            <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--<a id="subtract-item" class="btn btn-warning" th:href="@{/inventory/{id}/decrement(id=${inventory.id})}">Decrement</a>-->
+
     </div>
 
     <th:block th:replace="partials :: scripts" />

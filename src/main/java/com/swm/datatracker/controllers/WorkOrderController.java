@@ -64,6 +64,9 @@ public class WorkOrderController {
         vModel.addAttribute("workorder", new WorkOrder());
 //        UserRole ur = rolesRepo.findOne(2L);
 //        List<User> custos = userRepo.findAllByUserRole(ur);
+//        Object user = SecurityContextHolder.getContext().getAuthentication().getCredentials();
+//        System.out.println(user);
+
 
         // WAY TO FIND ALL 'CUSTOMERS'
         List<User> userList = userRepo.findAll();

@@ -78,6 +78,8 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        UserRole ur = userRolesRepository.findOneById(2L);
+        user.setRole(ur);
         userRepository.save(user);
 
         // FIND THE ID OF THE LAST USER

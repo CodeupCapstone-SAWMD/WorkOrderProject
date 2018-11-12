@@ -1,5 +1,7 @@
 package com.swm.datatracker.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +46,9 @@ public class WorkOrder {
     @Column(nullable = false)
     private long zipCode;
 
-    @Column
+
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date submittedDate;
 
     public WorkOrder(){}

@@ -15,8 +15,11 @@
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
             <p>Employee: <span th:text="${workorder.employee}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
+                <!--<li><a th:href="@{/posts/{id}/edit(id=${workorder.id})}">edit post</a></li>-->
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
             </ul>
         </ul>
     </div>
@@ -27,6 +30,7 @@
 <div class="row justify-content-center">
     <div class="card m-1" style="width: 18rem;" th:each="workorder : ${pending}">
         <ul class="card-body d-flex flex-column" >
+            <p th:text="${'Submitted on: ' + #dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></p>
             <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
             <p>Status: <span th:text="${workorder.status.name}"></span></p>
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
@@ -34,8 +38,10 @@
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
             <p>Employee: <span th:text="${workorder.employee}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
             </ul>
         </ul>
     </div>
@@ -53,8 +59,10 @@
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
             <p>Employee: <span th:text="${workorder.employee}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
             </ul>
         </ul>
     </div>
@@ -72,8 +80,10 @@
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
             <p>Employee: <span th:text="${workorder.employee}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
             </ul>
         </ul>
     </div>
@@ -91,8 +101,10 @@
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
             <p>Employee: <span th:text="${workorder.employee}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
             </ul>
         </ul>
     </div>
@@ -110,8 +122,10 @@
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
             <p>Employee: <span th:text="${workorder.employee}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>
-                <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
+                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
             </ul>
         </ul>
     </div>

@@ -45,7 +45,7 @@ public class WorkOrder {
     @Column
     private Date submittedDate;
 
-    public WorkOrder(){};
+    public WorkOrder(){}
 
     public WorkOrder(long id, String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, Date submittedDate) {
         this.id = id;

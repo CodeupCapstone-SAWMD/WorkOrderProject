@@ -19,7 +19,7 @@
                 <th scope="col">Edit/Delete</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody th:action="@{/inventory}" th:method="post" th:object="${inventory}">
             <tr th:each="item : ${inventory}">
                 <th scope="row" th:text="${item.name}"></th>
                 <td th:text="${item.size}"></td>
@@ -27,12 +27,43 @@
                 <td th:text="${item.quantity}"></td>
                 <td>
                 <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit">Edit</button>
-                <button class="btn btn-danger" th:name="delete" th:type="submit" th:value="Delete">Delete</button>
+                <input type="hidden" id="itemId" th:value="${item.id.toString()}"/>
+                <button id="delete-item" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <div th:replace="fragments/footer :: footer"></div>
+
+<script>
+
+    //------------------------------------------ JavaScript to Delete Inventory Items ----------------------------------//
+
+    //1) query the document for the element id of the delete button and assign it to a variable
+    //2) query the document for the element id of the inventory item's id and assign it to a variable
+
+    let deleteItem = document.querySelector("#delete-item");
+    let itemId = document.querySelector("#itemId").value();
+
+    //3) add an event listener to the delete button that functions on a click and prevent the action from reocurring
+    //4) confirm if the user wants to complete the action and set it to a variable
+    //5) if the user confirms, fetch the delete url with the id and use a post method
+    //6) then take the confirmation variable, get the json, then redirect to the inventory page to show the updated
+    //   inventory
+
+    deleteItem.addEventListener('click',function(e) {
+        e.preventDefault();
+        let result = confirm("Are you sure you want to delete this item? It cannot be undone.");
+        if(result){
+            fetch(`/inventory/${itemId}/delete`, {
+                method:"POST"}).then(result=> result.json()).then(() => location.href= "/inventory");
+        }
+
+    });
+
+
+</script>
+
 </body>
 </html>

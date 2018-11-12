@@ -94,7 +94,7 @@ public class InventoryController {
     @PostMapping("/inventory/{id}/edit")
     public String updateForm(@ModelAttribute Inventory item){
         inventorySvc.edit(item);
-        return "redirect:/inventory/"+ item.getId();
+        return "redirect:/inventory";
     }
 //
 //    //search for inventory based on terms in name or size
@@ -105,10 +105,10 @@ public class InventoryController {
 //    }
 //
     //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
-//    @PostMapping("/inventory/${id}/delete")
-//    public void deleteInventoryItem(@PathVariable long id){
-//        inventorySvc.delete(id);
-//    }
+    @PostMapping("/inventory")
+    public void deleteInventoryItem(@PathVariable long id){
+        inventorySvc.delete(id);
+    }
 
 
 }

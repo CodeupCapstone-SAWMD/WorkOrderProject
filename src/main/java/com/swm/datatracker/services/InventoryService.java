@@ -49,6 +49,19 @@ public class InventoryService {
         inventoryRepo.delete(id);
     }
 
+//public long decrementInventory(long currentQuantity, long workorderQuantity){
+//        currentQuantity -= workorderQuantity;
+//        return currentQuantity;
+// }
+
+//    public Inventory decrementInventory(long id){
+//        Inventory item = inventoryRepo.findOne(id);
+//        long itemQuantity = item.getQuantity();
+//        itemQuantity -= workOrder.quantity;
+//        item.setQuantity(itemQuantity);
+//
+//        return item;
+//    }
 
 
 //--------------------- SEARCHES ---------------------\\

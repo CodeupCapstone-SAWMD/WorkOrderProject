@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('Edit')">
-</head>
+<head th:replace="partials :: head('WasteManagement')" />
+
 <body>
 <div class="container">
-    <div th:replace="fragments/navbar :: myNav"></div>
+    <div th:replace="partials :: myNav"></div>
 
     <div class="card">
         <form th:class="card-body" th:action="@{/inventory/{id}/edit(id=${inventory.id})}" th:method="post" th:object="${inventory}">
@@ -21,16 +21,21 @@
                 <label th:for="Quantity">Quantity</label>
                 <input th:type="text" th:class="form-control" th:placeholder="Quantity" th:field="*{quantity}" />
 
+
+                <!--<label th:for="subtract">Subtract</label>-->
+                <!--<input th:type="text" th:class="form-control" value="" th:field>-->
+                <!--<input>-->
+
                 <br/>
                 <input type="submit" />
                 <!--<input type="hidden" id="inventoryId" th:value="${inventory.id}"/>-->
-                <!--<button id="delete-item" class="btn btn-danger">Delete</button>-->
+                <button id="subtract-item" class="btn btn-warning">Subtract</button>
             </div>
 
         </form>
     </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+    <th:block th:replace="partials :: scripts" />
 </div>
 <!--<script>-->
 

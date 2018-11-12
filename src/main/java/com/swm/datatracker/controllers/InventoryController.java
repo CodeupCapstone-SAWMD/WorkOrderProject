@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -109,6 +110,16 @@ public class InventoryController {
     public void deleteInventoryItem(@PathVariable long id){
         inventorySvc.delete(id);
     }
+
+
+//    @GetMapping("/work-order/{id}")
+//    public long decrement(long id){
+//       Inventory item = inventorySvc.findOne(id);
+//       long currentQuantity = item.getQuantity();
+//       inventorySvc.decrementInventory(currentQuantity,);
+//    }
+
+
 
 
 }

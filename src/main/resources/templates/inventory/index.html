@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('Inventory')">
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+<head th:replace="partials :: head('WasteManagement')" />
 
-</head>
 <body>
-    <div th:replace="fragments/navbar :: myNav"></div>
+<div th:replace="partials :: myNav"></div>
     <h1>Inventory List</h1>
 
     <table class="table table-striped">
@@ -26,12 +23,11 @@
                 <td th:text="'$'+ ${item.price}"></td>
                 <td th:text="${item.quantity}"></td>
                 <td>
-                <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit">Edit</button>
+                <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit"><a th:href="@{'/inventory/' + ${item.id} + '/edit'}" class="nav-link">Edit</a></button>
                 <input type="hidden" id="itemId" th:value="${item.id}"/>
                 <button id="delete-item" class="btn btn-danger">Delete</button>
                 <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                    <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${item.id}}" class="nav-link">Work Order Link</a></li>
-                    <li class="nav-item font-weight-bold w-50"><a th:href="@{'/inventory/' + ${item.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
+                    <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${item.id}}" class="nav-link">Work Order Link</a></li>-->
                 </ul>
 
                 </td>
@@ -39,7 +35,7 @@
         </tbody>
     </table>
 
-    <div th:replace="fragments/footer :: footer"></div>
+<th:block th:replace="partials :: scripts" />
 
 <script>
 

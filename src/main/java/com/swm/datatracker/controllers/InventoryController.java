@@ -4,11 +4,13 @@ import com.swm.datatracker.models.Inventory;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.InventoryService;
+import org.springframework.security.access.method.P;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -52,6 +54,13 @@ public class InventoryController {
     }
 
 
+    @GetMapping("/inventory/{id}")
+    public String individualPost(@PathVariable int id, Model vModel) {
+        vModel.addAttribute("post", inventorySvc.findOne(id));
+        return "inventory/show";
+    }
+
+
     //Directs user to the form to create a new inventory object
     @GetMapping("/inventory/create")
     public String showCreateForm(Model vModel) {
@@ -75,20 +84,20 @@ public class InventoryController {
         inventorySvc.create(item);
         return "redirect:/inventory";
     }
-//
-//    //Finds a inventory id, redirects to the edit page
-//    //to update the form you have to know which id (parameter) you are looking for
-//    @GetMapping("#")
-//    public String showUpdateForm(@PathVariable long id, Model viewModel){
-//        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
-//        return "inventory/edit";
-//    }
-//    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
-//    @PostMapping("#")
-//    public String updateForm(@ModelAttribute Inventory item){
-//        inventorySvc.edit(item);
-//        return "redirect:/inventory";
-//    }
+
+    //Finds a inventory id, redirects to the edit page
+    //to update the form you have to know which id (parameter) you are looking for
+    @GetMapping("/inventory/{id}/edit")
+    public String showUpdateForm(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
+        return "inventory/edit";
+    }
+    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
+    @PostMapping("/inventory/{id}/edit")
+    public String updateForm(@ModelAttribute Inventory item){
+        inventorySvc.edit(item);
+        return "redirect:/inventory";
+    }
 //
 //    //search for inventory based on terms in name or size
 //    @GetMapping("#")
@@ -97,13 +106,31 @@ public class InventoryController {
 //        return "inventory/index";
 //    }
 //
-//    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
-//    @PostMapping("#")
-//    public String deleteInventory(@PathVariable long id){
-//        Inventory inventory = inventorySvc.findOne(id);
-//        inventorySvc.delete(inventory);
-//        return "/inventory";
-//    }
+    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
+    @PostMapping("/inventory")
+    public void deleteInventoryItem(@PathVariable long id){
+        inventorySvc.delete(id);
+    }
 
+
+    @GetMapping("/inventory/{id}/decrement/{quantity}")
+    public String decrement(@PathVariable long id, @PathVariable long quantity){
+       Inventory item = inventorySvc.findOne(id);
+       long currentQuantity = item.getQuantity();
+        item.setQuantity(currentQuantity - quantity);
+        inventorySvc.edit(item);
+        System.out.println(inventorySvc.findOne(id).getQuantity());
+       return "redirect:/inventory/{id}/edit";
+    }
+
+    @GetMapping("/inventory/{id}/increment/{quantity}")
+    public String increment(@PathVariable long id, @PathVariable long quantity){
+        Inventory item = inventorySvc.findOne(id);
+        long currentQuantity = item.getQuantity();
+        item.setQuantity(currentQuantity + quantity);
+        inventorySvc.edit(item);
+        System.out.println(inventorySvc.findOne(id).getQuantity());
+        return "redirect:/inventory/{id}/edit";
+    }
 
 }

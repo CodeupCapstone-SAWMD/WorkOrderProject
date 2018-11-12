@@ -12,6 +12,7 @@ public interface InventoryRepository extends CrudRepository <Inventory, Long> {
 
     List<Inventory> findInventoryByNameContains(String term);
     List<Inventory> findInventoryByNameContainsOrSizeContains(String term1, String term2);
+//    List<Inventory> findInventoryQuantity(long id);
 
 //NOTE: Are we going to have enough items that require a search function
 }

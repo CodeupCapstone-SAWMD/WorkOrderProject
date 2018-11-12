@@ -28,9 +28,11 @@ public class WorkOrder {
     private Status status;
 
     @OneToOne
+//    @JoinColumn(name="user_id")
     private User customer;
 
     @OneToOne
+//    @JoinColumn(name="user_id")
     private User employee;
 
     @Column(nullable = false)

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('Inventory')">
-    <!--<meta charset="UTF-8"/>-->
-    <!--<title>Title</title>-->
-</head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
 <div class="container">
-<div th:replace="fragments/navbar :: myNav"></div>
+    <div th:replace="partials :: myNav"></div>
 
 <div class="card">
     <form th:class="card-body" th:action="@{/inventory/create}" th:method="post" th:object="${inventory}">
@@ -30,8 +27,7 @@
 
     </form>
 </div>
-
-<div th:replace="fragments/footer :: footer"></div>
+    <th:block th:replace="partials :: scripts" />
 </div>
 </body>
 </html>

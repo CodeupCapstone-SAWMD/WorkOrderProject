@@ -1,6 +1,8 @@
 package com.swm.datatracker;
 
+import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.UserDetailsLoader;
+import com.swm.datatracker.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -48,7 +50,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/sign-up", "users/*", "/login", "/", "/inventory", "/inventory/create","/inventory/${id}/edit","/inventory/${id}/delete", "/work-order", "/work-order/*") // anyone can see the home work order create page
+                .antMatchers("/sign-up",
+                        "/users/**",
+                        "/login",
+                        "/**",
+                        "/inventory",
+                        "/inventory/**",
+                        "/workorders",
+                        "/work-order",
+                        "/work-order/1",
+                        "/work-order/**") // anyone can see the home work order create page
+
                 .permitAll()
 
 //                .and()
@@ -63,24 +75,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                )
 
                 /* PAGES FOR EMPLOYEES */
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/emp",
-                        "/emp/profile",
-                        "/emp/work-orders"
-                ).hasAuthority("ROLE_EDITOR")
-
-                /* Pages that require athentication */
-                .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/admin/home",
-                        "/admin/{id}/index", // only admins can view all work orders
-                        "/admin/{id}/show/{woID}", // only admins can view any one work order
-                        "/admin/{id}/create"
-                )
-                .hasAuthority("ROLE_ADMIN")
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/emp",
+//                        "/emp/profile",
+//                        "/emp/work-orders"
+//                ).hasAuthority("ROLE_EDITOR")
+//
+//                /* Pages that require athentication */
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/admin/home",
+//                        "/admin/{id}/index", // only admins can view all work orders
+//                        "/admin/{id}/show/{woID}", // only admins can view any one work order
+//                        "/admin/{id}/create"
+//                )
+//                .hasAuthority("ROLE_ADMIN")
         ;
     }
 }

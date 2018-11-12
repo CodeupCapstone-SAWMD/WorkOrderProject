@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('WorkOrder')"></head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
-    <div th:replace="fragments/navbar :: myNav"></div>
-    <h1 class="text-center text-light">A single work order page</h1>
+
+<div th:replace="partials :: myNav"></div>
+<div class="container">
+    <h1 class="my-4 text-center text-light"><span th:text="${'Work Order ID: ' + workorder.id}"></span></h1>
 
 
-    <div class="row justify-content-center">
-        <div class="card m-1" style="width: 18rem">
+    <!--<div class="w-100 row justify-content-center">-->
+        <div class="card m-1 w-100 justify-content-center" style="width: 18rem">
             <div class="card-body">
-                <p class="card-title"><b>Submitted Date:</b> <span class="font-italic" th:text="${workorder.submittedDate}"></span></p>
-
+                <p class="card-title"><b>Submitted Date:</b> <span class="font-italic" th:text="${#dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></span></p>
                 <p class="card-title"><b>Description:</b> <span class="font-italic" th:text="${workorder.description}"></span></p>
                 <p class="card-text"><b>Notes:</b> <span th:text="${workorder.notes}"></span></p>
                 <p class="card-text"><b>Category:</b> <span th:text="${workorder.category.name}"></span></p>
                 <p class="card-title"><b>Work Order Status:</b> <span class="font-italic" th:text="${workorder.status.name}"></span></p>
-                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.lastName}"></span></p>
-                <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee}"></span></p>
+                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>
+                <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
+
                 <p class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>
                 <p class="card-text"><b>Zip Code:</b> <span th:text="${workorder.zipCode}"></span></p>
@@ -26,9 +28,9 @@
                 </ul>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 
-
-    <div th:replace="fragments/footer :: footer"></div>
+<th:block th:replace="partials :: scripts" />
+</div>
 </body>
 </html>

@@ -1,3 +1,5 @@
+use mgmt_db;
+
 insert into status (id, name) values (1, 'SUBMITTED');
 insert into status (id, name) values (2, 'PENDING ASSIGNMENT');
 insert into status (id, name) values (3, 'PROCESSING');

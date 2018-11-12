@@ -49,7 +49,7 @@ public class User {
     // THIS WORKS SO FAR
 
 //    @ManyToOne
-////    @JoinColumn(name="user_id")
+//    @JoinColumn(name="user_role_id")
 //    private UserRole role;
 
     @ManyToOne
@@ -59,7 +59,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole role) {
+    public User(String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole userRole) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -70,10 +70,10 @@ public class User {
         this.city = city;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
-        this.userRole = role;
+        this.userRole = userRole;
     }
 
-    public User(long id, String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole role) {
+    public User(long id, String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole userRole) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -85,7 +85,7 @@ public class User {
         this.city = city;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
-        this.userRole = role;
+        this.userRole = userRole;
     }
 
     public User(User copy) {

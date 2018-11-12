@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('Inventory')">
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-
-</head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
-    <div th:replace="fragments/navbar :: myNav"></div>
-    <h1>Inventory List</h1>
+<div th:replace="partials :: myNav"></div>
+<div class="container">
+    <h1 class="my-4">Inventory List</h1>
 
     <table class="table table-striped">
         <thead>
@@ -32,7 +29,7 @@
             </tr>
         </tbody>
     </table>
-
-    <div th:replace="fragments/footer :: footer"></div>
+</div>
+<th:block th:replace="partials :: scripts" />
 </body>
 </html>

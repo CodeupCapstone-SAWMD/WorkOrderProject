@@ -1,9 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('List of Work Orders')">
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
+
 <div th:replace="fragments/navbar :: myNav"></div>
 <h1 class="text-center text-light">List of Work Orders</h1>
 
@@ -117,11 +115,85 @@
                 <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
             </ul>
         </ul>
-    </div>
-</div>
-<div th:replace="fragments/footer :: footer"></div>
-<script>
+=======
+<div th:replace="partials :: myNav"></div>
+<div class="container">
+<h1 class="my-4">List of Work Orders</h1>
+    <th:block th:each="workorder : ${workorders}">
+        <div class="card p-4 mb-3" th:if="${workorder.status.name eq 'SUBMITTED'}" style="background-color:#d2eaf4">
+            <!--<div class="card p-4 mb-3" th:each="workorder : ${workorders}">-->
 
-</script>
+            <h2 th:text="${workorder.category.name}"></h2>
+            <p th:text="${workorder.description}"></p>
+            <p th:text="${'Submitted on: ' + #dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></p>
+            <p th:text="${'Status: ' + workorder.status.name}"></p>
+            <a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm">View</button></a>
+            <!--<p th:text="${post.user.email}"></p>-->
+            <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
+            <!--<br />-->
+        </div>
+    </th:block>
+    <th:block th:each="workorder : ${workorders}">
+        <div class="card p-4 mb-3" th:if="${workorder.status.name eq 'PENDING ASSIGNMENT'}" style="background-color:#f4e6d4">
+            <!--<div class="card p-4 mb-3" th:each="workorder : ${workorders}">-->
+
+            <h2 th:text="${workorder.category.name}"></h2>
+            <p th:text="${workorder.description}"></p>
+            <p th:text="${'Submitted on: ' + #dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></p>
+            <p th:text="${'Status: ' + workorder.status.name}"></p>
+            <a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm">View</button></a>
+            <!--<p th:text="${post.user.email}"></p>-->
+            <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
+            <!--<br />-->
+        </div>
+    </th:block>
+    <th:block th:each="workorder : ${workorders}">
+        <div class="card p-4 mb-3" th:if="${workorder.status.name eq 'PROCESSING'}" style="background-color:#e8dbeb">
+            <!--<div class="card p-4 mb-3" th:each="workorder : ${workorders}">-->
+
+            <h2 th:text="${workorder.category.name}"></h2>
+            <p th:text="${workorder.description}"></p>
+            <p th:text="${'Submitted on: ' + #dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></p>
+            <p th:text="${'Status: ' + workorder.status.name}"></p>
+            <a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm">View</button></a>
+            <!--<p th:text="${post.user.email}"></p>-->
+            <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
+            <!--<br />-->
+        </div>
+    </th:block>
+    <th:block th:each="workorder : ${workorders}">
+        <div class="card p-4 mb-3" th:if="${workorder.status.name eq 'REVIEW'}" style="background-color:#f1d4d0">
+            <!--<div class="card p-4 mb-3" th:each="workorder : ${workorders}">-->
+
+            <h2 th:text="${workorder.category.name}"></h2>
+            <p th:text="${workorder.description}"></p>
+            <p th:text="${'Submitted on: ' + #dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></p>
+            <p th:text="${'Status: ' + workorder.status.name}"></p>
+            <a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm">View</button></a>
+            <!--<p th:text="${post.user.email}"></p>-->
+            <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
+            <!--<br />-->
+        </div>
+    </th:block>
+    <th:block th:each="workorder : ${workorders}">
+        <div class="card p-4 mb-3" th:if="${workorder.status.name eq 'COMPLETE'}" style="background-color:#dde9d0">
+    <!--<div class="card p-4 mb-3" th:each="workorder : ${workorders}">-->
+
+        <h2 th:text="${workorder.category.name}"></h2>
+        <p th:text="${workorder.description}"></p>
+        <p th:text="${'Submitted on: ' + #dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></p>
+        <p th:text="${'Status: ' + workorder.status.name}"></p>
+        <a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm">View</button></a>
+        <!--<p th:text="${post.user.email}"></p>-->
+        <!--<a href="/posts/{id}/edit" th:href="@{/posts/{id}/edit(id=${post.id})}">edit post</a>-->
+        <!--<br />-->
+
+    </div>
+    </th:block>
+
+
+</div>
+
+<th:block th:replace="partials :: scripts" />
 </body>
 </html>

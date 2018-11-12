@@ -2,7 +2,7 @@
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
 
-<div th:replace="fragments/navbar :: myNav"></div>
+<div th:replace="partials :: myNav"></div>
 <h1 class="text-center text-light">List of Work Orders</h1>
 
 <h3 class="text-center text-light text-underline"><u>Submitted</u></h3>
@@ -15,7 +15,7 @@
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -38,7 +38,7 @@
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -59,7 +59,7 @@
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -101,7 +101,7 @@
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -122,7 +122,7 @@
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>

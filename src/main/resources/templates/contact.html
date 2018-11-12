@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: head('Contact Us')">
-    <meta charset="UTF-8"/>
-</head>
+<head th:replace="partials :: head('WasteManagement')" />
 <body>
-<div th:replace="fragments/navbar :: myNav"></div>
+<div th:replace="partials :: myNav"></div>
 <div class="container">
     <h1>THIS IS THE CONTACT FORM PAGE</h1>
 </div>
+<th:block th:replace="partials :: scripts" />
+
 </body>
 </html>

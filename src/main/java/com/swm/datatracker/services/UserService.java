@@ -31,5 +31,13 @@ public class UserService {
     public List<User> search(String string){
         return usersRepo.findAllByEmailContainsOrUsernameContains(string, string);
     }
+    public List<User> findAllAdmin() {
+        return usersRepo.findAllByUserRoleContains(1);
+    }
+
+    public  List<User> findAllEmployees (){
+        return usersRepo.findAllByUserRoleContains(2);
+    }
+
 
 }

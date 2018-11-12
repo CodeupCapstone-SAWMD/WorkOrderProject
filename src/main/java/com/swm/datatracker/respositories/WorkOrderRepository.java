@@ -22,5 +22,4 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
 
 
     List<WorkOrder> findAllByStatus(Status status);
-
 }

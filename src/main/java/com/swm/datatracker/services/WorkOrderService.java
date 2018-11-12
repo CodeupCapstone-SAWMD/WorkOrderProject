@@ -2,6 +2,7 @@ package com.swm.datatracker.services;
 
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.WorkOrder;
+import com.swm.datatracker.respositories.StatusRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import com.swm.datatracker.respositories.WorkOrderRepository;
@@ -13,6 +14,8 @@ import java.util.List;
 public class WorkOrderService {
 
     private WorkOrderRepository workOrderRepo;
+
+    private StatusRepository statusRepo;
 
     public WorkOrderService(WorkOrderRepository workOrderRepo){
         this.workOrderRepo = workOrderRepo;
@@ -65,7 +68,16 @@ public class WorkOrderService {
     }
 
 
-
+    public List<WorkOrder> statusList (long statusId){
+        List<WorkOrder> list = new ArrayList<>();
+        Iterable<WorkOrder> updatedWorkOrders = workOrderRepo.findAll();
+        for (WorkOrder workorder: updatedWorkOrders){
+            if (workorder.getStatus().getId() == statusId){
+                list.add(workorder);
+            }
+        }
+        return list;
+    }
     public List<WorkOrder> search (String string){
         return workOrderRepo.findAllByCategoryContainsOrDescriptionContainsOrCustomerContains(string, string, string);
     }

@@ -3,8 +3,9 @@
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
 <div class="container">
+
     <div th:replace="partials :: myNav"></div>
-    <h1>Edit a Work Order</h1>
+    <h1 class="text-center text-light">Edit a Work Order</h1>
     <form th:action="@{/work-order/{id}/edit(id=${workorder.id})}" th:method="POST" th:object="${workorder}">
         <div class="form-group">
             <label for="description">Description</label>
@@ -50,13 +51,83 @@
             <input id="zipCode" type="number" th:field="*{zipCode}" />
         </div>
 
-        <div class="form-group">
-            <input value="Sign me up!" type="submit" />
-        </div>
-    </form>
+    <div class="row justify-content-center">
+        <div class="card m-1 w-75" style="width: 18rem;">
+            <div class="card-body" >
+                <form th:action="@{'/work-order/{id}/edit' (id=${workorder.id})}" method="POST" th:object="${workorder}">
+                    <div class="form-group">
+                        <label for="date">Submission Date</label>
+                        <p id="date" type="text" class="form-control" th:text="${workorder.submittedDate}"></p>
+                        <!--<input id="date" type="hidden" class="form-control" th:field="*{submittedDate}"/>-->
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input id="description" type="text" class="form-control" th:field="*{description}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <input id="notes" type="text" class="form-control" th:field="*{notes}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <!--<input id="category" type="text" class="form-control" th:field="*{category}" />-->
+                        <select id="category" name="category" size="1" >
+                            <option th:each="currentCategory: *{category}">
+                                <span class="font-italic" th:text="${currentCategory.id}"></span>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <!--<input id="status" type="text" class="form-control" th:field="${workorder.status.name}" />-->
+                        <select id="status" name="status" size="1" >
+                            <option th:each="currentStatus: ${status}">
+                                <span class="font-italic" th:text="${currentStatus.id}"></span>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Customer</label>
+                        <input id="customer" type="text" class="form-control" th:field="*{customer}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="employee">Employee</label>
+                        <input id="employee" type="text" class="form-control" th:field="*{employee}" />
+                        <!--<select id="employees" name="employees" size="1" th:each="employee: ${employees}">-->
+                        <!--<option><span class="font-italic" th:text="${employee.firstName}"></span></option>-->
+                        <!--</select>-->
+                    </div>
+                    <div class="form-group">
+                        <label for="streetNumber">Street Number</label>
+                        <input id="streetNumber" type="text" class="form-control" th:field="*{streetNumber}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="streetName">Street Name</label>
+                        <input id="streetName" type="text" class="form-control" th:field="*{streetName}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="zipcode">Zipcode</label>
+                        <input id="zipCode" type="number" class="form-control" th:field="*{zipCode}" />
+                    </div>
 
     <th:block th:replace="partials :: scripts" />
 
+
+                    <ul class="nav nav-pills justify-content-center form-group">
+                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-warning font-weight-bold text-light">Submit</button></li>
+                    </ul>
+                </form>
+                <form th:action="@{'/work-order/{id}/delete' (id=${workorder.id})}" method="get" th:object="${workorder}" class="mb-3">
+                    <input type="hidden" name="_method" value="delete" />
+                    <ul class="nav nav-pills justify-content-center form-group">
+                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-danger font-weight-bold text-light" th:method="delete">DELETE POST</button></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

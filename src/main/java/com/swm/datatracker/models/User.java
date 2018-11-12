@@ -52,14 +52,14 @@ public class User {
 //    @JoinColumn(name="user_role_id")
 //    private UserRole role;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private UserRole userRole;
+//    @ManyToOne
+//    @JoinColumn(name = "role_id")
+//    private UserRole userRole;
 
     public User() {
     }
 
-    public User(String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole userRole) {
+    public User(String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -70,10 +70,9 @@ public class User {
         this.city = city;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
-        this.userRole = userRole;
     }
 
-    public User(long id, String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber, UserRole userRole) {
+    public User(long id, String username, String email, String password, String firstName, String lastName, long streetNumber, String streetName, String city, long zipcode, String phoneNumber) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -85,7 +84,7 @@ public class User {
         this.city = city;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
-        this.userRole = userRole;
+//        this.userRole = userRole;
     }
 
     public User(User copy) {
@@ -100,7 +99,7 @@ public class User {
         this.city = copy.city;
         this.zipcode = copy.zipcode;
         this.phoneNumber = copy.phoneNumber;
-        this.userRole = copy.userRole;
+//        this.userRole = copy.userRole;
     }
 
     public long getId() {
@@ -191,12 +190,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public UserRole getRole() {
-        return userRole;
-    }
-
-    public void setRole(UserRole role) {
-        this.userRole = role;
-    }
+//    public UserRole getRole() {
+//        return userRole;
+//    }
+//
+//    public void setRole(UserRole role) {
+//        this.userRole = role;
+//    }
 
 }

@@ -81,15 +81,15 @@ public class UserController {
         userRepository.save(user);
 
         // FIND THE ID OF THE LAST USER
-        List<User> users = userRepository.findAll();
-        User last = users.get(users.size() - 1);
+//        List<User> users = userRepository.findAll();
+//        User last = users.get(users.size() - 1);
 
         // CREATE AND SAVE ROLE FOR NEWEST USER
-        UserRole newUser = new UserRole();
-        newUser.setRole("ROLE_USER");
-        newUser.setUserId(last.getId());
+//        UserRole newUser = new UserRole();
+//        newUser.setRole("ROLE_USER");
+//        newUser.setUserId(last.getId());
 
-        userRolesRepository.save(newUser);
+//        userRolesRepository.save(newUser);
         return "redirect:/login";
     }
 

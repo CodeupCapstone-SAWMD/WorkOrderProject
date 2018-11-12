@@ -70,14 +70,14 @@ public class WorkOrderController {
 
         // WAY TO FIND ALL 'CUSTOMERS'
         List<User> userList = userRepo.findAll();
-        List<User> custs = new ArrayList<>();
-            for (User u : userList) {
-                if (u.getRole().getRoleName().equals("ROLE_USER")) {
-                    custs.add(u);
-                }
-            }
+//        List<User> custs = new ArrayList<>();
+//            for (User u : userList) {
+////                if (u.getRole().getRoleName().equals("ROLE_USER")) {
+//                    custs.add(u);
+//                }
+//            }
 
-        vModel.addAttribute("customers", custs);
+        vModel.addAttribute("customers", userList);
         vModel.addAttribute("categories", categoryRepository.findAll());
         vModel.addAttribute("status", statusRepository.findAll());
         vModel.addAttribute("employees", userRepo.findAll());

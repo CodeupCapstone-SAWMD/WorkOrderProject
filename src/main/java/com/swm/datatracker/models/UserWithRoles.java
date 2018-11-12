@@ -21,6 +21,8 @@ public class UserWithRoles extends User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String roles = StringUtils.collectionToCommaDelimitedString(userRoles);
+//        String roles = ""; // Since we're not using the authorization part of the component
+
         return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
     }
 

@@ -3,6 +3,7 @@ package com.swm.datatracker.services;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.respositories.UserRepository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -16,6 +17,7 @@ public class UserService {
     public UserService(UserRepository usersRepo) {
         this.usersRepo = usersRepo;
     }
+
     public Iterable<User> findAll() {
         return usersRepo.findAll();
     }

@@ -1,15 +1,19 @@
 package com.swm.datatracker;
 
+import com.swm.datatracker.models.User;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.UserDetailsLoader;
 import com.swm.datatracker.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {

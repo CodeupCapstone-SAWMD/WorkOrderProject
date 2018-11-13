@@ -2,18 +2,20 @@
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
 
+<div th:replace="partials :: myNav"></div>
 <h1 class="text-center text-light">List of Work Orders</h1>
 
 <h3 class="text-center text-light text-underline"><u>Submitted</u></h3>
 <div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;" th:each="workorder : ${submitted}">
+    <div class="card m-1" style="width: 18rem;background-color:#d2eaf4" th:each="workorder : ${submitted}">
         <ul class="card-body d-flex flex-column" >
-            <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+            <!--<p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>-->
+            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
             <p>Status: <span th:text="${workorder.status.name}"></span></p>
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -28,15 +30,15 @@
 <h3 class="text-center text-light text-underline"><u>Pending</u></h3>
 
 <div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;" th:each="workorder : ${pending}">
+    <div class="card m-1" style="width: 18rem;background-color:#f4e6d4" th:each="workorder : ${pending}">
         <ul class="card-body d-flex flex-column" >
-            <p th:text="${'Submitted on: ' + #dates.format(workorder.submittedDate, 'dd-MMM-yyyy')}"></p>
+            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
             <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
             <p>Status: <span th:text="${workorder.status.name}"></span></p>
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -50,14 +52,14 @@
 <h3 class="text-center text-light text-underline"><u>Processing</u></h3>
 
 <div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;" th:each="workorder : ${processing}">
+    <div class="card m-1" style="width: 18rem;background-color:#e8dbeb" th:each="workorder : ${processing}">
         <ul class="card-body d-flex flex-column" >
-            <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
             <p>Status: <span th:text="${workorder.status.name}"></span></p>
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -71,14 +73,14 @@
 <h3 class="text-center text-light text-underline"><u>Review</u></h3>
 
 <div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;" th:each="workorder : ${review}">
-        <ul class="card-body d-flex flex-column" >
-            <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+    <div class="card m-1" style="width: 18rem;background-color:#f1d4d0" th:each="workorder : ${review}">
+        <ul class="card-body d-flex flex-column">
+            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
             <p>Status: <span th:text="${workorder.status.name}"></span></p>
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -92,14 +94,14 @@
 <h3 class="text-center text-light text-underline"><u>Completed</u></h3>
 
 <div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;" th:each="workorder : ${complete}">
+    <div class="card m-1" style="width:18rem;background-color:#dde9d0" th:each="workorder : ${complete}">
         <ul class="card-body d-flex flex-column" >
-            <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
             <p>Status: <span th:text="${workorder.status.name}"></span></p>
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
@@ -115,12 +117,12 @@
 <div class="row justify-content-center">
     <div class="card m-1" style="width: 18rem;" th:each="workorder : ${cancelled}">
         <ul class="card-body d-flex flex-column" >
-            <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
             <p>Status: <span th:text="${workorder.status.name}"></span></p>
             <p>Category: <span th:text="${workorder.category.name}"></span></p>
             <p>Description: <span th:text="${workorder.description}"></span></p>
             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                 <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>

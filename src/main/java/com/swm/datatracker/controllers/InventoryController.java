@@ -1,17 +1,12 @@
 package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.Inventory;
-import com.swm.datatracker.models.User;
+import com.swm.datatracker.models.RequestedQuantity;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.InventoryService;
-import org.springframework.security.access.method.P;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class InventoryController {
@@ -26,7 +21,6 @@ public class InventoryController {
 
     private InventoryService inventorySvc;
     private UserRepository userRepo;
-
     /**---------------------------------------------------------------------------**\
      |                       Dependency Injection                                    |
      |                                                                               |

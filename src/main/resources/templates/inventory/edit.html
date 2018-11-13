@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head('WasteManagement')" />
+
+<body>
+<div class="container">
+    <div th:replace="partials :: myNav"></div>
+
+    <div class="card">
+        <form th:class="card-body" th:action="@{/inventory/{id}/edit(id=${inventory.id})}" th:method="post" th:object="${inventory}">
+            <div th:class="form-group">
+                <label th:for="name">Name</label>
+                <input th:type="text" th:class="form-control" th:field="*{name}" th:placeholder="Name"/>
+
+                <label th:for="size">Size</label>
+                <input th:type="text" th:class="form-control" th:placeholder="Size" th:field="*{size}" />
+
+                <label th:for="price">Price</label>
+                <input th:type="text" th:class="form-control" th:placeholder="Price" th:field="*{price}" />
+
+                <label th:for="Quantity">Quantity</label>
+                <input th:type="text" th:class="form-control" th:placeholder="Quantity" th:field="*{quantity}" />
+
+
+                <!--<label th:for="subtract">Subtract</label>-->
+                <!--<input th:type="text" th:class="form-control" value="" th:field>-->
+                <!--<input>-->
+
+                <br/>
+                <button class="btn btn-success" type="submit" value="Edit">Edit</button>
+                <button class="btn btn-danger" type="submit" value="Cancel"><a class="link text-light" th:href="@{'/inventory'}">Cancel</a></button>
+
+                <!--<input type="hidden" id="inventoryId" th:value="${inventory.id}"/>-->
+            </div>
+
+        </form>
+
+        <!--</form> this the form body for increment/decrement option in the admin view; this uses the spring request parameter method -->
+        <!--1) place in a card-body class; the action URL ; with a post method -->
+        <!--2) create a label; input type is a number ; type form-control; the name is what you use as input in controller-->
+
+        <form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post">
+            <label th:for="dec">Decrease Inventory</label>
+            <input th:type="number" th:class="form-control" name="dec"/>
+            <input type="submit" class="btn btn-success"/>
+        </form>
+
+
+        <form th:class="card-body" th:action="@{/inventory/{id}/increment(id=${inventory.id})}" th:method="post">
+            <label th:for="inc">Increase Inventory</label>
+            <input th:type="number" th:class="form-control" name="inc"/>
+            <input type="submit" class="btn btn-success"/>
+        </form>
+
+    </div>
+
+    <th:block th:replace="partials :: scripts" />
+</div>
+<!--<script>-->
+
+<!--//&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; JavaScript to Delete Inventory Items &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;//-->
+
+    <!--//1) query the document for the element id of the delete button and assign it to a variable-->
+    <!--//2) query the document for the element id of the inventory item's id and assign it to a variable-->
+
+    <!--let deleteItem = document.querySelector("#delete-item");-->
+    <!--let inventoryId = document.querySelector("#inventoryId").value();-->
+
+    <!--//3) add an event listener to the delete button that functions on a click and prevent the action from reocurring-->
+    <!--//4) confirm if the user wants to complete the action and set it to a variable-->
+    <!--//5) if the user confirms, fetch the delete url with the id and use a post method-->
+    <!--//6) then take the confirmation variable, get the json, then redirect to the inventory page to show the updated-->
+    <!--//   inventory-->
+
+    <!--deleteItem.addEventListener('click',function(e) {-->
+        <!--e.preventDefault();-->
+        <!--let result = confirm("Are you sure you want to delete this item? It cannot be undone.");-->
+        <!--if(result){-->
+            <!--fetch(`/inventory/${inventoryId}/delete`, {-->
+                <!--method:"POST"}).then(result=> result.json()).then(() => location.href= "/inventory");-->
+        <!--}-->
+
+    <!--});-->
+
+
+<!--</script>-->
+</body>
+</html>

@@ -17,8 +17,11 @@
                 <p class="card-text"><b>Notes:</b> <span th:text="${workorder.notes}"></span></p>
                 <p class="card-text"><b>Category:</b> <span th:text="${workorder.category.name}"></span></p>
                 <p class="card-title"><b>Work Order Status:</b> <span class="font-italic" th:text="${workorder.status.name}"></span></p>
-                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>
-                <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
+                <p class="card-title"><b>Requested Bin Type:</b> <span class="font-italic" th:text="${workorder.inventory.name +': '+ workorder.inventory.size}"></span></p>
+                <p class="card-title"><b>Requested Bin Quantity:</b> <span class="font-italic" th:text="${workorder.requestedQuantity}"></span></p>
+
+                <!--<p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>-->
+                <!--<p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>-->
 
                 <p id="strNum" class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>

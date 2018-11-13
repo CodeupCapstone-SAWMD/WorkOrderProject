@@ -50,8 +50,8 @@ public class WorkOrder {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date submittedDate;
-    
-    @Column
+
+    @Column(nullable = true)
     private long requestedQuantity;
 
     @ManyToOne

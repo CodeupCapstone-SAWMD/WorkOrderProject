@@ -19,9 +19,13 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
 
     List<WorkOrder> findAllByUser(Long id);
 
+    List<WorkOrder> findAllByEmployee(User user);
+
     List<WorkOrder> findAllByCustomer(User user);
 
     List<WorkOrder> findAllByStatus(Status status);
 
     List<WorkOrder> findAllByCustomerAndStatus(User user, Status status);
+
+    List<WorkOrder> findAllByEmployeeAndStatus(User user, Status status);
 }

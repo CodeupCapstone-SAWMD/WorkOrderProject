@@ -107,7 +107,6 @@ public class UserController {
     @GetMapping("/users/profile")
     public String userProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User u = userRepository.findOne(2L);
 
         Status submitted = statusRepository.findOne(1L);
         Status pendingAssignment = statusRepository.findOne(2L);
@@ -115,15 +114,15 @@ public class UserController {
         Status reviewed = statusRepository.findOne(4L);
         Status completed = statusRepository.findOne(5L);
         Status cancelled = statusRepository.findOne(6L);
-        vModel.addAttribute("user", u);
+        vModel.addAttribute("user", user);
 
-        vModel.addAttribute("submitted", workOrderRepository.findAllByCustomerAndStatus(u, submitted));
-        vModel.addAttribute("pending", workOrderRepository.findAllByCustomerAndStatus(u, pendingAssignment));
-        vModel.addAttribute("processing", workOrderRepository.findAllByCustomerAndStatus(u, processing));
-        vModel.addAttribute("reviewed", workOrderRepository.findAllByCustomerAndStatus(u, reviewed));
-        vModel.addAttribute("completed", workOrderRepository.findAllByCustomerAndStatus(u, completed));
-        vModel.addAttribute("cancelled", workOrderRepository.findAllByCustomerAndStatus(u, cancelled));
-        vModel.addAttribute("allOrders", workOrderRepository.findAllByCustomer(u));
+        vModel.addAttribute("submitted", workOrderRepository.findAllByCustomerAndStatus(user, submitted));
+        vModel.addAttribute("pending", workOrderRepository.findAllByCustomerAndStatus(user, pendingAssignment));
+        vModel.addAttribute("processing", workOrderRepository.findAllByCustomerAndStatus(user, processing));
+        vModel.addAttribute("reviewed", workOrderRepository.findAllByCustomerAndStatus(user, reviewed));
+        vModel.addAttribute("completed", workOrderRepository.findAllByCustomerAndStatus(user, completed));
+        vModel.addAttribute("cancelled", workOrderRepository.findAllByCustomerAndStatus(user, cancelled));
+        vModel.addAttribute("allOrders", workOrderRepository.findAllByCustomer(user));
 
         return "users/profile";
     }

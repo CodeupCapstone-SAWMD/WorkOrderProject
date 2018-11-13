@@ -8,14 +8,10 @@
 
     <div class="row justify-content-center">
         <div class="card m-1 w-75" style="width: 18rem;">
-<<<<<<< HEAD
-            <div class="card-body" >
-                <form th:action="@{'/work-order/{id}/edit'(id=${workorder.id})}" method="POST" th:object="${workorder}">
-=======
+
             <div class="card-body">
                 <form th:action="@{/work-order/{id}/edit(id=${workorder.id})}" method="POST" th:object="${workorder}">
                 <!--<form th:action="@{'/work-order/{id}/edit'(id=${workorder.id})}" method="POST" th:object="${workorder}">-->
->>>>>>> ba281a8b5c28c1efa7116bc9a18b5c5645c02fed
                     <div class="form-group">
                         <label for="date">Submission Date</label>
                         <input id="date" type="date" class="form-control" th:field="*{submittedDate}"/>

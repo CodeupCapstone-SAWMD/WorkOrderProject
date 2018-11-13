@@ -27,12 +27,9 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private WorkOrderRepository workOrderRepository;
     private StatusRepository statusRepository;
-
     private WorkOrderService workOrderService;
     private UserService userService;
     private RolesRepository userRolesRepository;
-    private StatusRepository statusRepository;
-
 
     public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository) {
         this.userRepository = userRepository;
@@ -110,7 +107,7 @@ public class UserController {
     public String userProfile(Model vModel) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+//            User user = userRepository.findOne(1L);
         vModel.addAttribute("user", user);
         System.out.println(user.getId());
         System.out.println(user.getFirstName());
@@ -118,15 +115,22 @@ public class UserController {
         // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
         vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
 
-            vModel.addAttribute("user", user);
+//            vModel.addAttribute("user", user);
 
-            vModel.addAttribute("submitted", workOrderService.listByUserAndStatus(user,1));
-            vModel.addAttribute("pending", workOrderService.listByUserAndStatus(user,2));
-            vModel.addAttribute("processing", workOrderService.listByUserAndStatus(user,3));
-            vModel.addAttribute("reviewed", workOrderService.listByUserAndStatus(user,4));
-            vModel.addAttribute("completed", workOrderService.listByUserAndStatus(user,5));
-            vModel.addAttribute("cancelled", workOrderService.listByUserAndStatus(user,6));
-            vModel.addAttribute("allOrders", workOrderService.userWorkOrders());
+            vModel.addAttribute("submitted", workOrderRepository.findAllByCustomerAndStatus(user,statusRepository.findOne(1L)));
+            vModel.addAttribute("pending", workOrderRepository.findAllByCustomerAndStatus(user,statusRepository.findOne(2L)));
+            vModel.addAttribute("processing", workOrderRepository.findAllByCustomerAndStatus(user,statusRepository.findOne(3L)));
+            vModel.addAttribute("reviewed", workOrderRepository.findAllByCustomerAndStatus(user,statusRepository.findOne(4L)));
+            vModel.addAttribute("completed", workOrderRepository.findAllByCustomerAndStatus(user,statusRepository.findOne(5L)));
+            vModel.addAttribute("cancelled", workOrderRepository.findAllByCustomerAndStatus(user,statusRepository.findOne(6L)));
+            vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
+
+//            vModel.addAttribute("pending", workOrderService.listByUserAndStatus(user,2));
+//            vModel.addAttribute("processing", workOrderService.listByUserAndStatus(user,3));
+//            vModel.addAttribute("reviewed", workOrderService.listByUserAndStatus(user,4));
+//            vModel.addAttribute("completed", workOrderService.listByUserAndStatus(user,5));
+//            vModel.addAttribute("cancelled", workOrderService.listByUserAndStatus(user,6));
+//            vModel.addAttribute("allOrders", workOrderService.userWorkOrders());
 
             return "users/profile";
         }

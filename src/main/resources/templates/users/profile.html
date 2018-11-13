@@ -101,6 +101,31 @@
 
 <div id="myTabContent" class="tab-content">
 
+    <div class="tab-pane fade mt-4" id="orders">
+
+        <h3 class="text-center text-light text-underline"><u>Submitted</u></h3>
+        <div class="row justify-content-center">
+            <div class="card m-1" style="width: 18rem;" th:each="workorder : ${submitted}">
+                <ul class="card-body d-flex flex-column">
+                    <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
+                    <p>Status: <span th:text="${workorder.status.name}"></span></p>
+                    <p>Category: <span th:text="${workorder.category.name}"></span></p>
+                    <p>Description: <span th:text="${workorder.description}"></span></p>
+                    <p>Notes: <span th:text="${workorder.notes}"></span></p>
+                    <p>Employee: <span th:text="${workorder.employee}"></span></p>
+                    <ul class="nav nav-pills justify-content-center mt-auto form-group">
+                        <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}"
+                                                                      class="nav-link">Work Order Link</a></li>
+                        <li class="nav-item font-weight-bold w-50"><a
+                                th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr/>
+
     <div class="tab-pane fade mt-4" id="submitted">
 
         <h3 class="text-center text-light text-underline"><u>Submitted</u></h3>

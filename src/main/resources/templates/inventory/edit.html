@@ -27,7 +27,9 @@
                 <!--<input>-->
 
                 <br/>
-                <input type="submit" class="btn btn-warning"/>
+                <button class="btn btn-success" type="submit" value="Edit">Edit</button>
+                <button class="btn btn-danger" type="submit" value="Cancel"><a class="link text-light" th:href="@{'/inventory'}">Cancel</a></button>
+
                 <!--<input type="hidden" id="inventoryId" th:value="${inventory.id}"/>-->
             </div>
 
@@ -40,7 +42,7 @@
         <form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post">
             <label th:for="dec">Decrease Inventory</label>
             <input th:type="number" th:class="form-control" name="dec"/>
-            <input type="submit" class="btn btn-danger"/>
+            <input type="submit" class="btn btn-success"/>
         </form>
 
 

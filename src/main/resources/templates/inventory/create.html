@@ -21,7 +21,9 @@
             <input th:type="text" th:class="form-control" th:placeholder="Quantity" th:field="*{quantity}" />
 
             <br/>
-            <input type="submit" value="Create" />
+            <button class="btn btn-success" type="submit" value="Create">Create</button>
+            <button class="btn btn-danger" type="submit" value="Cancel"><a class="link text-light" th:href="@{'/inventory'}">Cancel</a></button>
+
 
         </div>
 

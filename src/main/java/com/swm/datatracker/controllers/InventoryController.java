@@ -1,7 +1,6 @@
 package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.Inventory;
-import com.swm.datatracker.models.RequestedQuantity;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.InventoryService;
 import org.springframework.stereotype.Controller;

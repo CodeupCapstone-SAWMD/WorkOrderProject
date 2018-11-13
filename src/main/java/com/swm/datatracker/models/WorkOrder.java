@@ -51,9 +51,16 @@ public class WorkOrder {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date submittedDate;
 
+    @Column
+    private long requestedQuantity;
+
+    @ManyToOne
+    @JoinColumn (name = "inventory_id")
+    private Inventory inventory;
+
     public WorkOrder(){};
 
-    public WorkOrder(long id, String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, Date submittedDate) {
+    public WorkOrder(long id, String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, Date submittedDate, long requestedQuantity, Inventory inventory) {
         this.id = id;
         this.description = description;
         this.notes = notes;
@@ -65,10 +72,12 @@ public class WorkOrder {
         this.streetName = streetName;
         this.zipCode = zipCode;
         this.submittedDate = submittedDate;
+        this.requestedQuantity = requestedQuantity;
+        this.inventory = inventory;
     }
 
     // constructor with all fields except id
-    public WorkOrder(String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, Date submittedDate) {
+    public WorkOrder(String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, Date submittedDate,long requestedQuantity, Inventory inventory) {
         this.description = description;
         this.notes = notes;
         this.category = category;
@@ -79,10 +88,12 @@ public class WorkOrder {
         this.streetName = streetName;
         this.zipCode = zipCode;
         this.submittedDate = submittedDate;
+        this.requestedQuantity = requestedQuantity;
+        this.inventory = inventory;
     }
 
-    // constructor without id or date
-    public WorkOrder(String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode) {
+    // constructor without id or date or requested
+    public WorkOrder(String description, String notes, Category category, Status status, User customer, User employee, long streetNumber, String streetName, long zipCode, long requestedQuantity, Inventory inventory) {
         this.description = description;
         this.notes = notes;
         this.category = category;
@@ -92,6 +103,8 @@ public class WorkOrder {
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.zipCode = zipCode;
+        this.requestedQuantity = requestedQuantity;
+        this.inventory = inventory;
     }
 
     public long getId() {
@@ -180,6 +193,22 @@ public class WorkOrder {
 
     public void setSubmittedDate(Date submittedDate) {
         this.submittedDate = submittedDate;
+    }
+
+    public long getRequestedQuantity() {
+        return requestedQuantity;
+    }
+
+    public void setRequestedQuantity(long requestedQuantity) {
+        this.requestedQuantity = requestedQuantity;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }
 

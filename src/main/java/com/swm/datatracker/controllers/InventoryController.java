@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 @Controller
 public class InventoryController {
 
@@ -72,7 +75,10 @@ public class InventoryController {
 
     @PostMapping("/inventory/create")
     public String createInventoryItem(@ModelAttribute Inventory item){
-
+//        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+//        decimalFormat.setRoundingMode(RoundingMode.CEILING);
+        item.setSize(item.getSize().toUpperCase());
+        item.setName(item.getName().toUpperCase());
 //        User loguser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         inventorySvc.create(item);
         return "redirect:/inventory";
@@ -100,9 +106,10 @@ public class InventoryController {
 //    }
 //
     //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
-    @PostMapping("/inventory/{id}/delete")
-    public void deleteInventoryItem(@PathVariable long id){
+    @GetMapping("/inventory/{id}/delete")
+    public String deleteInventoryItem(@PathVariable long id){
         inventorySvc.delete(id);
+        return "redirect:/inventory";
     }
 
 //Decrement method in the controller

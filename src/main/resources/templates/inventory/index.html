@@ -23,12 +23,16 @@
                 <td th:text="'$'+ ${item.price}"></td>
                 <td th:text="${item.quantity}"></td>
                 <td>
-                    <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit"><a th:href="@{'/inventory/' + ${item.id} + '/edit'}">Edit</a></button>
+                <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit"><a th:href="@{'/inventory/' + ${item.id} + '/edit'}">Edit</a></button>
                 <input type="hidden" id="itemId" th:value="${item.id}"/>
-                <button id="delete-item" class="btn btn-danger">Delete</button>
-                <ul class="nav nav-pills justify-content-center mt-auto form-group">
+                    <form th:action="@{'/inventory/{id}/delete' (id=${item.id})}" method="get" th:object="${inventory}" class="mb-3">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class="nav-link btn btn-danger text-light" th:method="delete">DELETE</button>
+                    </form>
+                    <!--<button id="delete-item" class="btn btn-danger">Delete</button>-->
+                <!--<ul class="nav nav-pills justify-content-center mt-auto form-group">-->
                     <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${item.id}}" class="nav-link">Work Order Link</a></li>-->
-                </ul>
+                <!--</ul>-->
 
                 </td>
             </tr>

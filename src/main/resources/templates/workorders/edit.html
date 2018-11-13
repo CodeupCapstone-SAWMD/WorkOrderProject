@@ -8,6 +8,7 @@
 
     <div class="row justify-content-center">
         <div class="card m-1 w-75" style="width: 18rem;">
+
             <div class="card-body">
                 <form th:action="@{/work-order/{id}/edit(id=${workorder.id})}" method="POST" th:object="${workorder}">
                 <!--<form th:action="@{'/work-order/{id}/edit'(id=${workorder.id})}" method="POST" th:object="${workorder}">-->

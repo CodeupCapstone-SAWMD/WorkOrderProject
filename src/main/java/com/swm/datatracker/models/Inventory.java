@@ -1,6 +1,9 @@
 package com.swm.datatracker.models;
 
+import org.hibernate.jdbc.Work;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "inventory")
@@ -24,6 +27,9 @@ public class Inventory {
     @Column
     private long quantity;
 
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "inventory")
+    private List<WorkOrder> workOrderList;
+
 //------------------------------------------------------------------------------------------------------\\
 
 
@@ -33,19 +39,22 @@ public class Inventory {
     public Inventory() {
     }
 
-    public Inventory(String name, String size, double price, long quantity) {
+    public Inventory(String name, String size, double price, long quantity, List<WorkOrder> workOrderList) {
         this.name = name;
         this.size = size;
         this.price = price;
         this.quantity = quantity;
+        this.workOrderList = workOrderList;
     }
 
-    public Inventory(long id, String name, String size, double price, long quantity) {
+    public Inventory(long id, String name, String size, double price, long quantity, List<WorkOrder> workOrderList) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.price = price;
         this.quantity = quantity;
+        this.workOrderList = workOrderList;
+
     }
 //------------------------------------------------------------------------------------------------------\\
 
@@ -91,8 +100,15 @@ public class Inventory {
         this.quantity = quantity;
     }
 
+    public List<WorkOrder> getWorkOrderList() {
+        return workOrderList;
+    }
 
-//------------------------------------------------------------------------------------------------------\\
+    public void setWorkOrderList(List<WorkOrder> workOrderList) {
+        this.workOrderList = workOrderList;
+    }
+
+    //------------------------------------------------------------------------------------------------------\\
 
 
 

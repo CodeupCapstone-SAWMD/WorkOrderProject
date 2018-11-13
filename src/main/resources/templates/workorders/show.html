@@ -17,8 +17,11 @@
                 <p class="card-text"><b>Notes:</b> <span th:text="${workorder.notes}"></span></p>
                 <p class="card-text"><b>Category:</b> <span th:text="${workorder.category.name}"></span></p>
                 <p class="card-title"><b>Work Order Status:</b> <span class="font-italic" th:text="${workorder.status.name}"></span></p>
-                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>
-                <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
+                <p class="card-title"><b>Requested Bin Type:</b> <span class="font-italic" th:text="${workorder.inventory.name +': '+ workorder.inventory.size}"></span></p>
+                <p class="card-title"><b>Requested Bin Quantity:</b> <span class="font-italic" th:text="${workorder.requestedQuantity}"></span></p>
+
+                <!--<p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>-->
+                <!--<p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>-->
 
                 <p id="strNum" class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>
@@ -45,7 +48,7 @@
 
                 // GENERAL MAP OPTIONS
                 var mapOptions = {
-                    zoom: 19,
+                    zoom: 18,
                     mapTypeId: "satellite"
                 };
 
@@ -62,12 +65,10 @@
             var addy = strNum + " " + strName + ", " + city + ", "  + state + ", " + zip;
             console.log(addy);
 
-            // console.log(rest1);
-            var bistro = {lat: 38.4019, lng: -122.8238};
+                // console.log(rest1);
+                var bistro = {lat: 38.4019, lng: -122.8238};
 
-
-
-            // CREATE GEOCODE OBJECT INSTANCE
+                // CREATE GEOCODE OBJECT INSTANCE
                 var geocoder = new google.maps.Geocoder();
 
                 // CREATE GOOGLE MAP OBJECT INSTANCE
@@ -83,9 +84,13 @@
                 });
 
             var marker = new google.maps.Marker({
-                position: bistro,
+                position: addy,
                 map: map,
                 animation: google.maps.Animation.DROP
+            });
+
+            marker.addListener('mouseover', function() {
+                infowindow.open(map, marker);
             });
 
             })();

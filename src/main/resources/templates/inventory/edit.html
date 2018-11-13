@@ -32,12 +32,22 @@
             </div>
 
         </form>
-        <!--<form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post" th:object="${requestedQuantity}">-->
 
-        <!--</form>-->
-        <form th:class="card-body" th:action="@{/inventory/{id}/decrement/{quantity}}" th:method="post" th:object="${requestedQuantity}">
+        <!--</form> this the form body for increment/decrement option in the admin view; this uses the spring request parameter method -->
+        <!--1) place in a card-body class; the action URL ; with a post method -->
+        <!--2) create a label; input type is a number ; type form-control; the name is what you use as input in controller-->
 
-        <a id="subtract-item" class="btn btn-warning" th:href="@{/inventory/{id}/decrement(id=${requestedQuantity})}">Decrement</a>
+        <form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post">
+            <label th:for="dec">Decrease Inventory</label>
+            <input th:type="number" th:class="form-control" name="dec"/>
+            <input type="submit" class="btn btn-danger"/>
+        </form>
+
+
+        <form th:class="card-body" th:action="@{/inventory/{id}/increment(id=${inventory.id})}" th:method="post">
+            <label th:for="inc">Increase Inventory</label>
+            <input th:type="number" th:class="form-control" name="inc"/>
+            <input type="submit" class="btn btn-success"/>
         </form>
 
     </div>

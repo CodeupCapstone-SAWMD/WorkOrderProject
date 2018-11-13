@@ -100,30 +100,43 @@ public class InventoryController {
 //    }
 //
     //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
-    @PostMapping("/inventory")
+    @PostMapping("/inventory/{id}/delete")
     public void deleteInventoryItem(@PathVariable long id){
         inventorySvc.delete(id);
     }
 
+//Decrement method in the controller
 
-    @GetMapping("/inventory/{id}/decrement/{quantity}")
-    public String decrement(@PathVariable long id, @PathVariable long quantity){
-       Inventory item = inventorySvc.findOne(id);
-       long currentQuantity = item.getQuantity();
-        item.setQuantity(currentQuantity - quantity);
-        inventorySvc.edit(item);
-        System.out.println(inventorySvc.findOne(id).getQuantity());
-       return "redirect:/inventory/{id}/edit";
-    }
+/**
+ * 1) This is a PostMapping method that is going to URL /inventory/{id}/decrement;
+ * because we are editing it by the inventory id.
+ * 2) Next create a String method (because it will return the url path) that takes a long id from the path (PostMapping URL),
+ * and request (@RequestParam) the parameter in the form on the view.
+ * 3) find the id of the inventory item and assign it to a variable
+ * 4) get the quantity of the item and assign it to a current quantity variable
+ * 5) set the quantity of the item to be currenty quantity minus/plus the input parameter on the form
+ * 6) edit the inventory with that item on the list.
+ *
+ *
+ */
 
-    @GetMapping("/inventory/{id}/increment/{quantity}")
-    public String increment(@PathVariable long id, @PathVariable long quantity){
+    @PostMapping("/inventory/{id}/decrement")
+    public String decrement(@PathVariable long id, @RequestParam(name = "dec") int dec){
         Inventory item = inventorySvc.findOne(id);
         long currentQuantity = item.getQuantity();
-        item.setQuantity(currentQuantity + quantity);
+        item.setQuantity(currentQuantity - dec);
+        inventorySvc.edit(item);
+       return "redirect:/inventory";
+    }
+
+    @PostMapping("/inventory/{id}/increment")
+    public String increment(@PathVariable long id, @RequestParam(name = "inc") int inc){
+        Inventory item = inventorySvc.findOne(id);
+        long currentQuantity = item.getQuantity();
+        item.setQuantity(currentQuantity + inc);
         inventorySvc.edit(item);
         System.out.println(inventorySvc.findOne(id).getQuantity());
-        return "redirect:/inventory/{id}/edit";
+        return "redirect:/inventory";
     }
 
 }

@@ -1,0 +1,6 @@
+#txtaddress - selector for text-box
+#AddrDiv > span > span - selector for search button
+#map_root > div.esriPopup.esriPopupVisible > div.esriPopupWrapper > div.sizer.content > div > table > tbody > tr:nth-child(1) > td:nth-child(3) - selector for garbage day
+#map_root > div.esriPopup.esriPopupVisible > div.esriPopupWrapper > div.sizer.content > div > table > tbody > tr:nth-child(2) > td:nth-child(3) - selector for recycle day
+#map_root > div.esriPopup.esriPopupVisible > div.esriPopupWrapper > div.sizer.content > div > table > tbody > tr:nth-child(3) > td:nth-child(3) - selector for organics day
+#map_root > div.esriPopup.esriPopupVisible > div.esriPopupWrapper > div.sizer.content > div > table > tbody > tr:nth-child(6) > td:nth-child(3) - selector for some kind of trash day

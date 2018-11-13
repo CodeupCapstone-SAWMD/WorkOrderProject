@@ -2,29 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
-<div class="container">
     <div th:replace="partials :: myNav"></div>
+    <div class="container">
 
 <div class="card">
     <form th:class="card-body" th:action="@{/inventory/create}" th:method="post" th:object="${inventory}">
-        <div th:class="form-group">
+        <div class="form-group">
             <label th:for="name">Name</label>
             <input th:type="text" th:class="form-control" th:field="*{name}" th:placeholder="Name"/>
-
+        </div>
+        <div class="form-group">
             <label th:for="size">Size</label>
             <input th:type="text" th:class="form-control" th:placeholder="Size" th:field="*{size}" />
-
+        </div>
+        <div class="form-group">
             <label th:for="price">Price</label>
             <input th:type="text" th:class="form-control" th:placeholder="Price" th:field="*{price}" />
-
+        </div>
+        <div class="form-group">
             <label th:for="Quantity">Quantity</label>
             <input th:type="text" th:class="form-control" th:placeholder="Quantity" th:field="*{quantity}" />
-
-            <br/>
-            <input type="submit" />
-
         </div>
-
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" value="Create">Create</button>
+            <button class="btn btn-danger" type="submit" value="Cancel"><a class="link text-light" th:href="@{'/inventory'}">Cancel</a></button>
+        </div>
     </form>
 </div>
     <th:block th:replace="partials :: scripts" />

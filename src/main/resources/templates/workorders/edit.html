@@ -74,10 +74,12 @@
                             </option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="customer">Customer</label>
                         <input id="customer" type="text" class="form-control" th:field="*{customer}"/>
                     </div>
+
                     <div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
                         <label for="employee">Employee</label>
                         <select class="custom-select" id="employee" th:field="*{employee}">
@@ -87,6 +89,7 @@
                             </option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="streetNumber">Street Number</label>
                         <input id="streetNumber" type="text" class="form-control" th:field="*{streetNumber}" />

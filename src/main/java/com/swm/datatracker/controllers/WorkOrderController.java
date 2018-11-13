@@ -130,6 +130,15 @@ public class WorkOrderController {
         vModel.addAttribute("workorder", workOrderService.findOne(id));
         WorkOrder wo = workOrderRepository.findOne(id);
 //        System.out.println(wo.getSubmittedDate());
+        List<User> emps = userRepo.findAll();
+        List<User> woEmps = new ArrayList<>();
+        for (User u : emps) {
+//                System.out.println(u.getRole());
+            if (u.getRole().getRoleName().equals("ROLE_EDITOR")) {
+                woEmps.add(u);
+            }
+        }
+        vModel.addAttribute("employees", woEmps);
         vModel.addAttribute("submittedDate", wo.getSubmittedDate());
         vModel.addAttribute("status", statusRepo.findAll());
         vModel.addAttribute("category", categoryRepo.findAll());

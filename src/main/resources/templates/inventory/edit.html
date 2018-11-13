@@ -3,30 +3,34 @@
 <head th:replace="partials :: head('WasteManagement')" />
 
 <body>
-<div class="container">
-    <div th:replace="partials :: myNav"></div>
 
+    <div th:replace="partials :: myNav"></div>
+    <div class="container">
+
+    <h2 class="my-4">Inventory Management</h2>
     <div class="card">
         <form th:class="card-body" th:action="@{/inventory/{id}/edit(id=${inventory.id})}" th:method="post" th:object="${inventory}">
-            <div th:class="form-group">
+            <div class="form-group">
                 <label th:for="name">Name</label>
                 <input th:type="text" th:class="form-control" th:field="*{name}" th:placeholder="Name"/>
-
+            </div>
+            <div class="form-group">
                 <label th:for="size">Size</label>
                 <input th:type="text" th:class="form-control" th:placeholder="Size" th:field="*{size}" />
-
+            </div>
+            <div class="form-group">
                 <label th:for="price">Price</label>
                 <input th:type="text" th:class="form-control" th:placeholder="Price" th:field="*{price}" />
-
+            </div>
+            <div class="form-group">
                 <label th:for="Quantity">Quantity</label>
                 <input th:type="text" th:class="form-control" th:placeholder="Quantity" th:field="*{quantity}" />
-
+            </div>
 
                 <!--<label th:for="subtract">Subtract</label>-->
                 <!--<input th:type="text" th:class="form-control" value="" th:field>-->
                 <!--<input>-->
-
-                <br/>
+            <div class="form-group">
                 <button class="btn btn-success" type="submit" value="Edit">Edit</button>
                 <button class="btn btn-danger" type="submit" value="Cancel"><a class="link text-light" th:href="@{'/inventory'}">Cancel</a></button>
 
@@ -42,14 +46,21 @@
         <form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post">
             <label th:for="dec">Decrease Inventory</label>
             <input th:type="number" th:class="form-control" name="dec"/>
+            <div class="form-group">
             <input type="submit" class="btn btn-success"/>
+            </div>
         </form>
 
 
         <form th:class="card-body" th:action="@{/inventory/{id}/increment(id=${inventory.id})}" th:method="post">
+            <div class="form-group">
             <label th:for="inc">Increase Inventory</label>
             <input th:type="number" th:class="form-control" name="inc"/>
+            </div>
+
+            <div class="form-group">
             <input type="submit" class="btn btn-success"/>
+            </div>
         </form>
 
     </div>

@@ -28,7 +28,7 @@ public class UserController {
     private WorkOrderRepository workOrderRepository;
     private WorkOrderService workOrderService;
     private StatusRepository statusRepository;
-    private UserService userService;
+//    private UserService userService;
     private RolesRepository userRolesRepository;
 
 
@@ -107,23 +107,30 @@ public class UserController {
     @GetMapping("/users/profile")
     public String userProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        vModel.addAttribute("user", user);
+        User u = userRepository.findOne(2L);
 
+        Status submitted = statusRepository.findOne(1L);
+        Status pendingAssignment = statusRepository.findOne(2L);
+        Status processing = statusRepository.findOne(3L);
+        Status reviewed = statusRepository.findOne(4L);
+        Status completed = statusRepository.findOne(5L);
+        Status cancelled = statusRepository.findOne(6L);
+        vModel.addAttribute("user", u);
 
-        vModel.addAttribute("submitted", workOrderService.listByUserAndStatus(user, 1));
-        vModel.addAttribute("pending", workOrderService.listByUserAndStatus(user, 2));
-        vModel.addAttribute("processing", workOrderService.listByUserAndStatus(user, 3));
-        vModel.addAttribute("reviewed", workOrderService.listByUserAndStatus(user, 4));
-        vModel.addAttribute("completed", workOrderService.listByUserAndStatus(user, 5));
-        vModel.addAttribute("cancelled", workOrderService.listByUserAndStatus(user, 6));
-        vModel.addAttribute("allOrders", workOrderService.userWorkOrders());
+        vModel.addAttribute("submitted", workOrderRepository.findAllByCustomerAndStatus(u, submitted));
+        vModel.addAttribute("pending", workOrderRepository.findAllByCustomerAndStatus(u, pendingAssignment));
+        vModel.addAttribute("processing", workOrderRepository.findAllByCustomerAndStatus(u, processing));
+        vModel.addAttribute("reviewed", workOrderRepository.findAllByCustomerAndStatus(u, reviewed));
+        vModel.addAttribute("completed", workOrderRepository.findAllByCustomerAndStatus(u, completed));
+        vModel.addAttribute("cancelled", workOrderRepository.findAllByCustomerAndStatus(u, cancelled));
+        vModel.addAttribute("allOrders", workOrderRepository.findAllByCustomer(u));
 
         return "users/profile";
-
+    }
 //        // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
 //        vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
 //        return "users/profile";
-    }
+//    }
 
 //    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
     @GetMapping("/users/profile/edit")

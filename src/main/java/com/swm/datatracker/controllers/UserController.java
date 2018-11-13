@@ -26,14 +26,10 @@ public class UserController {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private WorkOrderRepository workOrderRepository;
-<<<<<<< HEAD
     private WorkOrderService workOrderService;
-=======
     private StatusRepository statusRepository;
->>>>>>> ba281a8b5c28c1efa7116bc9a18b5c5645c02fed
     private UserService userService;
     private RolesRepository userRolesRepository;
-    private StatusRepository statusRepository;
 
 
     public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository) {
@@ -113,23 +109,21 @@ public class UserController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         vModel.addAttribute("user", user);
 
-<<<<<<< HEAD
-        vModel.addAttribute("submitted", workOrderService.listByUserAndStatus(user,1));
-        vModel.addAttribute("pending", workOrderService.listByUserAndStatus(user,2));
-        vModel.addAttribute("processing", workOrderService.listByUserAndStatus(user,3));
-        vModel.addAttribute("reviewed", workOrderService.listByUserAndStatus(user,4));
-        vModel.addAttribute("completed", workOrderService.listByUserAndStatus(user,5));
-        vModel.addAttribute("cancelled", workOrderService.listByUserAndStatus(user,6));
+
+        vModel.addAttribute("submitted", workOrderService.listByUserAndStatus(user, 1));
+        vModel.addAttribute("pending", workOrderService.listByUserAndStatus(user, 2));
+        vModel.addAttribute("processing", workOrderService.listByUserAndStatus(user, 3));
+        vModel.addAttribute("reviewed", workOrderService.listByUserAndStatus(user, 4));
+        vModel.addAttribute("completed", workOrderService.listByUserAndStatus(user, 5));
+        vModel.addAttribute("cancelled", workOrderService.listByUserAndStatus(user, 6));
         vModel.addAttribute("allOrders", workOrderService.userWorkOrders());
 
-            return "users/profile";
-        }
-=======
-        // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
-        vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
         return "users/profile";
+
+//        // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
+//        vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
+//        return "users/profile";
     }
->>>>>>> ba281a8b5c28c1efa7116bc9a18b5c5645c02fed
 
 //    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
     @GetMapping("/users/profile/edit")

@@ -2,8 +2,9 @@ package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.Status;
 import com.swm.datatracker.models.User;
-import com.swm.datatracker.models.WorkOrder;
+import com.swm.datatracker.models.UserRole;
 import com.swm.datatracker.respositories.StatusRepository;
+import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AdminController {
     private WorkOrderRepository workOrderRepository;
     private StatusRepository statusRepository;
+    private UserRepository userRepository;
 
     public AdminController(WorkOrderRepository workOrderRepository, StatusRepository statusRepository) {
         this.workOrderRepository = workOrderRepository;
@@ -54,5 +56,18 @@ public class AdminController {
         vModel.addAttribute("allOrders", workOrderRepository.findAll());
         vModel.addAttribute("user", user);
         return "admin/profile";
+    }
+
+    @GetMapping("/admin/view-users")
+    public String editPermissions(Model vModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+//        UserRole admin = userRepository.findAllByUserRoleContains(1);
+//        vModel.addAttribute("admins", userRepository.findAllByUserRole(admin));
+//        vModel.addAttribute("employees", userRepository.findAllByUserRole(employee));
+//        vModel.addAttribute("customers", userRepository.findAllByUserRole(customer));
+        vModel.addAttribute("allUsers", userRepository.findAll());
+
+        return "view-users";
     }
 }

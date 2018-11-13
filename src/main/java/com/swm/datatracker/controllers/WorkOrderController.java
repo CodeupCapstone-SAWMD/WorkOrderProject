@@ -32,6 +32,9 @@ public class WorkOrderController {
     @Autowired
     private StatusRepository statusRepo;
 
+    @Autowired
+    private InventoryRepository inventoryRepo;
+
     private RolesRepository rolesRepo;
     private CategoryRepository categoryRepository;
     private StatusRepository statusRepository;
@@ -106,6 +109,8 @@ public class WorkOrderController {
 //        System.out.println(statusRepo.findAll());
         vModel.addAttribute("status", statusRepo.findAll());
         vModel.addAttribute("category", categoryRepo.findAll());
+        vModel.addAttribute("inventories", inventoryRepo.findAll());
+
 //        System.out.println(userService.findAllEmployees());
         return "workorders/create";
     }

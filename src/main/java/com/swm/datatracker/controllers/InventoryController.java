@@ -75,8 +75,7 @@ public class InventoryController {
 
     @PostMapping("/inventory/create")
     public String createInventoryItem(@ModelAttribute Inventory item){
-//        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-//        decimalFormat.setRoundingMode(RoundingMode.CEILING);
+
         item.setSize(item.getSize().toUpperCase());
         item.setName(item.getName().toUpperCase());
 //        User loguser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

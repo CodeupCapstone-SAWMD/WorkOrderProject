@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 @Controller
 public class InventoryController {
@@ -75,10 +76,8 @@ public class InventoryController {
 
     @PostMapping("/inventory/create")
     public String createInventoryItem(@ModelAttribute Inventory item){
-
         item.setSize(item.getSize().toUpperCase());
         item.setName(item.getName().toUpperCase());
-//        User loguser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         inventorySvc.create(item);
         return "redirect:/inventory";
     }

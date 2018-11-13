@@ -20,7 +20,10 @@
             <tr th:each="item : ${inventory}">
                 <th scope="row" th:text="${item.name}"></th>
                 <td th:text="${item.size}"></td>
-                <td th:text="'$'+ ${item.price}"></td>
+
+                <!--the #numbers method inside curly braces in thymeleaf takes the item price with minimum integers before decimal and exact decimal places-->
+
+                <td th:text="'$'+ ${#numbers.formatDecimal(item.price,1,2)}"></td>
                 <td th:text="${item.quantity}"></td>
                 <td>
                 <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit"><a class="link text-light" th:href="@{'/inventory/' + ${item.id} + '/edit'}">EDIT</a></button>

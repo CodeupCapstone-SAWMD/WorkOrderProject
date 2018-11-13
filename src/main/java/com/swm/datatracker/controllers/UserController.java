@@ -94,6 +94,7 @@ public class UserController {
         User last = users.get(users.size() - 1);
 
         // CREATE AND SAVE ROLE FOR NEWEST USER
+
         UserRole newUser = new UserRole();
         newUser.setRole("ROLE_USER");
         newUser.setUserId(last.getId());

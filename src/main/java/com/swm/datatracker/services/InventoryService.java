@@ -24,9 +24,7 @@ public class InventoryService {
 
 
 //FINDS ALL ITEMS IN THE DATABASE
-    public Iterable<Inventory> all(){
-        return inventoryRepo.findAll();
-    }
+
 
     public Inventory findOne(long id){
         return inventoryRepo.findOne(id);

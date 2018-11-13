@@ -1,6 +1,7 @@
 package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.Inventory;
+import com.swm.datatracker.respositories.InventoryRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.InventoryService;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class InventoryController {
      /**____________________________________________________________**/
 
     private InventoryService inventorySvc;
+    private InventoryRepository inventoryRepo;
     private UserRepository userRepo;
     /**---------------------------------------------------------------------------**\
      |                       Dependency Injection                                    |
@@ -36,9 +38,10 @@ public class InventoryController {
      | This is called  or passing things into the constructor of an object.          |
      /**___________________________________________________________________________**/
 
-    public InventoryController(InventoryService inventorySvc, UserRepository userRepo){
+    public InventoryController(InventoryService inventorySvc, UserRepository userRepo, InventoryRepository inventoryRepo){
         this.inventorySvc = inventorySvc;
         this.userRepo = userRepo;
+        this.inventoryRepo = inventoryRepo;
     }
 //--------------------------------------- MAPPING TO THE VIEWER ---------------------------------------\\
 
@@ -46,7 +49,7 @@ public class InventoryController {
     //Takes all of the inventory from the database
     @GetMapping("/inventory")
     public String inventoryIndex(Model vModel) {
-        vModel.addAttribute("inventory", inventorySvc.all());
+        vModel.addAttribute("inventory", inventoryRepo.findAll());
         return "inventory/index";
     }
 

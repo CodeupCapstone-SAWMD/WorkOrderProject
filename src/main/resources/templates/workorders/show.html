@@ -45,7 +45,7 @@
 
                 // GENERAL MAP OPTIONS
                 var mapOptions = {
-                    zoom: 19,
+                    zoom: 18,
                     mapTypeId: "satellite"
                 };
 
@@ -62,12 +62,10 @@
             var addy = strNum + " " + strName + ", " + city + ", "  + state + ", " + zip;
             console.log(addy);
 
-            // console.log(rest1);
-            var bistro = {lat: 38.4019, lng: -122.8238};
+                // console.log(rest1);
+                var bistro = {lat: 38.4019, lng: -122.8238};
 
-
-
-            // CREATE GEOCODE OBJECT INSTANCE
+                // CREATE GEOCODE OBJECT INSTANCE
                 var geocoder = new google.maps.Geocoder();
 
                 // CREATE GOOGLE MAP OBJECT INSTANCE
@@ -83,9 +81,13 @@
                 });
 
             var marker = new google.maps.Marker({
-                position: bistro,
+                position: addy,
                 map: map,
                 animation: google.maps.Animation.DROP
+            });
+
+            marker.addListener('mouseover', function() {
+                infowindow.open(map, marker);
             });
 
             })();

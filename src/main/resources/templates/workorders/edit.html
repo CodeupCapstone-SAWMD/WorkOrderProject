@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
 <div th:replace="partials :: myNav"></div>
@@ -23,6 +23,19 @@
                     <div class="form-group">
                         <label for="notes">Notes</label>
                         <input id="notes" type="text" class="form-control" th:field="*{notes}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Type of Bins Needed</label>
+                        <select class="custom-select" id="inventory" th:field="*{inventory}">
+                            <option th:each="item : ${inventories}"
+                                    th:value="${item.id}"
+                                    th:utext="${item.name +': ' + item.size}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestedQuantity">Requested Quantity of Bins</label>
+                        <input class="form-control" id="requestedQuantity" type="text" th:field="*{requestedQuantity}" />
                     </div>
                     <!--<div class="form-group">-->
                         <!--<label for="category">Category</label>-->
@@ -65,12 +78,14 @@
                         <label for="customer">Customer</label>
                         <input id="customer" type="text" class="form-control" th:field="*{customer}"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
                         <label for="employee">Employee</label>
-                        <input id="employee" type="text" class="form-control" th:field="*{employee}" />
-                        <!--<select id="employees" name="employees" size="1" th:each="employee: ${employees}">-->
-                        <!--<option><span class="font-italic" th:text="${employee.firstName}"></span></option>-->
-                        <!--</select>-->
+                        <select class="custom-select" id="employee" th:field="*{employee}">
+                            <option th:each="emp : ${employees}"
+                                    th:value="${emp.id}"
+                                    th:utext="${emp.firstName + ' ' + emp.lastName}">
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="streetNumber">Street Number</label>

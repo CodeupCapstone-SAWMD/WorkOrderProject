@@ -105,17 +105,16 @@ public class UserController {
 //    @RequestMapping(path = "/users/profile", method = RequestMethod.GET)
     @GetMapping("/users/profile")
     public String userProfile(Model vModel) {
-
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            vModel.addAttribute("user", user);
+        vModel.addAttribute("user", user);
 
-            vModel.addAttribute("submitted", workOrderService.listByUserAndStatus(user,1));
-            vModel.addAttribute("pending", workOrderService.listByUserAndStatus(user,2));
-            vModel.addAttribute("processing", workOrderService.listByUserAndStatus(user,3));
-            vModel.addAttribute("reviewed", workOrderService.listByUserAndStatus(user,4));
-            vModel.addAttribute("completed", workOrderService.listByUserAndStatus(user,5));
-            vModel.addAttribute("cancelled", workOrderService.listByUserAndStatus(user,6));
-            vModel.addAttribute("allOrders", workOrderService.userWorkOrders());
+        vModel.addAttribute("submitted", workOrderService.listByUserAndStatus(user,1));
+        vModel.addAttribute("pending", workOrderService.listByUserAndStatus(user,2));
+        vModel.addAttribute("processing", workOrderService.listByUserAndStatus(user,3));
+        vModel.addAttribute("reviewed", workOrderService.listByUserAndStatus(user,4));
+        vModel.addAttribute("completed", workOrderService.listByUserAndStatus(user,5));
+        vModel.addAttribute("cancelled", workOrderService.listByUserAndStatus(user,6));
+        vModel.addAttribute("allOrders", workOrderService.userWorkOrders());
 
             return "users/profile";
         }

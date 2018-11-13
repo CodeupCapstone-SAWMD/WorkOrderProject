@@ -7,6 +7,7 @@ import com.swm.datatracker.models.*;
 import com.swm.datatracker.respositories.*;
 import com.swm.datatracker.services.UserService;
 import com.swm.datatracker.services.WorkOrderService;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -124,6 +125,9 @@ public class WorkOrderController {
     @GetMapping("/work-order/{id}/edit")
     public String editWorkOrder(@PathVariable long id, Model vModel) {
         vModel.addAttribute("workorder", workOrderService.findOne(id));
+        WorkOrder wo = workOrderRepository.findOne(id);
+//        System.out.println(wo.getSubmittedDate());
+        vModel.addAttribute("submittedDate", wo.getSubmittedDate());
         vModel.addAttribute("status", statusRepo.findAll());
         vModel.addAttribute("category", categoryRepo.findAll());
         return "workorders/edit";
@@ -134,6 +138,7 @@ public class WorkOrderController {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        workOrder.setUser(userRepository.findOne(user.getId()));
         WorkOrder updatedWorkOrder = workOrderService.edit(workOrder);
+
         return "redirect:/work-order/" + updatedWorkOrder.getId();
     }
 

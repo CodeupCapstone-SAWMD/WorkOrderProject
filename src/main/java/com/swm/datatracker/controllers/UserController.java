@@ -26,11 +26,9 @@ public class UserController {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private WorkOrderRepository workOrderRepository;
-<<<<<<< HEAD
     private StatusRepository statusRepository;
-=======
+
     private WorkOrderService workOrderService;
->>>>>>> b7309fbc6a444c0485d17f260f9d50f5a51775e8
     private UserService userService;
     private RolesRepository userRolesRepository;
     private StatusRepository statusRepository;
@@ -112,14 +110,14 @@ public class UserController {
     public String userProfile(Model vModel) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-<<<<<<< HEAD
+
         vModel.addAttribute("user", user);
+        System.out.println(user.getId());
+        System.out.println(user.getFirstName());
 
         // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
         vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
-        return "users/profile";
-    }
-=======
+
             vModel.addAttribute("user", user);
 
             vModel.addAttribute("submitted", workOrderService.listByUserAndStatus(user,1));
@@ -132,7 +130,6 @@ public class UserController {
 
             return "users/profile";
         }
->>>>>>> b7309fbc6a444c0485d17f260f9d50f5a51775e8
 
 //    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
     @GetMapping("/users/profile/edit")

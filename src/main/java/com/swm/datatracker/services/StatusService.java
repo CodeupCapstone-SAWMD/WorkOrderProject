@@ -41,7 +41,7 @@ public class StatusService {
     //--------------------- SEARCHES ---------------------\\
 
     //SEARCHES DATABASE FOR INVENTORY BASED ON NAME ONLY
-    public List<Status> searchStatusById(long id){
+    public Status searchStatusById(long id){
         return statusRepo.findStatusById(id);
     }
 

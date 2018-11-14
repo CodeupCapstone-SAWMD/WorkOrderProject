@@ -60,14 +60,16 @@ public class WorkOrderController {
 
     @GetMapping("/workorders")
     public String workorders(Model vModel) {
+
 //        vModel.addAttribute("workorders", workOrderService.findAll());
+
         vModel.addAttribute("submitted", workOrderService.statusList(1));
         vModel.addAttribute("pending", workOrderService.statusList(2));
         vModel.addAttribute("processing", workOrderService.statusList(3));
         vModel.addAttribute("review", workOrderService.statusList(4));
         vModel.addAttribute("complete", workOrderService.statusList(5));
         vModel.addAttribute("cancelled", workOrderService.statusList(6));
-
+        vModel.addAttribute("all", workOrderRepository.findAll());
         return "workorders/index";
     }
 

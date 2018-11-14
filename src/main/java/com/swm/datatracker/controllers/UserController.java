@@ -8,6 +8,7 @@ import com.swm.datatracker.respositories.RolesRepository;
 import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
+import com.swm.datatracker.services.SmsSender;
 import com.swm.datatracker.services.UserService;
 import com.swm.datatracker.services.WorkOrderService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.Role;
-import javax.management.relation.RoleResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +29,17 @@ public class UserController {
     private StatusRepository statusRepository;
 //    private UserService userService;
     private RolesRepository userRolesRepository;
+    private SmsSender smsSender;
 
 
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository, SmsSender smsSender) {
         this.userRepository = userRepository;
         this.statusRepository = statusRepository;
         this.passwordEncoder = passwordEncoder;
         this.workOrderRepository = workOrderRepository;
         this.userRolesRepository = userRolesRepository;
+
+        this.smsSender = smsSender;
         this.statusRepository = statusRepository;
     }
 
@@ -68,6 +70,12 @@ public class UserController {
 
     @GetMapping("/contact")
     public String showContactForm(Model vModel) {
+        return "contact";
+    }
+
+    @PostMapping("/contact")
+    public String sendCommunication(Model vModel, @RequestParam(name = "mess") String mess) {
+        smsSender.sendText(mess);
         return "contact";
     }
 
@@ -135,17 +143,27 @@ public class UserController {
     @GetMapping("/users/edit")
     public String getEditUser(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        userRepository.findByUsername(user.getUsername());
         vModel.addAttribute("user", user);
         return "users/edit";
     }
 
-//    @PostMapping("/users/edit")
-//    public String postEditUser(@ModelAttribute User newInfo, Model vModel) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        vModel.addAttribute("user", user);
-//        return "users/profile";
-//    }
+    @PostMapping("/users/edit")
+    public String postEditUser(@ModelAttribute User newInfo, Model vModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User editedUser = userRepository.findByUsername(user.getUsername());
+        editedUser.setEmail(newInfo.getEmail());
+        editedUser.setPassword(newInfo.getPassword());
+        editedUser.setPhoneNumber(newInfo.getPhoneNumber());
+        editedUser.setStreetName(newInfo.getStreetName());
+        editedUser.setStreetNumber(newInfo.getStreetNumber());
+        editedUser.setZipcode(newInfo.getZipcode());
+        editedUser.setFirstName(newInfo.getFirstName());
+        editedUser.setLastName(newInfo.getLastName());
+
+        userRepository.save(editedUser);
+        vModel.addAttribute("user", user);
+        return "users/profile";
+    }
 
 
 }

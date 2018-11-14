@@ -6,3 +6,6 @@
             inverseJoinColumns={@JoinColumn(name="inventory_id")}
     )
     private List<Inventory> inventory;
+
+        @ManyToMany(mappedBy = "inventory")
+    private List<WorkOrder> workOrders;

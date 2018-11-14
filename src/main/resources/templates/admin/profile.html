@@ -125,11 +125,6 @@
                     <th scope="col">Status</th>
                     <th scope="col">Increase Status</th>
                     <th scope="col"></th>
-
-                    <!--<th scope="col">Submitted</th>-->
-                    <!--<th scope="col">Created By</th>-->
-                    <!--<th scope="col">Category</th>-->
-                    <!--<th scope="col">Status</th>-->
                 </tr>
                 <tr style="font-size:15px" th:each="order : ${processingOrders}">
                     <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>

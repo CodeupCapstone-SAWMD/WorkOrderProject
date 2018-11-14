@@ -1,6 +1,7 @@
 package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.Status;
+
 import com.swm.datatracker.models.WorkOrder;
 import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
@@ -13,17 +14,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.swm.datatracker.respositories.StatusRepository;
+import org.springframework.stereotype.Controller;
+
+
 @Controller
 public class StatusController {
 
     private StatusRepository statusRepository;
-
+  
     @Autowired
     private WorkOrderRepository workOrderRepository;
 
     @Autowired
     private WorkOrderService workOrderService;
-
 
     public StatusController(StatusRepository statusRepository) {
         this.statusRepository = statusRepository;

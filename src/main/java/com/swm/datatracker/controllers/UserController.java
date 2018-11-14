@@ -94,6 +94,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+
         UserRole ur = userRolesRepository.findOneById(2L);
         user.setRole(ur);
         userRepository.save(user);
@@ -111,21 +112,21 @@ public class UserController {
         return "redirect:/login";
     }
 
+
+
 //    @RequestMapping(path = "/users/profile", method = RequestMethod.GET)
     @GetMapping("/users/profile")
     public String userProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Status submitted = statusRepository.findOne(1L);
-        Status pendingAssignment = statusRepository.findOne(2L);
-        Status processing = statusRepository.findOne(3L);
-        Status reviewed = statusRepository.findOne(4L);
-        Status completed = statusRepository.findOne(5L);
-        Status cancelled = statusRepository.findOne(6L);
+        Status processing = statusRepository.findOne(2L);
+        Status reviewed = statusRepository.findOne(3L);
+        Status completed = statusRepository.findOne(4L);
+        Status cancelled = statusRepository.findOne(5L);
         vModel.addAttribute("user", user);
 
         vModel.addAttribute("submitted", workOrderRepository.findAllByCustomerAndStatus(user, submitted));
-        vModel.addAttribute("pending", workOrderRepository.findAllByCustomerAndStatus(user, pendingAssignment));
         vModel.addAttribute("processing", workOrderRepository.findAllByCustomerAndStatus(user, processing));
         vModel.addAttribute("reviewed", workOrderRepository.findAllByCustomerAndStatus(user, reviewed));
         vModel.addAttribute("completed", workOrderRepository.findAllByCustomerAndStatus(user, completed));
@@ -140,11 +141,24 @@ public class UserController {
 //    }
 
 //    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
-    @GetMapping("/users/profile/edit")
-    public String editUser(Model vModel) {
+    @GetMapping("/users/edit")
+    public String getEditUser(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        vModel.addAttribute("user", user);
+        vModel.addAttribute("updatedUser", user);
         return "users/edit";
     }
+
+    @PostMapping("/users/edit/{id}")
+    public String postEditUser(@ModelAttribute User newInfo, @PathVariable long id, Model vModel) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserRole ur = user.getRole();
+        newInfo.setRole(ur);
+        userRepository.save(newInfo);
+
+        return "users/profile";
+    }
+
+
 }
 

@@ -1,6 +1,7 @@
 package com.swm.datatracker.respositories;
 
 import com.swm.datatracker.models.UserRole;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import com.swm.datatracker.models.User;
 

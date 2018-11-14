@@ -7,11 +7,8 @@ import com.swm.datatracker.models.*;
 import com.swm.datatracker.respositories.*;
 import com.swm.datatracker.services.UserService;
 import com.swm.datatracker.services.WorkOrderService;
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -122,14 +119,16 @@ public class WorkOrderController {
 
     @PostMapping("/work-order/create")
     public String createPost(@ModelAttribute WorkOrder workOrder) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User test = new User;
+        System.out.println(user.getLastName());
         Date currentDate = new Date();
 //        System.out.println(currentDate);
-//        workOrder.setCustomer(userRepo.findOne(user.getId()));
+        workOrder.setCustomer(userRepo.findOne(user.getId()));
         workOrder.setSubmittedDate(currentDate);
         workOrder.setStatus(statusRepo.findOne((long) 1));
         WorkOrder newWorkOrder = workOrderService.save(workOrder);
-        return "redirect:/workorders";
+        return "redirect:/work-order/"+ newWorkOrder.getId();
     }
 
     @GetMapping("/work-order/{id}/edit")

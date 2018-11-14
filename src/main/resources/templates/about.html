@@ -4,7 +4,26 @@
 <body>
 <div th:replace="partials :: myNav"></div>
 <div class="container">
-    <h1>THIS IS THE ABOUT PAGE</h1>
+    
+    <div class="row">
+        <div class="col" id="dev1">
+            <h4>Alois Renggli</h4>
+            <img th:src="@{images/AloisRenggli.jpg}">
+        </div>
+        <div class="col" id="dev2">
+            <h4>Ryan Schmid</h4>
+            <img th:src="@{images/RyanSchmid.jpg}">
+        </div>
+        <div class="col" id="dev3">
+            <h4>Ryan Stewart</h4>
+            <img th:src="@{images/RyanStewart.jpg}">
+        </div>
+        <div class="col" id="dev4">
+            <h4>James Young</h4>
+            <img th:src="@{images/JamesYoung.jpg}">
+        </div>
+    </div>
+    
 </div>
 <th:block th:replace="partials :: scripts" />
 </body>

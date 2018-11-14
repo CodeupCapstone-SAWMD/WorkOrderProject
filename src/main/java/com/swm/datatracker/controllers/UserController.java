@@ -132,12 +132,20 @@ public class UserController {
 //    }
 
 //    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
-    @GetMapping("/users/profile/edit")
-    public String editUser(Model vModel) {
+    @GetMapping("/users/edit")
+    public String getEditUser(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        userRepository.findByUsername(user.getUsername());
         vModel.addAttribute("user", user);
         return "users/edit";
     }
+
+//    @PostMapping("/users/edit")
+//    public String postEditUser(@ModelAttribute User newInfo, Model vModel) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        vModel.addAttribute("user", user);
+//        return "users/profile";
+//    }
 
 
 }

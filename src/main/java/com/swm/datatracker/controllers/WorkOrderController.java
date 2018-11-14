@@ -77,7 +77,6 @@ public class WorkOrderController {
         long statusId = woStatus.getId();
         long newId = statusId + 1;
 
-
 //        vModel.addAttribute("");
         return "workorders/index";
     }

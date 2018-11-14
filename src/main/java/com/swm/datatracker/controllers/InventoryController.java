@@ -1,15 +1,16 @@
 package com.swm.datatracker.controllers;
 
 import com.swm.datatracker.models.Inventory;
-import com.swm.datatracker.models.User;
+import com.swm.datatracker.respositories.InventoryRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.services.InventoryService;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 @Controller
 public class InventoryController {
@@ -23,8 +24,8 @@ public class InventoryController {
      /**____________________________________________________________**/
 
     private InventoryService inventorySvc;
+    private InventoryRepository inventoryRepo;
     private UserRepository userRepo;
-
     /**---------------------------------------------------------------------------**\
      |                       Dependency Injection                                    |
      |                                                                               |
@@ -37,9 +38,10 @@ public class InventoryController {
      | This is called  or passing things into the constructor of an object.          |
      /**___________________________________________________________________________**/
 
-    public InventoryController(InventoryService inventorySvc, UserRepository userRepo){
+    public InventoryController(InventoryService inventorySvc, UserRepository userRepo, InventoryRepository inventoryRepo){
         this.inventorySvc = inventorySvc;
         this.userRepo = userRepo;
+        this.inventoryRepo = inventoryRepo;
     }
 //--------------------------------------- MAPPING TO THE VIEWER ---------------------------------------\\
 
@@ -47,8 +49,15 @@ public class InventoryController {
     //Takes all of the inventory from the database
     @GetMapping("/inventory")
     public String inventoryIndex(Model vModel) {
-        vModel.addAttribute("inventory", inventorySvc.all());
+        vModel.addAttribute("inventory", inventoryRepo.findAll());
         return "inventory/index";
+    }
+
+
+    @GetMapping("/inventory/{id}")
+    public String individualPost(@PathVariable int id, Model vModel) {
+        vModel.addAttribute("post", inventorySvc.findOne(id));
+        return "inventory/show";
     }
 
 
@@ -70,25 +79,25 @@ public class InventoryController {
 
     @PostMapping("/inventory/create")
     public String createInventoryItem(@ModelAttribute Inventory item){
-
-//        User loguser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        item.setSize(item.getSize().toUpperCase());
+        item.setName(item.getName().toUpperCase());
         inventorySvc.create(item);
         return "redirect:/inventory";
     }
-//
-//    //Finds a inventory id, redirects to the edit page
-//    //to update the form you have to know which id (parameter) you are looking for
-//    @GetMapping("#")
-//    public String showUpdateForm(@PathVariable long id, Model viewModel){
-//        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
-//        return "inventory/edit";
-//    }
-//    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
-//    @PostMapping("#")
-//    public String updateForm(@ModelAttribute Inventory item){
-//        inventorySvc.edit(item);
-//        return "redirect:/inventory";
-//    }
+
+    //Finds a inventory id, redirects to the edit page
+    //to update the form you have to know which id (parameter) you are looking for
+    @GetMapping("/inventory/{id}/edit")
+    public String showUpdateForm(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("inventory", inventorySvc.findOne(id));
+        return "inventory/edit";
+    }
+    //User updates changes to the inventory, edits the inventory in database and displays new inventory list
+    @PostMapping("/inventory/{id}/edit")
+    public String updateForm(@ModelAttribute Inventory item){
+        inventorySvc.edit(item);
+        return "redirect:/inventory";
+    }
 //
 //    //search for inventory based on terms in name or size
 //    @GetMapping("#")
@@ -97,13 +106,45 @@ public class InventoryController {
 //        return "inventory/index";
 //    }
 //
-//    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
-//    @PostMapping("#")
-//    public String deleteInventory(@PathVariable long id){
-//        Inventory inventory = inventorySvc.findOne(id);
-//        inventorySvc.delete(inventory);
-//        return "/inventory";
-//    }
+    //find the inventory based on the id, then delete the inventory from the service, redirect the user to the home page: !!!CAUTION VERY DANGEROUS!!!
+    @GetMapping("/inventory/{id}/delete")
+    public String deleteInventoryItem(@PathVariable long id){
+        inventorySvc.delete(id);
+        return "redirect:/inventory";
+    }
 
+//Decrement method in the controller
+
+/**
+ * 1) This is a PostMapping method that is going to URL /inventory/{id}/decrement;
+ * because we are editing it by the inventory id.
+ * 2) Next create a String method (because it will return the url path) that takes a long id from the path (PostMapping URL),
+ * and request (@RequestParam) the parameter in the form on the view.
+ * 3) find the id of the inventory item and assign it to a variable
+ * 4) get the quantity of the item and assign it to a current quantity variable
+ * 5) set the quantity of the item to be currenty quantity minus/plus the input parameter on the form
+ * 6) edit the inventory with that item on the list.
+ *
+ *
+ */
+
+    @PostMapping("/inventory/{id}/decrement")
+    public String decrement(@PathVariable long id, @RequestParam(name = "dec") int dec){
+        Inventory item = inventorySvc.findOne(id);
+        long currentQuantity = item.getQuantity();
+        item.setQuantity(currentQuantity - dec);
+        inventorySvc.edit(item);
+       return "redirect:/inventory";
+    }
+
+    @PostMapping("/inventory/{id}/increment")
+    public String increment(@PathVariable long id, @RequestParam(name = "inc") int inc){
+        Inventory item = inventorySvc.findOne(id);
+        long currentQuantity = item.getQuantity();
+        item.setQuantity(currentQuantity + inc);
+        inventorySvc.edit(item);
+        System.out.println(inventorySvc.findOne(id).getQuantity());
+        return "redirect:/inventory";
+    }
 
 }

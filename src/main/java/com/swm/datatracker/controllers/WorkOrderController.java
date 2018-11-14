@@ -32,6 +32,9 @@ public class WorkOrderController {
     @Autowired
     private StatusRepository statusRepo;
 
+    @Autowired
+    private InventoryRepository inventoryRepo;
+
     private RolesRepository rolesRepo;
     private CategoryRepository categoryRepository;
     private StatusRepository statusRepository;
@@ -101,11 +104,11 @@ public class WorkOrderController {
         vModel.addAttribute("categories", categoryRepository.findAll());
         vModel.addAttribute("status", statusRepository.findAll());
         vModel.addAttribute("employees", userRepo.findAll());
-
         vModel.addAttribute("workorder", workOrder);
 //        System.out.println(statusRepo.findAll());
         vModel.addAttribute("status", statusRepo.findAll());
         vModel.addAttribute("category", categoryRepo.findAll());
+        vModel.addAttribute("inventories", inventoryRepo.findAll());
 //        System.out.println(userService.findAllEmployees());
         return "workorders/create";
     }
@@ -127,9 +130,19 @@ public class WorkOrderController {
         vModel.addAttribute("workorder", workOrderService.findOne(id));
         WorkOrder wo = workOrderRepository.findOne(id);
 //        System.out.println(wo.getSubmittedDate());
+        List<User> emps = userRepo.findAll();
+        List<User> woEmps = new ArrayList<>();
+        for (User u : emps) {
+//                System.out.println(u.getRole());
+            if (u.getRole().getRoleName().equals("ROLE_EDITOR")) {
+                woEmps.add(u);
+            }
+        }
+        vModel.addAttribute("employees", woEmps);
         vModel.addAttribute("submittedDate", wo.getSubmittedDate());
         vModel.addAttribute("status", statusRepo.findAll());
         vModel.addAttribute("category", categoryRepo.findAll());
+        vModel.addAttribute("inventories", inventoryRepo.findAll());
         return "workorders/edit";
     }
 
@@ -137,6 +150,10 @@ public class WorkOrderController {
     public String updatePost(@ModelAttribute WorkOrder workOrder) {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        workOrder.setUser(userRepository.findOne(user.getId()));
+        Inventory item = inventoryRepo.findOne(workOrder.getInventory().getId());
+        System.out.println(item.getQuantity());
+        item.setQuantity(item.getQuantity() - workOrder.getRequestedQuantity());
+        System.out.println(item.getQuantity());
         WorkOrder updatedWorkOrder = workOrderService.edit(workOrder);
 
         return "redirect:/work-order/" + updatedWorkOrder.getId();

@@ -24,9 +24,7 @@ public class InventoryService {
 
 
 //FINDS ALL ITEMS IN THE DATABASE
-    public Iterable<Inventory> all(){
-        return inventoryRepo.findAll();
-    }
+
 
     public Inventory findOne(long id){
         return inventoryRepo.findOne(id);
@@ -45,10 +43,23 @@ public class InventoryService {
     }
 
 //DELETES THE INVENTORY OBJECT (ROW) OUT OF THE DATABASE
-    public void delete(Inventory inventory){
-        inventoryRepo.delete(inventory);
+    public void delete(long id){
+        inventoryRepo.delete(id);
     }
 
+//public long decrementInventory(long currentQuantity, long workorderQuantity){
+//        currentQuantity -= workorderQuantity;
+//        return currentQuantity;
+// }
+
+//    public Inventory decrementInventory(long id){
+//        Inventory item = inventoryRepo.findOne(id);
+//        long itemQuantity = item.getQuantity();
+//        itemQuantity -= workOrder.quantity;
+//        item.setQuantity(itemQuantity);
+//
+//        return item;
+//    }
 
 
 //--------------------- SEARCHES ---------------------\\

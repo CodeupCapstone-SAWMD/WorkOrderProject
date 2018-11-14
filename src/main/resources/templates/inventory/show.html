@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head('Post')"></head>
+<description>
+    <div th:replace="fragments/navbar :: myNav"></div>
+    <h1>A single post page</h1>
+
+    <div>
+        <h2 th:text="${inventory.name}"></h2>
+        <p th:text="${inventory.size}"></p>
+        <p th:text="${post.user.email}"></p>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</description>
+</html>

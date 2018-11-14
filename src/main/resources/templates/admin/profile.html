@@ -76,7 +76,20 @@
                     <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                     <td th:text="${order.category.name}"></td>
                     <td th:text="${order.status.name}"></td>
-                    <td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>
+                    <!--<td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>-->
+
+                    <!--DROPDOWN TABLE ROW EXPANSION BELOW-->
+
+                    <!--<td>-->
+                        <!--<button class="btn btn-primary" type="button" data-toggle="collapse" th:attr="data-target='#collapseExample'+${order.id}" aria-expanded="false" aria-controls="collapseExample">-->
+                            <!--Update Status-->
+                        <!--</button>-->
+                        <!--<div class="collapse" th:id="'collapseExample' + ${order.id}">-->
+                            <!--<div class="card card-body">-->
+                                <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.-->
+                            <!--</div>-->
+                    <!--</div>-->
+                    <!--</td>-->
                 </tr>
             </table>
         </div>

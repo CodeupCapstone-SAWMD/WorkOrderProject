@@ -7,6 +7,7 @@ import com.swm.datatracker.respositories.RolesRepository;
 import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
+import com.swm.datatracker.services.SmsSender;
 import com.swm.datatracker.services.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.Role;
-import javax.management.relation.RoleResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +26,16 @@ public class UserController {
     private StatusRepository statusRepository;
     private UserService userService;
     private RolesRepository userRolesRepository;
+    private SmsSender smsSender;
 
 
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository, SmsSender smsSender) {
         this.userRepository = userRepository;
         this.statusRepository = statusRepository;
         this.passwordEncoder = passwordEncoder;
         this.workOrderRepository = workOrderRepository;
         this.userRolesRepository = userRolesRepository;
+        this.smsSender = smsSender;
     }
 
     @GetMapping("/")
@@ -64,6 +65,12 @@ public class UserController {
 
     @GetMapping("/contact")
     public String showContactForm(Model vModel) {
+        return "contact";
+    }
+
+    @PostMapping("/contact")
+    public String sendCommunication(Model vModel, @RequestParam(name = "mess") String mess) {
+        smsSender.sendText(mess);
         return "contact";
     }
 
@@ -117,7 +124,5 @@ public class UserController {
         vModel.addAttribute("user", user);
         return "users/edit";
     }
-
-
 }
 

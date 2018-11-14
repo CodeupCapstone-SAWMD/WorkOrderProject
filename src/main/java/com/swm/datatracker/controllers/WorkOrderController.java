@@ -109,6 +109,7 @@ public class WorkOrderController {
             }
 
         vModel.addAttribute("customers", custs);
+
         vModel.addAttribute("categories", categoryRepository.findAll());
         vModel.addAttribute("status", statusRepository.findAll());
         vModel.addAttribute("employees", userRepo.findAll());

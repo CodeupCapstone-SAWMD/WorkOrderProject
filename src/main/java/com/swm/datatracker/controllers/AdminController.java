@@ -11,6 +11,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.management.relation.Role;
 import java.util.ArrayList;
 
 @Controller
@@ -18,12 +22,14 @@ public class AdminController {
     private WorkOrderRepository workOrderRepository;
     private StatusRepository statusRepository;
     private UserRepository userRepository;
+    private RolesRepository rolesRepository;
 
 
-    public AdminController(WorkOrderRepository workOrderRepository, StatusRepository statusRepository, UserRepository userRepository) {
+    public AdminController(WorkOrderRepository workOrderRepository, StatusRepository statusRepository, UserRepository userRepository, RolesRepository rolesRepository) {
         this.workOrderRepository = workOrderRepository;
         this.statusRepository = statusRepository;
         this.userRepository = userRepository;
+        this.rolesRepository = rolesRepository;
     }
 
     @GetMapping("/admin/home")
@@ -64,8 +70,20 @@ public class AdminController {
     public String editPermissions(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        vModel.addAttribute("allUsers", userRepository.findAll());
+        vModel.addAttribute("user", user);
+//        vModel.addAttribute("role", user.getRole());
 
+        // all user roles in array list and pushed to front end
+        ArrayList<UserRole> allRoles = new ArrayList<>();
+        UserRole admin = rolesRepository.findOneById(1L);
+        UserRole emp = rolesRepository.findOneById(2L);
+        UserRole cust = rolesRepository.findOneById(3L);
+        allRoles.add(admin);
+        allRoles.add(emp);
+        allRoles.add(cust);
+        vModel.addAttribute("allRoles", allRoles);
+
+        // sort by user role into lists
         ArrayList<User> admins = new ArrayList<>();
         ArrayList<User> employees = new ArrayList<>();
         ArrayList<User>  customers = new ArrayList<>();
@@ -82,11 +100,20 @@ public class AdminController {
                 customers.add(eachuser);
             }
         }
-
+        // lists generated and pushed to front end
         vModel.addAttribute("admins", admins);
         vModel.addAttribute("employees", employees);
         vModel.addAttribute("customers", customers);
-        vModel.addAttribute("user", user);
+        vModel.addAttribute("allUsers", all);
+
+        return "admin/view-users";
+    }
+
+    @PostMapping("/admin/edit-users")
+    public String updatePermissions(@ModelAttribute UserRole ur, Model vModel) {
+        User updatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        updatedUser.setRole(ur);
+        userRepository.save(updatedUser);
         return "admin/view-users";
     }
 }

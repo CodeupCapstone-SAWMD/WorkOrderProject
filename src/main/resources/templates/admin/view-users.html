@@ -92,6 +92,7 @@
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Update</th>
                     <th scope="col"></th>
                 </tr>
                 <tr style="font-size:15px" th:each="customer : ${customers}">
@@ -99,6 +100,20 @@
                     <td th:text="${customer.username}"></td>
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.firstName} + ' ' + ${customer.lastName}"></td>
+                    <td>
+                        <!--<form th:action="@{/admin/edit-users}" method="POST" th:object="${role}">-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Role</label>-->
+                                <!--<select class="custom-select" id="status" th:field="*{role}">-->
+                                    <!--<option th:each="roleOption : ${allRoles}"-->
+                                            <!--th:value="${roleOption.id}"-->
+                                            <!--th:utext="${roleOption.role}">-->
+                                    <!--</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                            <!--<input type="submit" class="btn active">Update</input>-->
+                        <!--</form>-->
+                    </td>
                     <td><a th:href="@{/admin/show-profile/{id}(id=${customer.id})}">View Profile</a></td>
                 </tr>
             </table>

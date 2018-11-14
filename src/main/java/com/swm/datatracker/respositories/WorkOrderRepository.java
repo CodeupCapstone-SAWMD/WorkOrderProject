@@ -28,4 +28,6 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
     List<WorkOrder> findAllByCustomerAndStatus(User user, Status status);
 
     List<WorkOrder> findAllByEmployeeAndStatus(User user, Status status);
+
+    List<WorkOrder> findAllByDescriptionContainsOrNotesContains(String search1, String search2);
 }

@@ -186,4 +186,11 @@ public class WorkOrderController {
         return "workorders/index";
 //
     }
+
+    @GetMapping("/workorders/search")
+    public String searchWorkOrders(Model vModel, @RequestParam(name = "searchTerm") String search) {
+        Iterable<WorkOrder> searchResults = workOrderRepository.findAllByDescriptionContainsOrNotesContains(search, search);
+        vModel.addAttribute("searchResults", searchResults);
+        return "workorders/search";
+    }
 }

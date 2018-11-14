@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head('WasteManagement')" />
+<body>
+
+<div th:replace="partials :: myNav"></div>
+<div class="container">
+<h1>Search Results</h1>
+    <div class="card m-1" style="width:30%" th:each="workorder : ${searchResults}">
+        <ul class="card-body d-flex flex-column">
+            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
+            <p>Status: <span th:text="${workorder.status.name}"></span></p>
+            <p>Category: <span th:text="${workorder.category.name}"></span></p>
+            <p>Description: <span th:text="${workorder.description}"></span></p>
+            <p>Notes: <span th:text="${workorder.notes}"></span></p>
+            <p>Employee: <span th:text="${workorder.employee}"></span></p>
+            <ul class="nav nav-pills justify-content-center mt-auto form-group">
+                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+            </ul>
+        </ul>
+    </div>
+</div>
+<th:block th:replace="partials :: scripts"/>
+</body>
+</html>

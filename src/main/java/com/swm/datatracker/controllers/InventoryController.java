@@ -54,12 +54,6 @@ public class InventoryController {
     }
 
 
-    @GetMapping("/inventory/{id}")
-    public String individualPost(@PathVariable int id, Model vModel) {
-        vModel.addAttribute("post", inventorySvc.findOne(id));
-        return "inventory/show";
-    }
-
 
     //Directs user to the form to create a new inventory object
     @GetMapping("/inventory/create")

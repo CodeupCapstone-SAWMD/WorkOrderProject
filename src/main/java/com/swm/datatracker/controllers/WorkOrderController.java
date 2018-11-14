@@ -126,7 +126,7 @@ public class WorkOrderController {
 //        System.out.println(currentDate);
         workOrder.setCustomer(userRepo.findOne(user.getId()));
         workOrder.setSubmittedDate(currentDate);
-        workOrder.setStatus(statusRepo.findOne((long) 1));
+//        workOrder.setStatus(statusRepo.findOne((long) 1));
         WorkOrder newWorkOrder = workOrderService.save(workOrder);
         return "redirect:/work-order/"+ newWorkOrder.getId();
     }

@@ -57,20 +57,29 @@ public class WorkOrderController {
 
     @GetMapping("/workorders")
     public String workorders(Model vModel) {
-//        vModel.addAttribute("workorders", workOrderService.findAll());
-        vModel.addAttribute("submitted", workOrderService.statusList(1));
-        vModel.addAttribute("pending", workOrderService.statusList(2));
-        vModel.addAttribute("processing", workOrderService.statusList(3));
-        vModel.addAttribute("review", workOrderService.statusList(4));
-        vModel.addAttribute("complete", workOrderService.statusList(5));
-        vModel.addAttribute("cancelled", workOrderService.statusList(6));
 
+        vModel.addAttribute("submitted", workOrderService.statusList(1));
+        vModel.addAttribute("processing", workOrderService.statusList(2));
+        vModel.addAttribute("review", workOrderService.statusList(3));
+        vModel.addAttribute("complete", workOrderService.statusList(4));
+        vModel.addAttribute("cancelled", workOrderService.statusList(5));
+        vModel.addAttribute("all", workOrderRepository.findAll());
+        return "workorders/index";
+    }
+
+    @PostMapping("/work-order/{id}/update")
+    public String updateStatus(@PathVariable long id, Model vModel) {
+        WorkOrder wo = workOrderRepository.findOne(id);
+        Status woStatus = wo.getStatus();
+        long statusId = woStatus.getId();
+        long newId = statusId + 1;
+
+//        vModel.addAttribute("");
         return "workorders/index";
     }
 
     @GetMapping("/work-order/{id}")
     public String worOrderId(@PathVariable long id, Model vModel) {
-//        System.out.println(workOrderService.findOne(id));
         vModel.addAttribute("workorder", workOrderService.findOne(id));
         return "workorders/show";
     }
@@ -91,19 +100,17 @@ public class WorkOrderController {
         List<User> userList = userRepo.findAll();
         List<User> custs = new ArrayList<>();
             for (User u : userList) {
-//                System.out.println(u.getRole());
                 if (u.getRole().getRoleName().equals("ROLE_USER")) {
                     custs.add(u);
                 }
             }
 
         vModel.addAttribute("customers", custs);
+
         vModel.addAttribute("categories", categoryRepository.findAll());
         vModel.addAttribute("status", statusRepository.findAll());
         vModel.addAttribute("employees", userRepo.findAll());
         vModel.addAttribute("workorder", workOrder);
-//        System.out.println(statusRepo.findAll());
-        vModel.addAttribute("status", statusRepo.findAll());
         vModel.addAttribute("category", categoryRepo.findAll());
         vModel.addAttribute("inventories", inventoryRepo.findAll());
 //        System.out.println(userService.findAllEmployees());

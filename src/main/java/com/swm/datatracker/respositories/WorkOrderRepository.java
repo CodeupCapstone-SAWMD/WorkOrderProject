@@ -16,10 +16,16 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
 
     @Query(nativeQuery = true,
             value = "SELECT * FROM mgmt_db.work_order wo WHERE wo.customer_id = 1?")
+
     List<WorkOrder> findAllByUser(Long id);
+
+    List<WorkOrder> findAllByEmployee(User user);
 
     List<WorkOrder> findAllByCustomer(User user);
 
-
     List<WorkOrder> findAllByStatus(Status status);
+
+    List<WorkOrder> findAllByCustomerAndStatus(User user, Status status);
+
+    List<WorkOrder> findAllByEmployeeAndStatus(User user, Status status);
 }

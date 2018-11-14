@@ -1,5 +1,6 @@
 package com.swm.datatracker.services;
 
+import com.swm.datatracker.models.Status;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.WorkOrder;
 import com.swm.datatracker.respositories.StatusRepository;
@@ -14,8 +15,9 @@ import java.util.List;
 public class WorkOrderService {
 
     private WorkOrderRepository workOrderRepo;
-
     private StatusRepository statusRepo;
+
+
 
     public WorkOrderService(WorkOrderRepository workOrderRepo){
         this.workOrderRepo = workOrderRepo;
@@ -78,9 +80,32 @@ public class WorkOrderService {
         }
         return list;
     }
+
+    public List<WorkOrder> listByUserAndStatus (User user, long statusId){
+        Iterable<WorkOrder> allWorkOrders = workOrderRepo.findAll();
+
+        System.out.println(user.getId());
+        System.out.println(user);
+
+        List<WorkOrder> filteredWorkOrders = new ArrayList<>();
+
+        for(WorkOrder currentWorkOrder : allWorkOrders) {
+            System.out.println(currentWorkOrder.getId());
+            System.out.println(currentWorkOrder.getStatus().getId());
+            if (currentWorkOrder.getCustomer().getId() == user.getId()
+                && currentWorkOrder.getStatus().getId() == statusId) {
+
+                filteredWorkOrders.add(currentWorkOrder);
+            }
+        }
+        return filteredWorkOrders;
+    }
+
     public List<WorkOrder> search (String string){
         return workOrderRepo.findAllByCategoryContainsOrDescriptionContainsOrCustomerContains(string, string, string);
     }
 
-
+    public List <WorkOrder> findAllByCustomer(User user){
+        return workOrderRepo.findAllByCustomer(user);
+    }
 }

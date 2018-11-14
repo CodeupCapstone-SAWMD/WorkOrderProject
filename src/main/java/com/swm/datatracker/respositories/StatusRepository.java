@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface StatusRepository extends CrudRepository <Status, Long> {
 
-    List<Status> findStatusById(long id);
+    Status findStatusById(long id);
     List<Status> findStatusByNameContains(String term);
 
 

@@ -3,19 +3,20 @@ package com.swm.datatracker.controllers;
 import com.swm.datatracker.models.Status;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.UserRole;
+import com.swm.datatracker.models.WorkOrder;
 import com.swm.datatracker.respositories.RolesRepository;
 import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
+import com.swm.datatracker.services.SmsSender;
 import com.swm.datatracker.services.UserService;
+import com.swm.datatracker.services.WorkOrderService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.Role;
-import javax.management.relation.RoleResult;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,17 +25,22 @@ public class UserController {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private WorkOrderRepository workOrderRepository;
+    private WorkOrderService workOrderService;
     private StatusRepository statusRepository;
-    private UserService userService;
+//    private UserService userService;
     private RolesRepository userRolesRepository;
+    private SmsSender smsSender;
 
 
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, WorkOrderRepository workOrderRepository, RolesRepository userRolesRepository, StatusRepository statusRepository, SmsSender smsSender) {
         this.userRepository = userRepository;
         this.statusRepository = statusRepository;
         this.passwordEncoder = passwordEncoder;
         this.workOrderRepository = workOrderRepository;
         this.userRolesRepository = userRolesRepository;
+
+        this.smsSender = smsSender;
+        this.statusRepository = statusRepository;
     }
 
     @GetMapping("/")
@@ -67,6 +73,12 @@ public class UserController {
         return "contact";
     }
 
+    @PostMapping("/contact")
+    public String sendCommunication(Model vModel, @RequestParam(name = "mess") String mess) {
+        smsSender.sendText(mess);
+        return "contact";
+    }
+
     @GetMapping("/about")
     public String showAboutPage(Model vModel) {
         return "about";
@@ -82,6 +94,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+
         UserRole ur = userRolesRepository.findOneById(2L);
         user.setRole(ur);
         userRepository.save(user);
@@ -99,23 +112,51 @@ public class UserController {
         return "redirect:/login";
     }
 
+
+
 //    @RequestMapping(path = "/users/profile", method = RequestMethod.GET)
     @GetMapping("/users/profile")
     public String userProfile(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Status submitted = statusRepository.findOne(1L);
+        Status processing = statusRepository.findOne(2L);
+        Status reviewed = statusRepository.findOne(3L);
+        Status completed = statusRepository.findOne(4L);
+        Status cancelled = statusRepository.findOne(5L);
         vModel.addAttribute("user", user);
 
-        // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
-        vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
+        vModel.addAttribute("submitted", workOrderRepository.findAllByCustomerAndStatus(user, submitted));
+        vModel.addAttribute("processing", workOrderRepository.findAllByCustomerAndStatus(user, processing));
+        vModel.addAttribute("reviewed", workOrderRepository.findAllByCustomerAndStatus(user, reviewed));
+        vModel.addAttribute("completed", workOrderRepository.findAllByCustomerAndStatus(user, completed));
+        vModel.addAttribute("cancelled", workOrderRepository.findAllByCustomerAndStatus(user, cancelled));
+        vModel.addAttribute("allOrders", workOrderRepository.findAllByCustomer(user));
+
         return "users/profile";
     }
+//        // vModel.addAttribute("orders", workOrderRepository.findAllByUser(user.getId()));
+//        vModel.addAttribute("orders", workOrderRepository.findAllByCustomer(user));
+//        return "users/profile";
+//    }
 
 //    @RequestMapping(path = "/profile/edit", method = RequestMethod.GET)
-    @GetMapping("/users/profile/edit")
-    public String editUser(Model vModel) {
+    @GetMapping("/users/edit")
+    public String getEditUser(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        vModel.addAttribute("user", user);
+        vModel.addAttribute("updatedUser", user);
         return "users/edit";
+    }
+
+    @PostMapping("/users/edit/{id}")
+    public String postEditUser(@ModelAttribute User newInfo, @PathVariable long id, Model vModel) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserRole ur = user.getRole();
+        newInfo.setRole(ur);
+        userRepository.save(newInfo);
+
+        return "users/profile";
     }
 
 

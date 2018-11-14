@@ -143,25 +143,27 @@ public class UserController {
     @GetMapping("/users/edit")
     public String getEditUser(Model vModel) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        vModel.addAttribute("user", user);
+        vModel.addAttribute("updatedUser", user);
         return "users/edit";
     }
 
     @PostMapping("/users/edit")
     public String postEditUser(@ModelAttribute User newInfo, Model vModel) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User editedUser = userRepository.findByUsername(user.getUsername());
+//        public String postEditUser(@RequestParam(name="name") String email) {
+        User editedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         editedUser.setEmail(newInfo.getEmail());
-        editedUser.setPassword(newInfo.getPassword());
+        editedUser.setPassword(passwordEncoder.encode(newInfo.getPassword()));
         editedUser.setPhoneNumber(newInfo.getPhoneNumber());
         editedUser.setStreetName(newInfo.getStreetName());
         editedUser.setStreetNumber(newInfo.getStreetNumber());
         editedUser.setZipcode(newInfo.getZipcode());
         editedUser.setFirstName(newInfo.getFirstName());
         editedUser.setLastName(newInfo.getLastName());
-
+//        editedUser.setRole(editedUser.getRole());
+        UserRole ur = userRolesRepository.findOne(2L);
+        editedUser.setRole(ur);
+//        userRolesRepository.findOneById(editedUser.getId())
         userRepository.save(editedUser);
-        vModel.addAttribute("user", user);
         return "users/profile";
     }
 

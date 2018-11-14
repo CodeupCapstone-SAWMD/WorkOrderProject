@@ -6,8 +6,8 @@
 
 #### Priorities
 * Key focus
-    - [x] Develop an interactive form to submit and track work orders
-    - [x] Transition from a paper based inventory tracking system to a web based data tracking system for garbage carts.
+    - [ ] Develop an interactive form to submit and track work orders
+    - [ ] Transition from a paper based inventory tracking system to a web based data tracking system for garbage carts.
     - [ ] Develop an interactive customer portal that displays the current users inventory of garbage carts and request forms to cancel or create additional garbage cart orders.
 
 ## APIs
@@ -25,15 +25,8 @@
   * Documentation:
     - https://www.twilio.com/docs/
   *Implemented:
-    - [x] `Work Order Show` Page
-
-#### ~MailGun??~
-  ~* Purpose:~
-    ~- Ability to send confirmation/verification emails, for registration~
-  ~* Documentation:~
-    ~- https://documentation.mailgun.com/en/latest/~
-  ~*Implemented:~
-    ~- [ ] `Work Order Show` Page~
+    - [ ] Text alert on work order status change
+    - [ ] Email alert on work order status change
 
 ## Features List
 
@@ -55,7 +48,7 @@
 
 *  From the `Register` button..._
   - [ ] Fields for Username, Password, First/Last name, zip, phone, profile picture, etc...
-  - [x] Checks for existing usernames/emails to avoid duplication
+  - [ ] Checks for existing usernames/emails to avoid duplication
   - [x] Redirects to login once registered
 
 *  Redirects
@@ -117,7 +110,7 @@
     - [x] Verifies password matches
     - [x] Forwards to `Profile`
   * Edit Profile
-    - [x] Update profile info 
+    - [x] Update user profile info 
   * Profile/ Work Order Dashboard
     - [x] Ability to review assigned work orders
     - [x] Monitor the status of their submitted work orders via customer portal/ profile
@@ -125,9 +118,11 @@
     - [ ] Vew work order details
     - [ ] upon updating status, work order forwarded for review in admin profile
     - [x] Can create/ edit see comments attached to work order
+  
+## Key Administrative Functions
+#### Administrators
   * Application Profile Management Privileges
-    - [ ] View all users
-    - [ ] Edit user accounts
+    - [ ] View all users and user information
     - [ ] Assign & edit privileges to other users
 
   * Inventory management

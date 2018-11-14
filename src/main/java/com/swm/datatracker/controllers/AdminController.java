@@ -45,16 +45,14 @@ public class AdminController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Status submitted = statusRepository.findOne(1L);
-        Status pendingAssignment = statusRepository.findOne(2L);
-        Status processing = statusRepository.findOne(3L);
-        Status reviewed = statusRepository.findOne(4L);
-        Status complete = statusRepository.findOne(5L);
-        Status canceled = statusRepository.findOne(6L);
+        Status processing = statusRepository.findOne(2L);
+        Status reviewed = statusRepository.findOne(3L);
+        Status complete = statusRepository.findOne(4L);
+        Status canceled = statusRepository.findOne(5L);
 
         vModel.addAttribute("canceledOrders", workOrderRepository.findAllByStatus(canceled));
         vModel.addAttribute("inReview", workOrderRepository.findAllByStatus(reviewed));
         vModel.addAttribute("processingOrders", workOrderRepository.findAllByStatus(processing));
-        vModel.addAttribute("pendingAssignmentOrders", workOrderRepository.findAllByStatus(pendingAssignment));
         vModel.addAttribute("submittedOrders", workOrderRepository.findAllByStatus(submitted));
         vModel.addAttribute("completeOrders", workOrderRepository.findAllByStatus(complete));
         vModel.addAttribute("allOrders", workOrderRepository.findAll());

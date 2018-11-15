@@ -189,8 +189,22 @@ public class WorkOrderController {
 
     @GetMapping("/workorders/search")
     public String searchWorkOrders(Model vModel, @RequestParam(name = "searchTerm") String search) {
-        Iterable<WorkOrder> searchResults = workOrderRepository.findAllByDescriptionContainsOrNotesContains(search, search);
-        vModel.addAttribute("searchResults", searchResults);
+        List<WorkOrder> searchDescNotesResults = workOrderRepository.findAllByDescriptionContainsOrNotesContains(search, search);
+        List<WorkOrder> searchByIdResults = new ArrayList<>();
+        List<WorkOrder> searchByZipResults = new ArrayList<>();
+
+        try {
+            searchByIdResults = workOrderRepository.findAllById(Long.parseLong(search));
+            searchByZipResults = workOrderRepository.findAllById(Long.parseLong(search));
+        } catch (Exception e){
+            System.out.println(e + "no data");
+        }
+
+        vModel.addAttribute("searchDescNotesResults", searchDescNotesResults);
+        vModel.addAttribute("searchByIdResults", searchByIdResults);
+        vModel.addAttribute("searchByZipResults", searchByZipResults);
+
+
         return "workorders/search";
     }
 }

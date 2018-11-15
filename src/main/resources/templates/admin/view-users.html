@@ -101,18 +101,18 @@
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.firstName} + ' ' + ${customer.lastName}"></td>
                     <td>
-                        <!--<form th:action="@{/admin/edit-users}" method="POST" th:object="${role}">-->
-                            <!--<div class="form-group">-->
-                                <!--<label>Role</label>-->
-                                <!--<select class="custom-select" id="status" th:field="*{role}">-->
-                                    <!--<option th:each="roleOption : ${allRoles}"-->
-                                            <!--th:value="${roleOption.id}"-->
-                                            <!--th:utext="${roleOption.role}">-->
-                                    <!--</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
-                            <!--<input type="submit" class="btn active">Update</input>-->
-                        <!--</form>-->
+                        <form th:action="@{/admin/edit-users}" method="POST" th:object="${user}">
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select class="custom-select" id="status" th:field="*{role}">
+                                    <option th:each="role : ${allRoles}"
+                                            th:value="${role.id}"
+                                            th:utext="${role.role}">
+                                    </option>
+                                </select>
+                            </div>
+                            <input type="submit" class="btn active">Update</input>
+                        </form>
                     </td>
                     <td><a th:href="@{/admin/show-profile/{id}(id=${customer.id})}">View Profile</a></td>
                 </tr>

@@ -110,10 +110,10 @@ public class AdminController {
     }
 
     @PostMapping("/admin/edit-users")
-    public String updatePermissions(@ModelAttribute UserRole ur, Model vModel) {
-        User updatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        updatedUser.setRole(ur);
-        userRepository.save(updatedUser);
+    public String updatePermissions(@ModelAttribute UserRole ur, @ModelAttribute User u, Model vModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        u.setRole(ur);
+        userRepository.save(u);
         return "admin/view-users";
     }
 }

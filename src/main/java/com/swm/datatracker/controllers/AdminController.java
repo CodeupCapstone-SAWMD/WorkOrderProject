@@ -3,6 +3,7 @@ package com.swm.datatracker.controllers;
 import com.swm.datatracker.models.Status;
 import com.swm.datatracker.models.User;
 import com.swm.datatracker.models.UserRole;
+import com.swm.datatracker.models.WorkOrder;
 import com.swm.datatracker.respositories.RolesRepository;
 import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.UserRepository;
@@ -10,9 +11,7 @@ import com.swm.datatracker.respositories.WorkOrderRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.Role;
 import java.util.ArrayList;
@@ -109,11 +108,12 @@ public class AdminController {
         return "admin/view-users";
     }
 
-    @PostMapping("/admin/edit-users")
-    public String updatePermissions(@ModelAttribute UserRole ur, @ModelAttribute User u, Model vModel) {
+    @PostMapping("/admin/edit-users/{id}/)")
+    public String updatePermissions(@PathVariable long id, @ModelAttribute UserRole selectedRole) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        u.setRole(ur);
-        userRepository.save(u);
+        User editedUser = userRepository.findOne(id);
+        editedUser.setRole(selectedRole);
+        userRepository.save(editedUser);
         return "admin/view-users";
     }
 }

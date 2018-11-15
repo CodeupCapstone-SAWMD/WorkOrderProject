@@ -101,7 +101,7 @@
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.firstName} + ' ' + ${customer.lastName}"></td>
                     <td>
-                        <form th:action="@{/admin/edit-users}" method="POST" th:object="${user}">
+                        <form th:action="@{/admin/edit-users}" method="POST" th:object="${selecteduser}">
                             <div class="form-group">
                                 <label>Role</label>
                                 <select class="custom-select" id="status" th:field="*{role}">

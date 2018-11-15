@@ -31,6 +31,16 @@
                 <ul class="nav nav-pills justify-content-center mt-auto form-group">
                     <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
                     <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
+                    <li>
+
+                <!-- 1) create a form (because you are posting information) with form binding -->
+
+                        <form th:action="@{/admin/status/{id}/cancel(id=${workorder.id})}" method="post" th:object="${workorder}" >
+                            <input type="hidden" name="_method" value="cancel" />
+                            <button type="submit" class="btn btn-primary btn-sm ml-2" th:method="post">Cancel</button>
+                        </form>
+
+                    </li>
                 </ul>
             </div>
         </div>

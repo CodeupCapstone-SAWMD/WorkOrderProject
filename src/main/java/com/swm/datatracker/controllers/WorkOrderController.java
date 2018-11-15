@@ -58,6 +58,15 @@ public class WorkOrderController {
     @GetMapping("/workorders")
     public String workorders(Model vModel) {
 
+        List<User> userList = userRepo.findAll();
+        List<User> emps = new ArrayList<>();
+        for (User u : userList) {
+            if (u.getRole().getRoleName().equals("ROLE_EDITOR")) {
+                emps.add(u);
+            }
+        }
+
+        vModel.addAttribute("emps", emps);
         vModel.addAttribute("submitted", workOrderService.statusList(1));
         vModel.addAttribute("processing", workOrderService.statusList(2));
         vModel.addAttribute("review", workOrderService.statusList(3));
@@ -129,6 +138,20 @@ public class WorkOrderController {
 //        workOrder.setStatus(statusRepo.findOne((long) 1));
         WorkOrder newWorkOrder = workOrderService.save(workOrder);
         return "redirect:/work-order/"+ newWorkOrder.getId();
+    }
+
+    @PostMapping("/work-order/assign/{id}")
+    public String assignEmployees(@RequestParam(name = "employee") long employee, @PathVariable long id, Model vModel) {
+        User emp = userRepo.findOne(employee);
+        WorkOrder wo = workOrderRepository.findOne(id);
+        wo.setEmployee(emp);
+
+        long currentStatusId = wo.getStatus().getId();
+        currentStatusId += 1;
+        wo.setStatus(statusRepository.findOne(currentStatusId));
+        workOrderRepository.save(wo);
+
+        return "redirect:/workorders";
     }
 
     @GetMapping("/work-order/{id}/edit")

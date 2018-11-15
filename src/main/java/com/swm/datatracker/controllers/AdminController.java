@@ -85,8 +85,8 @@ public class AdminController {
         // all user roles in array list and pushed to front end
         ArrayList<UserRole> allRoles = new ArrayList<>();
         UserRole admin = rolesRepository.findOneById(1L);
-        UserRole emp = rolesRepository.findOneById(2L);
-        UserRole cust = rolesRepository.findOneById(3L);
+        UserRole cust = rolesRepository.findOneById(2L);
+        UserRole emp = rolesRepository.findOneById(3L);
         allRoles.add(admin);
         allRoles.add(emp);
         allRoles.add(cust);
@@ -102,10 +102,10 @@ public class AdminController {
             if(eachuser.getRole().getId() == 1){
                 admins.add(eachuser);
             }
-            if(eachuser.getRole().getId() == 2){
+            if(eachuser.getRole().getId() == 3){
                 employees.add(eachuser);
             }
-            else {
+            if(eachuser.getRole().getId() == 2) {
                 customers.add(eachuser);
             }
         }
@@ -114,16 +114,27 @@ public class AdminController {
         vModel.addAttribute("employees", employees);
         vModel.addAttribute("customers", customers);
         vModel.addAttribute("allUsers", all);
+        vModel.addAttribute("selecteduser", user);
 
         return "admin/view-users";
     }
 
-    @PostMapping("/admin/edit-users/{id}/)")
-    public String updatePermissions(@PathVariable long id, @ModelAttribute UserRole selectedRole) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User editedUser = userRepository.findOne(id);
-        editedUser.setRole(selectedRole);
+    @PostMapping("/admin/view-users")
+    public String updatePermissions(@ModelAttribute UserRole selectedRole, @ModelAttribute User selectedUser) {
+        User editedUser = userRepository.findOne(selectedUser.getId());
+        System.out.println();
+        System.out.println(editedUser.getUsername());
+        System.out.println();
+
+//        editedUser.setRole(selectedRole);
         userRepository.save(editedUser);
         return "admin/view-users";
+    }
+
+    @GetMapping("/admin/view-profile/{id}")
+    public String viewProfile(@PathVariable String id, Model vModel) {
+        User viewedUser = userRepository.findOne(Long.parseLong(id));
+        vModel.addAttribute("user", viewedUser);
+        return "admin/view-profile";
     }
 }

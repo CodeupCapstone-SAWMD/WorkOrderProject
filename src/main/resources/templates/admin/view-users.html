@@ -5,7 +5,7 @@
 <div th:replace="partials :: myNav"></div>
 <div class="container">
 
-    <h2 class="mt-4">Edit Permissions</h2>
+    <h2>View Profiles / Edit Permissions</h2>
     <hr/>
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -23,14 +23,6 @@
     </ul>
 
     <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade mt-4" id="info">
-            <div>
-                <h4 style="color:#c83724;display:inline">Username: </h4><h4 style="display:inline" th:text="${user.username}"></h4>
-            </div>
-            <div class="mt-3">
-                <h4 style="color:#c83724;display:inline">Email Address: </h4><h4 style="display:inline" th:text="${user.email}"></h4>
-            </div>
-        </div>
         <div class="tab-pane fade mt-4" id="allUsers">
             <table class="table table-hover">
                 <tr class="table-primary">
@@ -45,7 +37,7 @@
                     <td th:text="${eachuser.username}"></td>
                     <td th:text="${eachuser.email}"></td>
                     <td th:text="${eachuser.firstName} + ' ' + ${eachuser.lastName}"></td>
-                    <td><a th:href="@{/admin/show-profile/{id}(id=${eachuser.id})}">View Profile</a></td>
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${eachuser.id})}">View Profile</a></td>
                 </tr>
             </table>
         </div>
@@ -63,7 +55,7 @@
                     <td th:text="${admin.username}"></td>
                     <td th:text="${admin.email}"></td>
                     <td th:text="${admin.firstName} + ' ' + ${admin.lastName}"></td>
-                    <td><a th:href="@{/admin/show-profile/{id}(id=${admin.id})}">View Profile</a></td>
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${admin.id})}">View Profile</a></td>
                 </tr>
             </table>
         </div>
@@ -81,10 +73,11 @@
                     <td th:text="${emp.username}"></td>
                     <td th:text="${emp.email}"></td>
                     <td th:text="${emp.firstName} + ' ' + ${emp.lastName}"></td>
-                    <td><a th:href="@{/admin/show-profile/{id}(id=${emp.id})}">View Profile</a></td>
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${emp.id})}">View Profile</a></td>
                 </tr>
             </table>
         </div>
+
         <div class="tab-pane fade mt-4" id="customers">
             <table class="table table-hover">
                 <tr class="table-primary">
@@ -92,7 +85,7 @@
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Update</th>
+                    <th scope="col">Update Role</th>
                     <th scope="col"></th>
                 </tr>
                 <tr style="font-size:15px" th:each="customer : ${customers}">
@@ -101,20 +94,20 @@
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.firstName} + ' ' + ${customer.lastName}"></td>
                     <td>
-                        <form th:action="@{/admin/edit-users}" method="POST" th:object="${selecteduser}">
+                        <form th:action="@{/admin/view-users}" method="POST" th:object="${selecteduser}">
                             <div class="form-group">
-                                <label>Role</label>
                                 <select class="custom-select" id="status" th:field="*{role}">
                                     <option th:each="role : ${allRoles}"
                                             th:value="${role.id}"
+                                            th:placeholder="${customer.role.role}"
                                             th:utext="${role.role}">
                                     </option>
                                 </select>
                             </div>
-                            <input type="submit" class="btn active">Update</input>
+                            <input type="submit" class="btn active" placeholder="Update" />
                         </form>
                     </td>
-                    <td><a th:href="@{/admin/show-profile/{id}(id=${customer.id})}">View Profile</a></td>
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${customer.id})}">View Profile</a></td>
                 </tr>
             </table>
         </div>

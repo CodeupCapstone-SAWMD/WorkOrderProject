@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <!--<link rel="stylesheet" th:href="@{/css/bootstrap.simplex.min.css}"/>-->
@@ -45,7 +45,7 @@
 
                             <form th:action="@{/registration}" th:object="${user}" method="post">
 
-                                <p class="error-message"
+                                <p class="error-message text-left col text-danger col"
                                    th:if="${#fields.hasGlobalErrors()}"
                                    th:each="error : ${#fields.errors('global')}"
                                    th:text="${error}">Validation error</p>
@@ -65,7 +65,7 @@
                                                placeholder="First name"
                                                th:field="*{firstName}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('firstName')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -83,7 +83,7 @@
                                                placeholder="Last name"
                                                th:field="*{lastName}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('lastName')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -101,7 +101,7 @@
                                                placeholder="Username"
                                                th:field="*{userName}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('userName')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -119,7 +119,7 @@
                                                placeholder="Street Number"
                                                th:field="*{streetNumber}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('streetNumber')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -137,7 +137,7 @@
                                                placeholder="Street Name"
                                                th:field="*{streetName}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('streetName')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -155,7 +155,7 @@
                                                placeholder="City"
                                                th:field="*{city}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('city')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -173,7 +173,7 @@
                                                placeholder="Zip Code"
                                                th:field="*{zipcode}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('zipcode')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -191,7 +191,7 @@
                                                placeholder="Phone Number"
                                                th:field="*{phoneNumber}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('phoneNumber')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -207,7 +207,7 @@
                                                placeholder="E-mail"
                                                th:field="*{email}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('email')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -223,7 +223,7 @@
                                                placeholder="Confirm e-mail"
                                                th:field="*{confirmEmail}"/>
                                     </div>
-                                    <p class="error-message"
+                                    <p class="error-message text-left col text-danger col"
                                        th:each="error: ${#fields.errors('confirmEmail')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -242,14 +242,27 @@
                                                type="password"
                                                th:field="*{password}"/>
                                     </div>
-                                    <ul class="text-left"
-                                        th:each="error: ${#fields.errors('password')}">
-                                        <li th:each="message : ${error.split(',')}">
-                                            <p class="error-message"
-                                               th:text="${message}"></p>
-                                        </li>
-                                    </ul>
+                                    <div class="form-group container-fluid">
+                                        <div class="row">
+                                            <ul class="text-left col text-danger col"
+                                                th:each="error: ${#fields.errors('password')}" id="passwordErrors">
+                                                <li th:each="message : ${error.split(',')}">
+                                                <span class="error-message"
+                                                      th:text="${message}"></span>
+                                                </li>
+                                            </ul>
+                                            <ol id="passwordCriteria" class="text-left border-dark col">
+                                                <li class="font-weight-italic">Password must be 8 or more characters in length.</li>
+                                                <li>Password must contain 1 or more uppercase characters.</li>
+                                                <li>Password must contain 1 or more lowercase characters.</li>
+                                                <li>Password must contain 1 or more digit characters.</li>
+                                                <li>Password must contain 1 or more special characters.</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                                 <div class="form-group"
                                      th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
                                     <div class="input-group">
@@ -265,11 +278,11 @@
                                                placeholder="Confirm password"
                                                th:field="*{confirmPassword}"/>
                                     </div>
-                                    <ul class="text-left"
+                                    <ul class="text-left col text-danger col"
                                         th:each="error: ${#fields.errors('confirmPassword')}">
                                         <li th:each="message : ${error.split(',')}">
-                                            <p class="error-message"
-                                               th:text="${message}"></p>
+                                            <span class="error-message"
+                                               th:text="${message}"></span>
                                         </li>
                                     </ul>
                                 </div>
@@ -279,9 +292,9 @@
                                            type="checkbox"
                                            th:field="*{terms}"/>
                                     <label class="control-label" for="terms">
-                                        I agree with the <a href="#">terms and conditions</a> for Registration.
+                                        I agree with the <a href="https://www.municipalonlinepayments.com/sanantoniotx/terms" target="_blank">terms and conditions</a> for Registration.
                                     </label>
-                                    <p class="error-message"
+                                    <p class="error-message text-center col text-danger col"
                                        th:each="error : ${#fields.errors('terms')}"
                                        th:text="${error}">Validation error</p>
                                 </div>
@@ -299,8 +312,16 @@
 </div>
 <th:block th:replace="partials :: scripts" />
 
-<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
+<!--<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>-->
+<!--<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>-->
+<script>
+    //Password Error List code to display individual errors when criteria is not met. The Password Criteria List
+    //hidden from user view when the Error List is displayed.
+    var passwordErrors = document.getElementById("passwordErrors").innerText;
+    console.log(passwordErrors)
+    if(passwordErrors.length>0){
+        document.getElementById("passwordCriteria").setAttribute("hidden","");
+    }
+</script>
 </body>
 </html>

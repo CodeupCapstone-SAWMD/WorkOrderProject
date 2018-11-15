@@ -148,7 +148,7 @@ public class WorkOrderController {
         wo.setEmployee(emp);
 
         Long invAmount = wo.getRequestedQuantity();
-        
+
         Inventory inv = wo.getInventory();
         Long fullCount = inv.getQuantity();
 

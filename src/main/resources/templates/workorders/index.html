@@ -6,111 +6,6 @@
 <div class="container">
 <h1 class="text-center text-light">List of Work Orders</h1>
 
-<h3 class="text-center text-light text-underline"><u>Submitted</u></h3>
-<div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;background-color:#d2eaf4" th:each="workorder : ${submitted}">
-        <ul class="card-body d-flex flex-column" >
-            <!--<p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>-->
-            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
-            <p>Status: <span th:text="${workorder.status.name}"></span></p>
-            <p>Category: <span th:text="${workorder.category.name}"></span></p>
-            <p>Description: <span th:text="${workorder.description}"></span></p>
-            <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <!--<p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>-->
-            <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
-                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
-                <!--<li><a th:href="@{/posts/{id}/edit(id=${workorder.id})}">edit post</a></li>-->
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
-            </ul>
-        </ul>
-    </div>
-</div>
-<hr/>
-<h3 class="text-center text-light text-underline"><u>Pending</u></h3>
-
-<div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;background-color:#f4e6d4" th:each="workorder : ${pending}">
-        <ul class="card-body d-flex flex-column" >
-            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
-            <p>Submission Date: <span th:text="${workorder.getSubmittedDate()}"></span></p>
-            <p>Status: <span th:text="${workorder.status.name}"></span></p>
-            <p>Category: <span th:text="${workorder.category.name}"></span></p>
-            <p>Description: <span th:text="${workorder.description}"></span></p>
-            <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
-            <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
-                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
-            </ul>
-        </ul>
-    </div>
-</div>
-<hr/>
-<h3 class="text-center text-light text-underline"><u>Processing</u></h3>
-
-<div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;background-color:#e8dbeb" th:each="workorder : ${processing}">
-        <ul class="card-body d-flex flex-column" >
-            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
-            <p>Status: <span th:text="${workorder.status.name}"></span></p>
-            <p>Category: <span th:text="${workorder.category.name}"></span></p>
-            <p>Description: <span th:text="${workorder.description}"></span></p>
-            <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
-            <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
-                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
-            </ul>
-        </ul>
-    </div>
-</div>
-<hr/>
-<h3 class="text-center text-light text-underline"><u>Review</u></h3>
-
-<div class="row justify-content-center">
-    <div class="card m-1" style="width: 18rem;background-color:#f1d4d0" th:each="workorder : ${review}">
-        <ul class="card-body d-flex flex-column">
-            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
-            <p>Status: <span th:text="${workorder.status.name}"></span></p>
-            <p>Category: <span th:text="${workorder.category.name}"></span></p>
-            <p>Description: <span th:text="${workorder.description}"></span></p>
-            <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
-            <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
-                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
-            </ul>
-        </ul>
-    </div>
-</div>
-<hr/>
-<h3 class="text-center text-light text-underline"><u>Completed</u></h3>
-
-<div class="row justify-content-center">
-    <div class="card m-1" style="width:18rem;background-color:#dde9d0" th:each="workorder : ${complete}">
-        <ul class="card-body d-flex flex-column" >
-            <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
-            <p>Status: <span th:text="${workorder.status.name}"></span></p>
-            <p>Category: <span th:text="${workorder.category.name}"></span></p>
-            <p>Description: <span th:text="${workorder.description}"></span></p>
-            <p>Notes: <span th:text="${workorder.notes}"></span></p>
-            <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
-            <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
-                <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id}}" class="nav-link">Work Order Link</a></li>-->
-                <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>-->
-            </ul>
-        </ul>
-
 <ul class="nav nav-tabs">
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#allOrders">All Orders</a>
@@ -167,14 +62,38 @@
                         <th scope="col">Submitted</th>
                         <th scope="col">Created By</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Decrease Status</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Increase Status</th>
                         <th scope="col"></th>
                     </tr>
                     <tr style="font-size:15px" th:each="order : ${all}">
                         <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
                         <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                         <td th:text="${order.category.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/decrement(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="dec">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="dec" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-warning" value="Decrease"/>
+                                </div>
+                            </form>
+                        </td>
                         <td th:text="${order.status.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/increment(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="inc">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="inc" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Increase"/>
+                                </div>
+                            </form>
+                        </td>
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></td>
                     </tr>
                 </table>
@@ -215,14 +134,41 @@
                                 <th scope="col">Submitted</th>
                                 <th scope="col">Created By</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Employee Assnmt.</th>
                                 <th scope="col">Status</th>
+                                <!--<th scope="col">Increase Status</th>-->
                                 <th scope="col"></th>
                             </tr>
                             <tr style="font-size:15px" th:each="order : ${submitted}">
                                 <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
                                 <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                                 <td th:text="${order.category.name}"></td>
+                                <td class="m-0 p-0 text-center">
+                                    <form class="form-inline mt-2" th:action="@{/work-order/assign/{id}(id=${order.id})}" th:method="post">
+                                        <div class="form-group">
+                                            <select style="display:inline" class="custom-select" id="emp" name="employee">
+                                                <option th:each="emp : ${emps}"
+                                                        th:value="${emp.id}"
+                                                        th:utext="${emp.firstName + ' ' + emp.lastName}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <button style="display:inline" type="submit" class="btn btn-success ml-2">Assign</button>
+                                        </div>
+                                    </form>
+                                </td>
                                 <td th:text="${order.status.name}"></td>
+                                <!--<td class="m-0 p-0 text-center">-->
+                                    <!--<form th:action="@{/admin/status/{id}/increment(id=${order.id})}" th:method="post" class="m-0">-->
+                                        <!--<div class="form-group">-->
+                                            <!--<input th:type="hidden" th:class="form-control" name="inc" th:value="1"/>-->
+                                        <!--</div>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<input type="submit" class="btn btn-success" value="Increase"/>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</td>-->
                                 <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></td>
                             </tr>
                         </table>
@@ -263,14 +209,38 @@
                         <th scope="col">Submitted</th>
                         <th scope="col">Created By</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Decrease Status</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Increase Status</th>
                         <th scope="col">View</th>
                     </tr>
                     <tr style="font-size:15px" th:each="order : ${processing}">
                         <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
                         <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                         <td th:text="${order.category.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/decrement(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="dec">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="dec" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-warning" value="Decrease"/>
+                                </div>
+                            </form>
+                        </td>
                         <td th:text="${order.status.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/increment(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="inc">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="inc" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Increase"/>
+                                </div>
+                            </form>
+                        </td>
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></td>
                     </tr>
                 </table>
@@ -311,14 +281,38 @@
                         <th scope="col">Submitted</th>
                         <th scope="col">Created By</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Decrease Status</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Increase Status</th>
                         <th scope="col">View</th>
                     </tr>
                     <tr style="font-size:15px" th:each="order : ${review}">
                         <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
                         <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                         <td th:text="${order.category.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/decrement(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="dec">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="dec" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-warning" value="Decrease"/>
+                                </div>
+                            </form>
+                        </td>
                         <td th:text="${order.status.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/increment(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="inc">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="inc" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Increase"/>
+                                </div>
+                            </form>
+                        </td>
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></td>
                     </tr>
                 </table>
@@ -359,14 +353,38 @@
                         <th scope="col">Submitted</th>
                         <th scope="col">Created By</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Decrease Status</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Increase Status</th>
                         <th scope="col">View</th>
                     </tr>
                     <tr style="font-size:15px" th:each="order : ${complete}">
                         <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
                         <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                         <td th:text="${order.category.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/decrement(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="dec">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="dec" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-warning" value="Decrease"/>
+                                </div>
+                            </form>
+                        </td>
                         <td th:text="${order.status.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/increment(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="inc">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="inc" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Increase"/>
+                                </div>
+                            </form>
+                        </td>
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></td>
                     </tr>
                 </table>
@@ -407,14 +425,38 @@
                         <th scope="col">Submitted</th>
                         <th scope="col">Created By</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Decrease Status</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Increase Status</th>
                         <th scope="col">View</th>
                     </tr>
                     <tr style="font-size:15px" th:each="order : ${cancelled}">
                         <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
                         <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                         <td th:text="${order.category.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/decrement(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="dec">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="dec" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-warning" value="Decrease"/>
+                                </div>
+                            </form>
+                        </td>
                         <td th:text="${order.status.name}"></td>
+                        <td class="m-0 p-0 text-center">
+                            <form th:action="@{/admin/status/{id}/increment(id=${order.id})}" th:method="post" class="m-0">
+                                <div class="form-group">
+                                    <!--<label th:for="inc">Increase Inventory</label>-->
+                                    <input th:type="hidden" th:class="form-control" name="inc" th:value="1"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success" value="Increase"/>
+                                </div>
+                            </form>
+                        </td>
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></td>
                     </tr>
                 </table>
@@ -596,8 +638,6 @@
 <!--</div>-->
 <!--</th:block>-->
     </div>
-</div>
-</div>
 <th:block th:replace="partials :: scripts" />
 
 </body>

@@ -122,15 +122,19 @@
             <!--<label for="customer">Customer</label>-->
             <!--<input id="customer" type="text" th:field="*{customer}" />-->
         <!--</div>-->
-        <div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
-            <label for="customer">Customer</label>
-            <select class="custom-select" id="customer" th:field="*{customer}">
-                <option th:each="cust : ${customers}"
-                        th:value="${cust.id}"
-                        th:utext="${cust.firstName + ' ' + cust.lastName}">
-                </option>
-            </select>
-        </div>
+
+        <!--<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">-->
+            <!--<label for="customer">Customer</label>-->
+            <!--<select class="custom-select" id="customer" th:field="*{customer}">-->
+                <!--<option th:each="cust : ${customers}"-->
+                        <!--th:value="${cust.id}"-->
+                        <!--th:utext="${cust.firstName + ' ' + cust.lastName}">-->
+                <!--</option>-->
+            <!--</select>-->
+
+        <!--</div>-->
+      
+
         <!--<div class="form-group">-->
             <!--<label for="employee">Employee</label>-->
             <!--<input id="employee" type="" th:field="*{employee}" />-->

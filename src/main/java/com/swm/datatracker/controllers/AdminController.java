@@ -8,17 +8,27 @@ import com.swm.datatracker.respositories.RolesRepository;
 import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.UserRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
+import com.swm.datatracker.services.WorkOrderService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.relation.Role;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.ArrayList;
+
 
 @Controller
 public class AdminController {
     private WorkOrderRepository workOrderRepository;
+    private WorkOrderService workOrderService;
+
     private StatusRepository statusRepository;
     private UserRepository userRepository;
     private RolesRepository rolesRepository;

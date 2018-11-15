@@ -27,8 +27,8 @@
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>
                 <p class="card-text"><b>Zip Code:</b> <span th:text="${workorder.zipCode}"></span></p>
                 <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                    <li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${workorder.id} + '/edit'}" class="nav-link">Edit Work Order</a></li>
-                    <li class="nav-item font-weight-bold w-50"><a th:href="@{'/workorders/'}" class="nav-link">All Work Orders</a></li>
+                    <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-sm mr-2">View</button></a></li>
+                    <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-primary btn-sm">Edit</button></a></li>
                 </ul>
             </div>
         </div>
@@ -37,9 +37,6 @@
             <div class="" style="width:400px;height:400px;margin:0 auto;" id="map"></div>
     </div>
  </div>
-
-
-    <!--</div>-->
 
 <th:block th:replace="partials :: scripts" />
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_2LRyC5ZwBjRISdMpZnp7R8Sw4Jpspsc"></script>

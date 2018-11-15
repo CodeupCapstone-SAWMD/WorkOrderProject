@@ -7,11 +7,8 @@ import com.swm.datatracker.models.*;
 import com.swm.datatracker.respositories.*;
 import com.swm.datatracker.services.UserService;
 import com.swm.datatracker.services.WorkOrderService;
-import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +58,15 @@ public class WorkOrderController {
     @GetMapping("/workorders")
     public String workorders(Model vModel) {
 
+        List<User> userList = userRepo.findAll();
+        List<User> emps = new ArrayList<>();
+        for (User u : userList) {
+            if (u.getRole().getRoleName().equals("ROLE_EDITOR")) {
+                emps.add(u);
+            }
+        }
+
+        vModel.addAttribute("emps", emps);
         vModel.addAttribute("submitted", workOrderService.statusList(1));
         vModel.addAttribute("processing", workOrderService.statusList(2));
         vModel.addAttribute("review", workOrderService.statusList(3));
@@ -76,7 +82,6 @@ public class WorkOrderController {
         Status woStatus = wo.getStatus();
         long statusId = woStatus.getId();
         long newId = statusId + 1;
-
 
 //        vModel.addAttribute("");
         return "workorders/index";
@@ -110,6 +115,7 @@ public class WorkOrderController {
             }
 
         vModel.addAttribute("customers", custs);
+
         vModel.addAttribute("categories", categoryRepository.findAll());
         vModel.addAttribute("status", statusRepository.findAll());
         vModel.addAttribute("employees", userRepo.findAll());
@@ -122,13 +128,29 @@ public class WorkOrderController {
 
     @PostMapping("/work-order/create")
     public String createPost(@ModelAttribute WorkOrder workOrder) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User test = new User;
+        System.out.println(user.getLastName());
         Date currentDate = new Date();
 //        System.out.println(currentDate);
-//        workOrder.setCustomer(userRepo.findOne(user.getId()));
+        workOrder.setCustomer(userRepo.findOne(user.getId()));
         workOrder.setSubmittedDate(currentDate);
-        workOrder.setStatus(statusRepo.findOne((long) 1));
+//        workOrder.setStatus(statusRepo.findOne((long) 1));
         WorkOrder newWorkOrder = workOrderService.save(workOrder);
+        return "redirect:/work-order/"+ newWorkOrder.getId();
+    }
+
+    @PostMapping("/work-order/assign/{id}")
+    public String assignEmployees(@RequestParam(name = "employee") long employee, @PathVariable long id, Model vModel) {
+        User emp = userRepo.findOne(employee);
+        WorkOrder wo = workOrderRepository.findOne(id);
+        wo.setEmployee(emp);
+
+        long currentStatusId = wo.getStatus().getId();
+        currentStatusId += 1;
+        wo.setStatus(statusRepository.findOne(currentStatusId));
+        workOrderRepository.save(wo);
+
         return "redirect:/workorders";
     }
 

@@ -81,10 +81,14 @@ public class StatusController {
 
     /**
      * 1) create a post mapping URL to cancel the work order by changing the status to cancel
-     * 2) the path variable "{id}" is a long id
-     * 3) find the work order by id number
-     * 4) set the work order status to 6; since findOne() takes an integer id, cast the integer as a long
-     * 5) edit the work order in the list of work orders; redirect the admin back to the profile
+     * 2) the path variable "{id}" is a long id and find the work order by id number
+     * 3) set the work order status to 5; since findOne() takes an integer id, cast the integer as a long
+     * 4) get the work order quantity and store in a primitive (long/int) type variable;
+     * 5) get the work order's inventory id and store in a primitive type variable;
+     * 6) find the inventory item by id via the inventory services/repo;
+     * 7) set the item's quantity to the current quantity plus the quantity to be returned;
+     * 8) edit the work order in the list of work orders; redirect the admin back to the profile
+     *
      */
 
 
@@ -98,6 +102,7 @@ public class StatusController {
         long itemID = workOrder.getInventory().getId();
         Inventory item = inventorySvc.findOne(itemID);
         item.setQuantity(item.getQuantity()+returnQuantity);
+//        workOrderService.edit(workOrder);
         inventorySvc.edit(item);
         return "redirect:/admin/profile";
     }

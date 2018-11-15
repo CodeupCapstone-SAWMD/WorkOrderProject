@@ -20,12 +20,12 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
     @Override
     public void initialize(ValidPassword constraintAnnotation) {
         try {
-            String invalidPasswordList = this.getClass().getResource("/invalid-password-list.txt").getFile();
+//            String invalidPasswordList = this.getClass().getResource("/invalid-password-list.txt").getFile();
             dictionaryRule = new DictionaryRule(
                     new WordListDictionary(WordLists.createFromReader(
                             // Reader around the word list file
                             new FileReader[] {
-                                    new FileReader(invalidPasswordList)
+//                                    new FileReader(invalidPasswordList)
                             },
                             // True for case sensitivity, false otherwise
                             false,

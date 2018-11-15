@@ -72,4 +72,27 @@ public class StatusController {
         return "redirect:/admin/profile";
     }
 
+
+    /**
+     * 1) create a post mapping URL to cancel the work order by changing the status to cancel
+     * 2) the path variable "{id}" is a long id
+     * 3) find the work order by id number
+     * 4) set the work order status to 6; since findOne() takes an integer id, cast the integer as a long
+     * 5) edit the work order in the list of work orders; redirect the admin back to the profile
+     */
+
+
+    @PostMapping("/admin/status/{id}/cancel")
+    public String cancelWorkOrder(@PathVariable long id){
+        WorkOrder workOrder = workOrderService.findOne(id);
+//        System.out.println(workOrderService.findOne(id));
+            workOrder.setStatus(statusRepository.findOne(5L));
+//        System.out.println(workOrder.getStatus().getId());
+            workOrderService.edit(workOrder);
+        return "redirect:/admin/profile";
+    }
+
+
+
+
 }

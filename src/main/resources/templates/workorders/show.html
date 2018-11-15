@@ -35,7 +35,7 @@
 
                         <form th:action="@{/admin/status/{id}/cancel(id=${workorder.id})}" method="post" th:object="${workorder}" >
                             <input type="hidden" name="_method" value="cancel" />
-                            <button type="submit" class="btn btn-primary btn-sm" th:method="post">Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-sm ml-2" th:method="post">Cancel</button>
                         </form>
 
                     </li>

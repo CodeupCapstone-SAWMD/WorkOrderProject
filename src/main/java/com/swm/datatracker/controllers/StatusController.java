@@ -1,10 +1,12 @@
 package com.swm.datatracker.controllers;
 
+import com.swm.datatracker.models.Inventory;
 import com.swm.datatracker.models.Status;
 
 import com.swm.datatracker.models.WorkOrder;
 import com.swm.datatracker.respositories.StatusRepository;
 import com.swm.datatracker.respositories.WorkOrderRepository;
+import com.swm.datatracker.services.InventoryService;
 import com.swm.datatracker.services.WorkOrderService;
 import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,10 @@ public class StatusController {
 
     @Autowired
     private WorkOrderService workOrderService;
+
+    @Autowired
+    private InventoryService inventorySvc;
+
 
     public StatusController(StatusRepository statusRepository) {
         this.statusRepository = statusRepository;
@@ -86,9 +92,13 @@ public class StatusController {
     public String cancelWorkOrder(@PathVariable long id){
         WorkOrder workOrder = workOrderService.findOne(id);
 //        System.out.println(workOrderService.findOne(id));
-            workOrder.setStatus(statusRepository.findOne(5L));
+        workOrder.setStatus(statusRepository.findOne(5L));
 //        System.out.println(workOrder.getStatus().getId());
-            workOrderService.edit(workOrder);
+        long returnQuantity = workOrder.getRequestedQuantity();
+        long itemID = workOrder.getInventory().getId();
+        Inventory item = inventorySvc.findOne(itemID);
+        item.setQuantity(item.getQuantity()+returnQuantity);
+        inventorySvc.edit(item);
         return "redirect:/admin/profile";
     }
 

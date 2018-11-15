@@ -19,6 +19,8 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
 
     List<WorkOrder> findAllByUser(Long id);
 
+    List<WorkOrder> findAllById(long id);
+
     List<WorkOrder> findAllByEmployee(User user);
 
     List<WorkOrder> findAllByCustomer(User user);
@@ -28,4 +30,8 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
     List<WorkOrder> findAllByCustomerAndStatus(User user, Status status);
 
     List<WorkOrder> findAllByEmployeeAndStatus(User user, Status status);
+
+    List<WorkOrder> findAllByDescriptionContainsOrNotesContains(String search1, String search2);
+
+    List<WorkOrder> findAllByZipCode(long zip);
 }

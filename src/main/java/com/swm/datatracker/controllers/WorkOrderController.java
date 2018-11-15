@@ -73,6 +73,7 @@ public class WorkOrderController {
         vModel.addAttribute("complete", workOrderService.statusList(4));
         vModel.addAttribute("cancelled", workOrderService.statusList(5));
         vModel.addAttribute("all", workOrderRepository.findAll());
+
         return "workorders/index";
     }
 
@@ -145,6 +146,15 @@ public class WorkOrderController {
         User emp = userRepo.findOne(employee);
         WorkOrder wo = workOrderRepository.findOne(id);
         wo.setEmployee(emp);
+
+        Long invAmount = wo.getRequestedQuantity();
+        
+        Inventory inv = wo.getInventory();
+        Long fullCount = inv.getQuantity();
+
+
+        inv.setQuantity(fullCount - invAmount);
+        inventoryRepo.save(inv);
 
         long currentStatusId = wo.getStatus().getId();
         currentStatusId += 1;

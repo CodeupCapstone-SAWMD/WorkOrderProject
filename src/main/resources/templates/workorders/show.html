@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
 
@@ -20,8 +20,10 @@
                 <p class="card-title"><b>Requested Bin Type:</b> <span class="font-italic" th:text="${workorder.inventory.name +': '+ workorder.inventory.size}"></span></p>
                 <p class="card-title"><b>Requested Bin Quantity:</b> <span class="font-italic" th:text="${workorder.requestedQuantity}"></span></p>
 
-                <!--<p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>-->
-                <!--<p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>-->
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <p class="card-text"><b>Customer:</b> <span th:text="${workorder.customer.firstName + ' ' + workorder.customer.lastName}"></span></p>
+                <p class="card-text"><b>Assigned Employee:</b> <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
+                </th:block>
 
                 <p id="strNum" class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>

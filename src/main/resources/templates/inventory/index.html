@@ -14,7 +14,8 @@
                 <th scope="col">Size</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity Available</th>
-                <th scope="col">Edit/Delete</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody th:action="@{/inventory}" th:method="post" th:object="${inventory}">
@@ -28,16 +29,13 @@
                 <td th:text="${item.quantity}"></td>
                 <td>
                 <button class="btn btn-warning" th:name="edit" th:type="submit" th:value="Edit"><a class="link text-light" th:href="@{'/inventory/' + ${item.id} + '/edit'}">EDIT</a></button>
-                <input type="hidden" id="itemId" th:value="${item.id}"/>
+                </td>
+                <td>
+                    <input type="hidden" id="itemId" th:value="${item.id}"/>
                     <form th:action="@{'/inventory/{id}/delete' (id=${item.id})}" method="get" th:object="${inventory}" class="mb-3">
                         <input type="hidden" name="_method" value="delete" />
                         <button type="submit" class="link btn btn-primary text-light" th:method="delete">DELETE</button>
                     </form>
-                    <!--<button id="delete-item" class="btn btn-danger">Delete</button>-->
-                <!--<ul class="nav nav-pills justify-content-center mt-auto form-group">-->
-                    <!--<li class="nav-item font-weight-bold w-50"><a th:href="@{'/work-order/' + ${item.id}}" class="nav-link">Work Order Link</a></li>-->
-                <!--</ul>-->
-
                 </td>
             </tr>
         </tbody>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head('WasteManagement')" />
+<body>
+<div th:replace="partials :: myNav"></div>
+
+<div class="container">
+    <div class="my-4" id="formLoginDiv">
+
+        <h1>Did you forget your password?</h1>
+        <p>STEP 1: No worries. Please provide an email address. When submitted, we will send further instructions to reset your password.</p>
+
+        <div th:if="${hasSent}" class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="fas fa-check"></i>
+            <span th:text="${successMessage}"></span>
+        </div>
+
+        <div th:if="${isEmpty}" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="fas fa-exclamation-triangle"></i>
+            <span th:text="${errorMessage}"/>
+        </div>
+        <div th:if="${userDoesNotExist}" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="fas fa-exclamation-triangle"></i>
+            <span th:text="${userNotFound}"/>
+        </div>
+
+        <form th:action="@{/users/forgot}" method="post" id="loginForm">
+            <div class="form-group">
+                <label for="forgot-email">Email:</label>
+                <input id="forgot-email" class="form-control" name="email" placeholder=""/>
+            </div>
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input type="submit" value="Submit Email" class="btn btn-primary" id="send-email-submit"/>
+        </form>
+
+    </div>
+    <div class="preloader hidden"></div>
+
+</div>
+<th:block th:replace="partials :: scripts" />
+<script>
+    $('form').on('submit', function() {
+        $('.preloader').removeClass('hidden');
+        $('#send-email-submit').prop('disabled', true);
+    })
+</script>
+</body>
+</html>

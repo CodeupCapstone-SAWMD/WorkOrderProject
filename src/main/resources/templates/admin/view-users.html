@@ -5,11 +5,13 @@
 <div th:replace="partials :: myNav"></div>
 <div class="container">
 
-    <h2>View Profiles / Edit Permissions</h2>
+    <!--<h2>View Profiles / Edit Permissions</h2>-->
+    <!--<hr/>-->
+    <h1 class="text-center mt-3">View Profiles / Edit Permissions</h1>
     <hr/>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#allUsers">All Users</a>
+            <a class="nav-link active show" data-toggle="tab" href="#allUsers">All Users</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#admins">Administrators</a>
@@ -23,7 +25,7 @@
     </ul>
 
     <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade mt-4" id="allUsers">
+        <div class="tab-pane fade active show mt-4" id="allUsers">
             <table class="table table-hover">
                 <tr class="table-primary">
                     <th scope="col">User Id</th>
@@ -55,6 +57,19 @@
                     <td th:text="${admin.username}"></td>
                     <td th:text="${admin.email}"></td>
                     <td th:text="${admin.firstName} + ' ' + ${admin.lastName}"></td>
+                    <td>
+                        <form class="form-inline" th:action="@{/admin/update-perms/{id}(id=${admin.id})}" method="POST">
+                            <div class="form-group input-group-sm">
+                                <select class="custom-select" name="roleselected">
+                                    <option th:each="role : ${allRoles}"
+                                            th:value="${role.id}" th:utext="${role.role}">
+                                    </option>
+                                </select>
+                                <input type="submit" class="btn active in" placeholder="Update" />
+                            </div>
+                            <input type="hidden" class="btn active" th:value="${admin.id}" />
+                        </form>
+                    </td>
                     <td><a th:href="@{/admin/view-profile/{id}(id=${admin.id})}">View Profile</a></td>
                 </tr>
             </table>
@@ -73,6 +88,19 @@
                     <td th:text="${emp.username}"></td>
                     <td th:text="${emp.email}"></td>
                     <td th:text="${emp.firstName} + ' ' + ${emp.lastName}"></td>
+                    <td>
+                        <form class="form-inline" th:action="@{/admin/update-perms/{id}(id=${emp.id})}" method="POST">
+                            <div class="form-group input-group-sm">
+                                <select class="custom-select" name="roleselected">
+                                    <option th:each="role : ${allRoles}"
+                                            th:value="${role.id}" th:utext="${role.role}">
+                                    </option>
+                                </select>
+                                <input type="submit" class="btn active in" placeholder="Update" />
+                            </div>
+                            <input type="hidden" class="btn active" th:value="${emp.id}" />
+                        </form>
+                    </td>
                     <td><a th:href="@{/admin/view-profile/{id}(id=${emp.id})}">View Profile</a></td>
                 </tr>
             </table>
@@ -94,20 +122,16 @@
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.firstName} + ' ' + ${customer.lastName}"></td>
                     <td>
-                        <form th:action="@{/admin/update-perms/{id}(id=${customer.id})}" method="POST">
-                            <div class="form-group">
-                                <select class="custom-select" id="status" name="roleselected">
+                        <form class="form-inline" th:action="@{/admin/update-perms/{id}(id=${customer.id})}" method="POST">
+                            <div class="form-group input-group-sm">
+                                <select class="custom-select" name="roleselected">
                                     <option th:each="role : ${allRoles}"
                                             th:value="${role.id}" th:utext="${role.role}">
-                                            <!--th:placeholder="${customer.role.role}">-->
-
-                                    <!--th:value="${cat.id}"-->
-                                    <!--th:utext="${cat.name}">-->
                                     </option>
                                 </select>
+                            <input type="submit" class="btn active in" placeholder="Update" />
                             </div>
                             <input type="hidden" class="btn active" th:value="${customer.id}" />
-                            <input type="submit" class="btn active" placeholder="Update" />
                         </form>
                     </td>
                     <td><a th:href="@{/admin/view-profile/{id}(id=${customer.id})}">View Profile</a></td>

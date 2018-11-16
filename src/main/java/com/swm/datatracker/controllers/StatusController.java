@@ -61,7 +61,7 @@ public class StatusController {
 //        System.out.println(workOrder.getStatus().getId());
         workOrderService.edit(workOrder);
         }
-        return "redirect:/admin/profile";
+        return "redirect:/workorders";
     }
 
     @PostMapping("/admin/status/{id}/decrement")
@@ -75,7 +75,7 @@ public class StatusController {
 //        System.out.println(workOrder.getStatus().getId());
             workOrderService.edit(workOrder);
         }
-        return "redirect:/admin/profile";
+        return "redirect:/workorders";
     }
 
 

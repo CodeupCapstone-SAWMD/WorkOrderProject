@@ -4,14 +4,14 @@
 
 <div th:replace="partials :: myNav"></div>
 <div class="container">
-<h1 class="text-center text-light">List of Work Orders</h1>
-
+    <h1 class="text-center mt-3">List of Work Orders</h1>
+    <hr/>
 <ul class="nav nav-tabs">
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#allOrders">All Orders</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#submittedOrders">Submitted</a>
+        <a class="nav-link active " data-toggle="tab" href="#submittedOrders">Submitted</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#processingOrders">Processing</a>
@@ -31,13 +31,13 @@
     <div class="tab-pane fade mt-4" id="allOrders">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active show" data-toggle="tab" href="#allCard">Card View</a>
+                <a class="nav-link show" data-toggle="tab" href="#allCard">Card View</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#aAllTable">Table View</a>
+                <a class="nav-link active" data-toggle="tab" href="#aAllTable">Table View</a>
             </li>
         </ul>
-        <div id="tabAllSubContent" class="tab-content">
+        <div id="tabAllSubContent" class="tab-content fade active show">
             <div class="tab-pane fade mt-4" id="allCard">
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%" th:each="workorder : ${all}">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade mt-4" id="aAllTable">
+            <div class="tab-pane fade active show mt-4 activeTableTab" id="aAllTable">
                 <table class="table table-hover">
                     <tr class="table-primary">
                         <th scope="col">Submitted</th>
@@ -100,16 +100,16 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane fade mt-4" id="submittedOrders">
+    <div class="tab-pane fade active show mt-4" id="submittedOrders">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active show" data-toggle="tab" href="#card">Card View</a>
+                    <a class="nav-link" data-toggle="tab" href="#card">Card View</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#aTable">Table View</a>
+                    <a class="nav-link active show" data-toggle="tab" href="#aTable">Table View</a>
                 </li>
             </ul>
-            <div id="tabSubContent" class="tab-content">
+            <div id="tabSubContent" class="tab-content fade active show ">
                 <div class="tab-pane fade mt-4" id="card">
                         <div class="row justify-content-center">
                             <div class="card m-1" style="width:30%;background-color:#d2eaf4" th:each="workorder : ${submitted}">
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                 </div>
-                <div class="tab-pane fade mt-4" id="aTable">
+                <div class="tab-pane fade active show  mt-4 active" id="aTable">
                         <table class="table table-hover">
                             <tr class="table-primary">
                                 <th scope="col" class="text-left">Submitted</th>
@@ -181,10 +181,10 @@
                 <a class="nav-link" data-toggle="tab" href="#card3">Card View</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#aTable3">Table View</a>
+                <a class="nav-link active" data-toggle="tab" href="#aTable3">Table View</a>
             </li>
         </ul>
-        <div id="tab3SubContent" class="tab-content">
+        <div id="tab3SubContent" class="tab-content fade active show">
             <div class="tab-pane fade mt-4" id="card3">
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;background-color:#e8dbeb" th:each="workorder : ${processing}">
@@ -203,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade mt-4" id="aTable3">
+            <div class="tab-pane fade active show mt-4" id="aTable3">
                 <table class="table table-hover">
                     <tr class="table-primary">
                         <th scope="col">Submitted</th>
@@ -253,10 +253,10 @@
                 <a class="nav-link" data-toggle="tab" href="#card4">Card View</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#aTable4">Table View</a>
+                <a class="nav-link active" data-toggle="tab" href="#aTable4">Table View</a>
             </li>
         </ul>
-        <div id="tab4SubContent" class="tab-content">
+        <div id="tab4SubContent" class="tab-content fade active show">
             <div class="tab-pane fade mt-4" id="card4">
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;background-color:#f1d4d0" th:each="workorder : ${review}">
@@ -275,7 +275,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade mt-4" id="aTable4">
+            <div class="tab-pane fade active show mt-4" id="aTable4">
                 <table class="table table-hover">
                     <tr class="table-primary">
                         <th scope="col">Submitted</th>
@@ -325,10 +325,10 @@
                 <a class="nav-link" data-toggle="tab" href="#card5">Card View</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#aTable5">Table View</a>
+                <a class="nav-link active" data-toggle="tab" href="#aTable5">Table View</a>
             </li>
         </ul>
-        <div id="tab5SubContent" class="tab-content">
+        <div id="tab5SubContent" class="tab-content fade active show">
             <div class="tab-pane fade mt-4" id="card5">
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;background-color:#dde9d0" th:each="workorder : ${complete}">
@@ -347,7 +347,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade mt-4" id="aTable5">
+            <div class="tab-pane fade active show mt-4" id="aTable5">
                 <table class="table table-hover">
                     <tr class="table-primary">
                         <th scope="col">Submitted</th>
@@ -397,10 +397,10 @@
                 <a class="nav-link" data-toggle="tab" href="#card6">Card View</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#aTable6">Table View</a>
+                <a class="nav-link active" data-toggle="tab" href="#aTable6">Table View</a>
             </li>
         </ul>
-        <div id="tab6SubContent" class="tab-content">
+        <div id="tab6SubContent" class="tab-content fade active show">
             <div class="tab-pane fade mt-4" id="card6">
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;" th:each="workorder : ${cancelled}">
@@ -419,7 +419,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade mt-4" id="aTable6">
+            <div class="tab-pane fade active show mt-4" id="aTable6">
                 <table class="table table-hover">
                     <tr class="table-primary">
                         <th scope="col">Submitted</th>
@@ -639,6 +639,22 @@
 <!--</th:block>-->
     </div>
 <th:block th:replace="partials :: scripts" />
-
+<script>
+    // $(function() {
+    //     $('a[data-toggle="tab"]').on('click', function(e) {
+    //         window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+    //     });
+    //     var activeTab = window.localStorage.getItem('activeTab');
+    //     if (activeTab) {
+    //         $('#myTab a[href="' + activeTab + '"]').tab('show');
+    //         window.localStorage.removeItem("activeTab");
+    //     }
+    // });
+    //
+    // $('.nav-tabs a').on('shown.bs.tab', function(event){
+    //     var x = $(event.target).text();         // active tab
+    //     var y = $(event.relatedTarget).text();  // previous tab
+    // });
+</script>
 </body>
 </html>

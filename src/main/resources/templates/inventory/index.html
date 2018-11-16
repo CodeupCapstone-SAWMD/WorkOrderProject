@@ -31,7 +31,7 @@
                 <input type="hidden" id="itemId" th:value="${item.id}"/>
                     <form th:action="@{'/inventory/{id}/delete' (id=${item.id})}" method="get" th:object="${inventory}" class="mb-3">
                         <input type="hidden" name="_method" value="delete" />
-                        <button type="submit" class="link btn btn-danger text-light" th:method="delete">DELETE</button>
+                        <button type="submit" class="link btn btn-primary text-light" th:method="delete">DELETE</button>
                     </form>
                     <!--<button id="delete-item" class="btn btn-danger">Delete</button>-->
                 <!--<ul class="nav nav-pills justify-content-center mt-auto form-group">-->

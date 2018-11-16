@@ -1,30 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head('WasteManagement')" />
+<head th:replace="partials :: head('WasteManagement')"/>
 <body>
 <div th:replace="partials :: myNav"></div>
 <div class="container">
-    
+
+    <h1 class="my-1 text-center">The Development Team</h1>
+    <br/>
     <div class="row">
-        <div class="col-sm-3" id="dev1">
-            <h4>Alois Renggli</h4>
-            <img th:src="@{/img/AloisRenggli.jpg}" />
+        <div class="card mx-1 my-1" id="dev1">
+            <h4 class="text-center"><a href="http://alumni.codeup.com/students/518">Alois Renggli</a></h4>
+            <img th:src="@{/img/AloisRenggli.jpg}"/>
         </div>
-        <div class="col-sm-3" id="dev2">
-            <h4>Ryan Schmid</h4>
-            <img th:src="@{/img/RyanSchmid.jpg}" />
+        <div class="card mx-1 my-1" id="dev2">
+            <h4 class="text-center"><a href="http://alumni.codeup.com/students/533">Ryan Schmid</a></h4>
+            <img th:src="@{/img/RyanSchmid.jpg}"/>
         </div>
-        <div class="col-sm-3" id="dev3">
-            <h4>Ryan Stewart</h4>
-            <img th:src="@{/img/RyanStewart.jpg}" />
+        <div class="card mx-1 my-1" id="dev3">
+            <h4 class="text-center"><a href="http://alumni.codeup.com/students/534">Ryan Stewart</a></h4>
+            <img th:src="@{/img/RyanStewart.jpg}"/>
         </div>
-        <div class="col-sm-3" id="dev4">
-            <h4>James Young</h4>
-            <img th:src="@{/img/JamesYoung.jpg}" />
+        <div class="card mx-1 my-1" id="dev4">
+            <h4 class="text-center"><a href="http://alumni.codeup.com/students/526">James Young</a></h4>
+            <img th:src="@{/img/JamesYoung.jpg}"/>
         </div>
     </div>
-    
+    <br />
+    <br />
+    <div class="row">
+        <div class="col">
+            <h4>The <a href="https://github.com/CodeupCapstone-SAWMD/WorkOrderProject">Project</a> Goal</h4>
+
+            <p>As Part of <a href="https://www.civtech-sa.com/">Civ Tech San Antonio's </a>
+                initiative to support public agencies, our group focused on a
+                <a href="https://www.civtech-sa.com/programs/">problem set </a>posed by the City's
+                <a href="https://www.sanantonio.gov/swmd">Solid Waste Management Department </a>(SWMD):
+            </p>
+            <p>"Waste management is one of the most pressing needs within a
+                rapidly growing city, and as San Antonio’s population on the rise,
+                the Solid Waste Management Department (SWMD) needs an agile,
+                responsive system to appropriately manage those services.
+                The SWMD currently has over 1 million different sized carts in circulation,
+                and services more than 350,000 households within the San Antonio area. Currently,
+                SWMD operates on a paper-based data tracking system, and the City is eager to
+                see a solution that has the latitude to revamp SWMD’s warehouse operations in
+                three distinct areas: inventory management, work order management,
+                and customer communication."
+            </p>
+        </div>
+        <div class="col">
+            <div class="row">
+                <ul><h4>Built with:</h4>
+                    <li>HTML/ CSS: Bootstrap - web framework</li>
+                    <li>Dependency Management: Maven</li>
+                    <li>Server: Apache Tomcat</li>
+                    <li>Database: Apache Tomcat</li>
+                    <li>Java!
+                        <ul>
+                            <li>Spring Boot</li>
+                            <li>Thymeleaf</li>
+                            <li>Hibernate</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <br />
+    <div class="row">
+        <h4 class="text-center"> Acknowledgements</h4>
+        <p>This is a capstone project as part of our <a href="https://codeup.com/">Codeup</a>
+            software development training program. Special thanks to the staff and instructors, most notably
+            Fernando Mendoza and Daniel Fryar, for their guidance and assistance. Also, big shoutout to open
+            source software for great resources available to developers everywhere!</p>
+    </div>
+    </div>
 </div>
-<th:block th:replace="partials :: scripts" />
+
+<th:block th:replace="partials :: scripts"/>
 </body>
 </html>

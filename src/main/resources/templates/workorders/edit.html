@@ -4,6 +4,8 @@
 <body>
 <div th:replace="partials :: myNav"></div>
 <div class="container">
+    <h1 class="text-center mt-3">Edit Work Order Page</h1>
+    <hr/>
     <h2 class="my-4 text-center"><span th:text="${'Order ID: ' + workorder.id}"></span></h2>
 
     <div class="row justify-content-center">
@@ -105,13 +107,13 @@
                     </div>
 
                     <ul class="nav nav-pills justify-content-center form-group">
-                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-warning font-weight-bold text-light">Submit</button></li>
+                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-info font-weight-bold text-light">Submit Changes</button></li>
                     </ul>
                 </form>
-                <form th:action="@{'/work-order/{id}/delete' (id=${workorder.id})}" method="get" th:object="${workorder}" class="mb-3">
+                <form th:action="@{'/work-order/{id}/delete' (id=${workorder.id})}" method="get" th:object="${workorder}" class="my-3">
                     <input type="hidden" name="_method" value="delete" />
                     <ul class="nav nav-pills justify-content-center form-group">
-                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-danger font-weight-bold text-light" th:method="delete">DELETE POST</button></li>
+                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-primary font-weight-bold text-light" th:method="delete">DELETE WORKORDER</button></li>
                     </ul>
                 </form>
             </div>

@@ -1,6 +1,9 @@
 package com.swm.datatracker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 //test
 
@@ -56,6 +59,9 @@ public class User {
     @JoinColumn(name = "role_id")
     private UserRole userRole;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<PasswordResetToken> passwordResetToken;
+
     public User() {
     }
 
@@ -101,6 +107,7 @@ public class User {
         this.zipcode = copy.zipcode;
         this.phoneNumber = copy.phoneNumber;
         this.userRole = copy.userRole;
+        this.passwordResetToken = passwordResetToken;
     }
 
     public long getId() {
@@ -197,6 +204,14 @@ public class User {
 
     public void setRole(UserRole role) {
         this.userRole = role;
+    }
+
+    public List<PasswordResetToken> getPasswordToken() {
+        return passwordResetToken;
+    }
+
+    public void setPasswordToken(List<PasswordResetToken> passwordToken) {
+        this.passwordResetToken = passwordResetToken;
     }
 
 }

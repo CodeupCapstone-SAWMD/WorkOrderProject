@@ -6,8 +6,9 @@
 
     <div th:replace="partials :: myNav"></div>
     <div class="container">
-
-    <h2 class="my-4">Inventory Management</h2>
+        <h1 class="text-center mt-3">Inventory Management</h1>
+        <hr/>
+    <!--<h1 class="my-4 text-center">Inventory Management</h1>-->
     <div class="card">
         <form th:class="card-body" th:action="@{/inventory/{id}/edit(id=${inventory.id})}" th:method="post" th:object="${inventory}">
             <div class="form-group">
@@ -30,7 +31,7 @@
                 <!--<input th:type="text" th:class="form-control" value="" th:field>-->
                 <!--<input>-->
             <div class="form-group">
-                <button class="btn btn-success" type="submit" value="Edit">Edit</button>
+                <button class="btn btn-success px-4" type="submit" value="Edit">Edit</button>
                 <button class="btn btn-danger" type="submit" value="Cancel"><a class="link text-light" th:href="@{'/inventory'}">Cancel</a></button>
 
                 <!--<input type="hidden" id="inventoryId" th:value="${inventory.id}"/>-->
@@ -40,28 +41,27 @@
         <!--</form> this the form body for increment/decrement option in the admin view; this uses the spring request parameter method -->
         <!--1) place in a card-body class; the action URL ; with a post method -->
         <!--2) create a label; input type is a number ; type form-control; the name is what you use as input in controller-->
+        <div class="row">
+            <form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post">
+                <div class="form-group">
+                <label th:for="dec">Decrease Inventory</label>
+                <input th:type="number" th:class="form-control" name="dec"/>
+                </div>
+                <div class="form-group">
+                <input type="submit" class="btn btn-success float-right"/>
+                </div>
+            </form>
+            <form th:class="card-body" th:action="@{/inventory/{id}/increment(id=${inventory.id})}" th:method="post">
+                <div class="form-group">
+                <label th:for="inc">Increase Inventory</label>
+                <input th:type="number" th:class="form-control" name="inc"/>
+                </div>
 
-        <form th:class="card-body" th:action="@{/inventory/{id}/decrement(id=${inventory.id})}" th:method="post">
-            <div class="form-group">
-            <label th:for="dec">Decrease Inventory</label>
-            <input th:type="number" th:class="form-control" name="dec"/>
-            </div>
-            <div class="form-group">
-            <input type="submit" class="btn btn-success"/>
-            </div>
-        </form>
-
-
-        <form th:class="card-body" th:action="@{/inventory/{id}/increment(id=${inventory.id})}" th:method="post">
-            <div class="form-group">
-            <label th:for="inc">Increase Inventory</label>
-            <input th:type="number" th:class="form-control" name="inc"/>
-            </div>
-
-            <div class="form-group">
-            <input type="submit" class="btn btn-success"/>
-            </div>
-        </form>
+                <div class="form-group">
+                <input type="submit" class="btn btn-success float-right"/>
+                </div>
+            </form>
+        </div>
 
     </div>
 

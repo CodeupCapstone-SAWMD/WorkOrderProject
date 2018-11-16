@@ -67,7 +67,7 @@ public class PasswordResetController {
 
                 passwordTokenRepository.save(pt);
 
-            String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080";
+            String appUrl = request.getScheme() + "://" + request.getServerName();
 
             mailSender.sendMail("support@demo.com", user.getEmail(),
                     "Password Reset Request",

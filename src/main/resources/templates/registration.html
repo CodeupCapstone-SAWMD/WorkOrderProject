@@ -37,9 +37,10 @@
                         <!--</div>-->
                         <div class="panel-body">
 
-                            <div th:if="${param.success}">
-                                <div class="alert alert-info">
-                                    You've successfully registered to our awesome app!
+                            <div th:if="${error}">
+                                <div class="alert alert-danger">
+                                    The username or email entered is already registered.
+                                    Please login or try to register with another username or email.
                                 </div>
                             </div>
 

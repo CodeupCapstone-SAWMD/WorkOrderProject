@@ -94,13 +94,15 @@
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.firstName} + ' ' + ${customer.lastName}"></td>
                     <td>
-                        <form th:action="@{/admin/view-users}" method="POST">
+                        <form th:action="@{/admin/update-perms/{id}(id=${customer.id})}" method="POST">
                             <div class="form-group">
                                 <select class="custom-select" id="status" name="roleselected">
                                     <option th:each="role : ${allRoles}"
-                                            th:value="${role.id}"
-                                            th:placeholder="${customer.role.role}"
-                                            th:utext="${role.role}">
+                                            th:value="${role.id}" th:utext="${role.role}">
+                                            <!--th:placeholder="${customer.role.role}">-->
+
+                                    <!--th:value="${cat.id}"-->
+                                    <!--th:utext="${cat.name}">-->
                                     </option>
                                 </select>
                             </div>

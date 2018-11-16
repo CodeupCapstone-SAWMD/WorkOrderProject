@@ -21,4 +21,7 @@ public interface RolesRepository extends CrudRepository<UserRole, Long> {
         UserRole findOneById(Long id);
 
         List<User> findAllByRoleIsLike(String name);
+
+        @Query("FROM UserRole ur WHERE userId = ?1")
+        UserRole findOneByUserId(Long id);
 }

@@ -119,9 +119,31 @@ public class AdminController {
         return "admin/view-users";
     }
 
-    @PostMapping("/admin/view-users")
-    public String updatePermissions(@RequestParam(name = "roleselected") String roleselected) {
-        rolesRepository.findAllByRoleIsLike(roleselected);
+    @PostMapping("/admin/update-perms/{id}")
+    public String updatePermissions(@RequestParam(name = "roleselected") String roleselected, @PathVariable long id) {
+
+        User cust = userRepository.findOne(id);
+        UserRole newRole = rolesRepository.findOne(Long.parseLong(roleselected));
+        cust.setRole(newRole);
+
+        UserRole usersNewRole = rolesRepository.findOneByUserId(cust.getId());
+
+        if (newRole.getRoleName().equals("ROLE_ADMIN")) {
+            usersNewRole.setRoleName("ROLE_ADMIN");
+        }
+        if (newRole.getRoleName().equals("ROLE_EDITOR")) {
+            usersNewRole.setRoleName("ROLE_EDITOR");
+        }
+        if (newRole.getRoleName().equals("ROLE_USER")) {
+            usersNewRole.setRoleName("ROLE_USER");
+        }
+
+        rolesRepository.save(usersNewRole);
+        userRepository.save(cust);
+
+//        System.out.println(roleselected);
+
+//        rolesRepository.findAllByRoleIsLike(roleselected);
 
         return "admin/view-users";
     }

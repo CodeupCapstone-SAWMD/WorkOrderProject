@@ -4,7 +4,8 @@
 <body>
 <div th:replace="partials :: myNav"></div>
 <div class="container">
-
+    <h1 class="text-center mt-3">Create Work Order Page</h1>
+    <hr/>
 <!--&lt;!&ndash; <div th:replace="fragments/navbar :: myNav"></div>-->
     <!--<h1 class="text-center text-light">Create a Work Order</h1>-->
 
@@ -69,7 +70,7 @@
 
             <!--</div> &ndash;&gt;-->
 
-    <h1 class="my-4">Create a Work Order</h1>
+    <!--<h1 class="my-4">Create a Work Order</h1>-->
     <form th:action="@{/work-order/create}" method="POST" th:object="${workorder}">
         <div class="form-group">
             <label for="description">Description</label>

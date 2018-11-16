@@ -4,8 +4,9 @@
 
 <div th:replace="partials :: myNav"></div>
 <div class="container">
-    <h1>Search Results</h1>
-
+    <!--<h1>Search Results</h1>-->
+    <h1 class="text-center mt-3">Search Results</h1>
+    <hr/>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#searchByIdResults">Work Order ID</a>
@@ -21,9 +22,9 @@
         </li>
     </ul>
 
-    <div id="myTabContent" class="tab-content">
+    <div id="myTabContent" class="tab-content fade active show">
 
-        <div class="tab-pane fade mt-4 active" id="searchByIdResults">
+        <div class="tab-pane fade active show mt-4 active" id="searchByIdResults">
 
             <h3>Work Order Id Results</h3>
             <div class="card m-1" style="width:30%" th:each="workorder : ${searchByIdResults}">

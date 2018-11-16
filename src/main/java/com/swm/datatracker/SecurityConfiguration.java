@@ -5,11 +5,15 @@ import com.swm.datatracker.services.UserDetailsLoader;
 import com.swm.datatracker.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Properties;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -24,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -60,7 +65,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/workorders",
                         "/work-order",
                         "/work-order/1",
-                        "/work-order/**") // anyone can see the home work order create page
+                        "/work-order/**",
+                        "/forgot",
+                        "/users/forgot",
+                        "/users/reset",
+                        "/reset") // anyone can see the home work order create page
 
                 .permitAll()
 

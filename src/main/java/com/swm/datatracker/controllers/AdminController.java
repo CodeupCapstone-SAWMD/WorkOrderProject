@@ -84,9 +84,9 @@ public class AdminController {
 
         // all user roles in array list and pushed to front end
         ArrayList<UserRole> allRoles = new ArrayList<>();
-        UserRole admin = rolesRepository.findOneById(1L);
-        UserRole cust = rolesRepository.findOneById(2L);
-        UserRole emp = rolesRepository.findOneById(3L);
+        UserRole admin = rolesRepository.findOne(1L);
+        UserRole cust = rolesRepository.findOne(2L);
+        UserRole emp = rolesRepository.findOne(3L);
         allRoles.add(admin);
         allRoles.add(emp);
         allRoles.add(cust);
@@ -145,7 +145,7 @@ public class AdminController {
 
 //        rolesRepository.findAllByRoleIsLike(roleselected);
 
-        return "admin/view-users";
+        return "redirect:/admin/view-users";
     }
 
     @GetMapping("/admin/view-profile/{id}")

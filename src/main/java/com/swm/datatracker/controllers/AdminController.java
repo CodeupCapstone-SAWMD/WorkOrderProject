@@ -120,14 +120,9 @@ public class AdminController {
     }
 
     @PostMapping("/admin/view-users")
-    public String updatePermissions(@ModelAttribute UserRole selectedRole, @ModelAttribute User selectedUser) {
-        User editedUser = userRepository.findOne(selectedUser.getId());
-        System.out.println();
-        System.out.println(editedUser.getUsername());
-        System.out.println();
+    public String updatePermissions(@RequestParam(name = "roleselected") String roleselected) {
+        rolesRepository.findAllByRoleIsLike(roleselected);
 
-//        editedUser.setRole(selectedRole);
-        userRepository.save(editedUser);
         return "admin/view-users";
     }
 

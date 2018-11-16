@@ -94,9 +94,9 @@
                     <td th:text="${customer.email}"></td>
                     <td th:text="${customer.firstName} + ' ' + ${customer.lastName}"></td>
                     <td>
-                        <form th:action="@{/admin/view-users}" method="POST" th:object="${selecteduser}">
+                        <form th:action="@{/admin/view-users}" method="POST">
                             <div class="form-group">
-                                <select class="custom-select" id="status" th:field="*{role}">
+                                <select class="custom-select" id="status" name="roleselected">
                                     <option th:each="role : ${allRoles}"
                                             th:value="${role.id}"
                                             th:placeholder="${customer.role.role}"
@@ -104,6 +104,7 @@
                                     </option>
                                 </select>
                             </div>
+                            <input type="hidden" class="btn active" th:value="${customer.id}" />
                             <input type="submit" class="btn active" placeholder="Update" />
                         </form>
                     </td>

@@ -34,4 +34,6 @@ public interface WorkOrderRepository extends CrudRepository<WorkOrder, Long> {
     List<WorkOrder> findAllByDescriptionContainsOrNotesContains(String search1, String search2);
 
     List<WorkOrder> findAllByZipCode(long zip);
+
+    List<WorkOrder> findAllByStreetNameContains(String search);
 }

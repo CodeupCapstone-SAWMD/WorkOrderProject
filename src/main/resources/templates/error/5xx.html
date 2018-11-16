@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head('WasteManagement')"/>
+<body>
+<div th:replace="partials :: myNav"></div>
+
+<!--<h1>THIS IS THE ERROR PAGE</h1>-->
+<div class="container">
+
+    <br />
+    <h1 class="text-center">Something went wrong! </h1>
+    <br />
+    <h2 class="text-center">Please pardon the delay...</h2>
+    <h2 class="text-center">... our team is working on it</h2>
+
+
+</div>
+
+<th:block th:replace="partials :: scripts"/>
+
+</body>
+</html>

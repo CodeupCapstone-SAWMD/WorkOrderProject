@@ -2,16 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head('WasteManagement')" />
 <body>
-<div th:replace="partials :: myNav"></div>
-<div class="container">
-<h1 class="mt-4">Welcome to the WasteManagement Tracking System</h1>
-
-<div class="my-3" th:if="${param.error}">
-    Invalid Username and Password.
-</div>
-<div class="my-3" th:if="${param.logout}">
-    You have been logged out.
-</div>
+    <div th:replace="partials :: myNav"></div>
+        <div class="container">
+        <!--<h1 class="mt-4">Welcome to the WasteManagement Tracking System</h1>-->
+        <h1 class="text-center mt-3">Welcome to the WasteManagement Tracking System</h1>
+        <hr/>
+        <div class="my-3" th:if="${param.error}">
+            Invalid Username and Password.
+        </div>
+        <div class="my-3" th:if="${param.logout}">
+            You have been logged out.
+        </div>
 
 <form th:action="@{/login}" th:method="post">
     <div class="form-group">
@@ -28,5 +29,6 @@
 
 </div>
 <th:block th:replace="partials :: scripts" />
+
 </body>
 </html>

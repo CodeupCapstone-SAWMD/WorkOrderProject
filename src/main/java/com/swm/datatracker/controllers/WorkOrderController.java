@@ -118,8 +118,8 @@ public class WorkOrderController {
         vModel.addAttribute("customers", custs);
 
         vModel.addAttribute("categories", categoryRepository.findAll());
-        vModel.addAttribute("status", statusRepository.findAll());
-        vModel.addAttribute("employees", userRepo.findAll());
+//        vModel.addAttribute("status", statusRepository.findAll());
+//        vModel.addAttribute("employees", userRepo.findAll());
         vModel.addAttribute("workorder", workOrder);
         vModel.addAttribute("category", categoryRepo.findAll());
         vModel.addAttribute("inventories", inventoryRepo.findAll());
@@ -136,7 +136,8 @@ public class WorkOrderController {
 //        System.out.println(currentDate);
         workOrder.setCustomer(userRepo.findOne(user.getId()));
         workOrder.setSubmittedDate(currentDate);
-//        workOrder.setStatus(statusRepo.findOne((long) 1));
+        workOrder.setStatus(statusRepo.findOne((long) 1));
+        workOrder.setEmployee(userRepo.findOne(3L));
         WorkOrder newWorkOrder = workOrderService.save(workOrder);
         return "redirect:/work-order/"+ newWorkOrder.getId();
     }
@@ -222,12 +223,13 @@ public class WorkOrderController {
     @GetMapping("/workorders/search")
     public String searchWorkOrders(Model vModel, @RequestParam(name = "searchTerm") String search) {
         List<WorkOrder> searchDescNotesResults = workOrderRepository.findAllByDescriptionContainsOrNotesContains(search, search);
+        List<WorkOrder> searchByStreetNameResults = workOrderRepository.findAllByStreetNameContains(search);
         List<WorkOrder> searchByIdResults = new ArrayList<>();
         List<WorkOrder> searchByZipResults = new ArrayList<>();
 
         try {
             searchByIdResults = workOrderRepository.findAllById(Long.parseLong(search));
-            searchByZipResults = workOrderRepository.findAllById(Long.parseLong(search));
+            searchByZipResults = workOrderRepository.findAllByZipCode(Long.parseLong(search));
         } catch (Exception e){
             System.out.println(e + "no data");
         }
@@ -235,6 +237,7 @@ public class WorkOrderController {
         vModel.addAttribute("searchDescNotesResults", searchDescNotesResults);
         vModel.addAttribute("searchByIdResults", searchByIdResults);
         vModel.addAttribute("searchByZipResults", searchByZipResults);
+        vModel.addAttribute("searchByStreetResults", searchByStreetNameResults);
 
 
         return "workorders/search";

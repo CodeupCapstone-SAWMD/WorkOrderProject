@@ -107,13 +107,13 @@
                     </div>
 
                     <ul class="nav nav-pills justify-content-center form-group">
-                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-info font-weight-bold text-light">Submit Changes</button></li>
+                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-danger font-weight-bold text-light">EDIT WORKORDER</button></li>
                     </ul>
                 </form>
                 <form th:action="@{'/work-order/{id}/delete' (id=${workorder.id})}" method="get" th:object="${workorder}" class="my-3">
                     <input type="hidden" name="_method" value="delete" />
                     <ul class="nav nav-pills justify-content-center form-group">
-                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-primary font-weight-bold text-light" th:method="delete">DELETE WORKORDER</button></li>
+                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-dark font-weight-bold text-light" th:method="delete">DELETE WORKORDER</button></li>
                     </ul>
                 </form>
             </div>

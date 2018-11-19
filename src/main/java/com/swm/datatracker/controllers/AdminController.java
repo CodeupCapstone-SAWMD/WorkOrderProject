@@ -123,26 +123,24 @@ public class AdminController {
     public String updatePermissions(@RequestParam(name = "roleselected") String roleselected, @PathVariable long id) {
 
         User cust = userRepository.findOne(id);
-        UserRole newRole = rolesRepository.findOne(Long.parseLong(roleselected));
+        UserRole newRole = new UserRole();
+
+        if (roleselected.equals("ROLE_ADMIN")){ newRole = rolesRepository.findOne(1L); }
+        if (roleselected.equals("ROLE_EDITOR")){ newRole = rolesRepository.findOne(3L); }
+        if (roleselected.equals("ROLE_USER")){ newRole = rolesRepository.findOne(2L);
+        }
         cust.setRole(newRole);
 
         UserRole usersNewRole = rolesRepository.findOneByUserId(cust.getId());
 
-        if (newRole.getRoleName().equals("ROLE_ADMIN")) {
-            usersNewRole.setRoleName("ROLE_ADMIN");
-        }
-        if (newRole.getRoleName().equals("ROLE_EDITOR")) {
-            usersNewRole.setRoleName("ROLE_EDITOR");
-        }
-        if (newRole.getRoleName().equals("ROLE_USER")) {
-            usersNewRole.setRoleName("ROLE_USER");
-        }
+        if (newRole.getRoleName().equals("ROLE_ADMIN")) { usersNewRole.setRoleName("ROLE_ADMIN"); }
+        if (newRole.getRoleName().equals("ROLE_EDITOR")) { usersNewRole.setRoleName("ROLE_EDITOR"); }
+        if (newRole.getRoleName().equals("ROLE_USER")) { usersNewRole.setRoleName("ROLE_USER"); }
 
         rolesRepository.save(usersNewRole);
         userRepository.save(cust);
 
 //        System.out.println(roleselected);
-
 //        rolesRepository.findAllByRoleIsLike(roleselected);
 
         return "redirect:/admin/view-users";

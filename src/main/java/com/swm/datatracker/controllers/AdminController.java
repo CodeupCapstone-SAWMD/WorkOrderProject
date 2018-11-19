@@ -57,6 +57,7 @@ public class AdminController {
 
     @GetMapping("/admin/profile")
     public String adminProfile(Model vModel) {
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Status submitted = statusRepository.findOne(1L);
@@ -71,6 +72,7 @@ public class AdminController {
         vModel.addAttribute("submittedOrders", workOrderRepository.findAllByStatus(submitted));
         vModel.addAttribute("completeOrders", workOrderRepository.findAllByStatus(complete));
         vModel.addAttribute("allOrders", workOrderRepository.findAll());
+
         vModel.addAttribute("user", user);
         return "admin/profile";
     }

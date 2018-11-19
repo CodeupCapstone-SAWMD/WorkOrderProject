@@ -88,10 +88,10 @@ public class WorkOrderController {
             vModel.addAttribute("all", workOrderRepository.findAll());
         }
         else if (userRole.getRoleName().equals("ROLE_EDITOR")){
-            Status processing = statusRepository.findOne(3L);
-            Status reviewed = statusRepository.findOne(4L);
-            Status completed = statusRepository.findOne(5L);
-            Status cancelled = statusRepository.findOne(6L);
+            Status processing = statusRepository.findOne(2L);
+            Status reviewed = statusRepository.findOne(3L);
+            Status completed = statusRepository.findOne(4L);
+            Status cancelled = statusRepository.findOne(5L);
             vModel.addAttribute("user", user);
 
 //        vModel.addAttribute("submitted", workOrderRepository.findAllByEmployeeAndStatus(user, submitted));

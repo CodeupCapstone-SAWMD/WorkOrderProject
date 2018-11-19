@@ -61,7 +61,7 @@
                 <a class="nav-link" href="/work-order/create">Create A Work Order!</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" method="get" action="/workorders/search">
+        <form sec:authorize="hasRole('ROLE_ADMIN')" class="form-inline my-2 my-lg-0" method="get" action="/workorders/search">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" name="searchTerm"/>
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>

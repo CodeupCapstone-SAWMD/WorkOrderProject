@@ -8,9 +8,9 @@
 
     <h1 class="text-center my-3">Contact Page</h1>
     <hr/>
-    <div class="mt-5">
-        <div class="row">
-            <div class="col">
+    <!--<div class="">-->
+        <div class="row mt-3 justify-content-center">
+            <div class="card m-1 p-2 border">
                 <h3>Contact Information</h3>
                 <div id="request-service3">
                     <p>
@@ -30,7 +30,7 @@
                     </p>
                 </div>
             </div>
-            <div class="col">
+            <div class="card m-1 p-2 border">
                 <h3>Customer Service</h3>
                 <div id="request-service2">
                     <p>
@@ -42,15 +42,16 @@
                         <br/>
                         TTY use Texas Relay by dialing 7-1-1 or <br/>
                         1-800-RELAY TX (210.735.2989)<br/>
-                        <a href="http://311.sanantonio.gov" title="Request a City Service Online">Request
+                        <p><a href="http://311.sanantonio.gov" title="Request a City Service Online">Request
                             a City
                             Service Online
-                            <img width="14" height="14" alt="More"
-                                 src="/portals/0/images/arrow-red-open.png"/></a>
+                            <!--<img width="14" height="14" alt="More"-->
+                                 <!--src="/portals/0/images/arrow-red-open.png"/>-->
+                </a></p>
                     </p>
                 </div>
             </div>
-            <div class="col">
+            <div class="card m-1 p-2 border">
                 <h3>Call Center</h3>
                 <div id="request-service1">
                     <p>
@@ -63,13 +64,14 @@
             </div>
 
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
+    <!--</div>-->
+    <div class="row justify-content-center">
+        <div class=" card m-1 p-2 border">
+            <h4>Contact Our Team!</h4>
             <form th:action="@{/contact}" method="post">
                 <div class="form-group">
                     <label for="mess">Your Message:</label>
-                    <textarea class="form-control" rows="4" cols="10" id="mess" name="mess" type="text"></textarea>
+                    <textarea class="form-control" rows="10" cols="70" id="mess" name="mess" type="text"></textarea>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit">Submit</button>

@@ -154,6 +154,7 @@ public class UserController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserRole ur = user.getRole();
         newInfo.setRole(ur);
+        newInfo.setPassword(user.getPassword());
         userRepository.save(newInfo);
 
         return "users/profile";

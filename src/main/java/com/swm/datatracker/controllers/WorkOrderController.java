@@ -58,6 +58,11 @@ public class WorkOrderController {
     @GetMapping("/workorders")
     public String workorders(Model vModel) {
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserRole userRole = user.getRole();
+
+
+
         List<User> userList = userRepo.findAll();
         List<User> emps = new ArrayList<>();
         for (User u : userList) {
@@ -66,13 +71,39 @@ public class WorkOrderController {
             }
         }
 
-        vModel.addAttribute("emps", emps);
-        vModel.addAttribute("submitted", workOrderService.statusList(1));
-        vModel.addAttribute("processing", workOrderService.statusList(2));
-        vModel.addAttribute("review", workOrderService.statusList(3));
-        vModel.addAttribute("complete", workOrderService.statusList(4));
-        vModel.addAttribute("cancelled", workOrderService.statusList(5));
-        vModel.addAttribute("all", workOrderRepository.findAll());
+
+
+//        if (roleselected.equals("ROLE_ADMIN")){ newRole = rolesRepository.findOne(1L); }
+//        if (roleselected.equals("ROLE_EDITOR")){ newRole = rolesRepository.findOne(3L); }
+//        if (roleselected.equals("ROLE_USER")){ newRole = rolesRepository.findOne(2L);
+//        }
+
+        if (userRole.getRoleName().equals("ROLE_ADMIN")){
+            vModel.addAttribute("emps", emps);
+            vModel.addAttribute("submitted", workOrderService.statusList(1));
+            vModel.addAttribute("processing", workOrderService.statusList(2));
+            vModel.addAttribute("review", workOrderService.statusList(3));
+            vModel.addAttribute("complete", workOrderService.statusList(4));
+            vModel.addAttribute("cancelled", workOrderService.statusList(5));
+            vModel.addAttribute("all", workOrderRepository.findAll());
+        }
+        else if (userRole.getRoleName().equals("ROLE_EDITOR")){
+            Status processing = statusRepository.findOne(3L);
+            Status reviewed = statusRepository.findOne(4L);
+            Status completed = statusRepository.findOne(5L);
+            Status cancelled = statusRepository.findOne(6L);
+            vModel.addAttribute("user", user);
+
+//        vModel.addAttribute("submitted", workOrderRepository.findAllByEmployeeAndStatus(user, submitted));
+//        vModel.addAttribute("pending", workOrderRepository.findAllByEmployeeAndStatus(user, pendingAssignment));
+            vModel.addAttribute("emps", emps);
+            vModel.addAttribute("submitted", workOrderService.statusList(1));
+            vModel.addAttribute("processing", workOrderRepository.findAllByEmployeeAndStatus(user, processing));
+            vModel.addAttribute("review", workOrderRepository.findAllByEmployeeAndStatus(user, reviewed));
+            vModel.addAttribute("complete", workOrderRepository.findAllByEmployeeAndStatus(user, completed));
+            vModel.addAttribute("cancelled", workOrderRepository.findAllByEmployeeAndStatus(user, cancelled));
+            vModel.addAttribute("all", workOrderRepository.findAllByEmployee(user));
+        }
 
         return "workorders/index";
     }

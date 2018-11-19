@@ -71,7 +71,6 @@
                     <th scope="col">Created By</th>
                     <th scope="col">Category</th>
                     <th scope="col">Status</th>
-
                     <th scope="col"></th>
                 </tr>
                 <tr style="font-size:15px" th:each="order : ${allOrders}">
@@ -79,20 +78,6 @@
                     <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                     <td th:text="${order.category.name}"></td>
                     <td th:text="${order.status.name}"></td>
-                    <!--<td><a th:href="@{/work-order/{id}(id=${order.id})}">View</a></td>-->
-
-                    <!--DROPDOWN TABLE ROW EXPANSION BELOW-->
-
-                    <!--<td>-->
-                        <!--<button class="btn btn-primary" type="button" data-toggle="collapse" th:attr="data-target='#collapseExample'+${order.id}" aria-expanded="false" aria-controls="collapseExample">-->
-                            <!--Update Status-->
-                        <!--</button>-->
-                        <!--<div class="collapse" th:id="'collapseExample' + ${order.id}">-->
-                            <!--<div class="card card-body">-->
-                                <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.-->
-                            <!--</div>-->
-                    <!--</div>-->
-                    <!--</td>-->
                 </tr>
             </table>
         </div>
@@ -104,11 +89,6 @@
                     <th scope="col">Category</th>
                     <th scope="col">Status</th>
                     <th scope="col"></th>
-
-                    <!--<th scope="col">Submitted</th>-->
-                    <!--<th scope="col">Created By</th>-->
-                    <!--<th scope="col">Category</th>-->
-                    <!--<th scope="col">Status</th>-->
                 </tr>
                 <tr style="font-size:15px" th:each="order : ${submittedOrders}">
                     <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
@@ -145,11 +125,6 @@
                     <th scope="col">Category</th>
                     <th scope="col">Status</th>
                     <th scope="col"></th>
-
-                    <!--<th scope="col">Submitted</th>-->
-                    <!--<th scope="col">Created By</th>-->
-                    <!--<th scope="col">Category</th>-->
-                    <!--<th scope="col">Status</th>-->
                 </tr>
                 <tr style="font-size:15px" th:each="order : ${inReview}">
                     <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
@@ -168,11 +143,6 @@
                     <th scope="col">Category</th>
                     <th scope="col">Status</th>
                     <th scope="col"></th>
-
-                    <!--<th scope="col">Submitted</th>-->
-                    <!--<th scope="col">Created By</th>-->
-                    <!--<th scope="col">Category</th>-->
-                    <!--<th scope="col">Status</th>-->
                 </tr>
                 <tr style="font-size:15px" th:each="order : ${canceledOrders}">
                     <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>
@@ -191,11 +161,6 @@
                     <th scope="col">Category</th>
                     <th scope="col">Status</th>
                     <th scope="col"></th>
-
-                    <!--<th scope="col">Submitted</th>-->
-                    <!--<th scope="col">Created By</th>-->
-                    <!--<th scope="col">Category</th>-->
-                    <!--<th scope="col">Status</th>-->
                 </tr>
                 <tr style="font-size:15px" th:each="order : ${completeOrders}">
                     <td scope="row" th:text="${#dates.format(order.submittedDate, 'dd-MMM-yyyy')}"></td>

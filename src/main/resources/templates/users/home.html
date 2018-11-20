@@ -1,118 +1,161 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head('WasteManagement')" />
+<head th:replace="partials :: head('WasteManagement')"/>
+
 <body>
-<div th:replace="partials :: myNav"></div>
-<div class="container">
-    <h1 class="text-center my-3">The Solid Waste Management Department</h1>
-    <hr/>
-        <div class="card m-1">
-        <div class="card body p-2">
-            <div class="">
-                <div class="DNNContainer_noTitle">
-                    <div id="dnn_ctr2444_ContentPane"><!-- Start_Module_2444 -->
-                        <div id="dnn_ctr2444_ModuleContent" class="DNNModuleContent ModDNNHTMLC">
-                            <p class="font-weight-bold">The Solid Waste Management Department (SWMD) proudly serves City of San Antonio Solid Waste customers by providing them with a myriad of programs and services that effectively and efficiently manage municipal solid waste generated within the City of San Antonio.</p>
-                            <h5 class="font-weight-bold">Programs and services include the following:</h5>
+<div class="page_background">
+    <div th:replace="partials :: myNav"></div>
+    <div id="page_background" class="container">
+        <h1 class="text-center mt-4 my-3">The Solid Waste Management Department</h1>
 
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-center">
-                                        <img  style="height:130px;width:100px;" th:src="@{/img/I_Love_Trash.png}"/>
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="https://www.sanantonio.gov/swmd/Garbage" target="_blank" title="Garbage collection overview">Automated garbage collection</a>
-                                    </div>
+        <div class="card p-4">
+            <div class="card body p-2">
+                <div class="">
+                    <p class="font-weight-bold">The Solid Waste Management Department (SWMD) proudly serves City of San
+                        Antonio Solid Waste customers by providing a myriad of programs and services that
+                        effectively and efficiently manage municipal solid waste generated within the City of San
+                        Antonio.</p>
+
+                    <div class="container-fluid">
+                        <div id="carouselExampleSlidesOnly" class="carousel carousel-fade" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active w-75 mx-auto">
+                                    <img style="width:600px;height:370px" class="d-block w-100"
+                                         th:src="@{img/skyline.jpg}"
+                                         alt="First slide"/>
                                 </div>
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-center">
-                                        <img  style="height:130px;width:100px;" th:src="@{/img/recycle.png}"/>
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="https://www.sanantonio.gov/swmd/Recycling" target="_blank" title="Recycling overview">Automated single-stream recycling collection</a>
-                                    </div>
+                                <div class="carousel-item w-75 mx-auto">
+                                    <img style="width:600px;height:370px" class="d-block w-100"
+                                         th:src="@{img/riverwalk.jpg}" alt="Second slide"/>
                                 </div>
-                                    <div class="col-4">
-                                        <div class="d-flex justify-content-center">
-                                            <img  style="height:130px;width:130px;" th:src="@{/img/brush.png}"/>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="https://www.sanantonio.gov/swmd/Brush" target="_blank" title="Brush collection overview">Residential brush collection</a>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-center">
-                                        <img  style="height:130px;width:130px;" th:src="@{/img/bulk2.png}"/>
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="https://www.sanantonio.gov/swmd/Bulky" target="_blank" title="Bulky item collection overview">Residential bulky item collection</a>
-                                    </div>
+                                <div class="carousel-item w-75 mx-auto">
+                                    <img style="width:600px;height:370px" class="d-block w-100"
+                                         th:src="@{img/civtech.jpg}"
+                                         alt="Third slide"/>
                                 </div>
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-center">
-                                        <img  style="height:130px;width:160px;" th:src="@{/img/armadillo.png}"/>
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="https://www.sanantonio.gov/swmd/Special-Collections/Dead-Animal-Pickup" target="_blank" title="Dead animal pickup">Dead animal pickup</a>
-                                    </div>
+                                <div class="carousel-item w-75 mx-auto">
+                                    <img style="width:600px;height:370px" class="d-block w-100"
+                                         th:src="@{img/alamo.jpg}"
+                                         alt="Fourth slide"/>
                                 </div>
-                                <div class="col-4">
-                                    <div class="d-flex justify-content-center">
-                                        <img  style="height:130px;width:130px;" th:src="@{/img/oilHazard.png}"/>
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <a href="https://www.sanantonio.gov/swmd/HHW" target="_blank" title="Dead animal pickup">Hazardous Waste Collection</a>
-                                    </div>
+                                <div class="carousel-item w-75 mx-auto">
+                                    <img style="width:600px;height:370px" class="d-block w-100"
+                                         th:src="@{img/civtechSA-2-2.png}" alt="Fifth slide"/>
                                 </div>
                             </div>
-
-                            <p>In addition to providing customers with reliable solid waste collection, SWMD operates drop-off and processing sites for brush, bulky items, and household hazardous waste. SWMD also manages and maintains the city's closed landfills in compliance with the Texas Commission on Environmental Quality.</p>
-                            <p>SWMD serves approximately 346,000 households, employs 663 individuals, and has a budget of over $116 million for the 2015 Fiscal Year. SWMD operates four district centers located around the city, various closed landfills, and administrative offices.</p>
-                            <h5 class="mt-2 font-weight-bold">Mission</h5>
-                            <p>Solid Waste Management provides reliable collection and sustainable services to our community, safely and professionally, while protecting San Antonio’s environment, resources and the health of its citizens through dedicated and caring teamwork.</p>
-                            <h5 class="mt-3 font-weight-bold">C.O.R.E. Values</h5>
-                            <table width="100%" bgcolor="#ffffff">
-                                <!--<colgroup><col width="30%"><col width="70"></colgroup>-->
-                                <tbody>
-                                <tr>
-                                    <td><strong>Teamwork</strong></td>
-                                    <td>We work together to make San Antonio better.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Integrity</strong></td>
-                                    <td>We model ethical behavior.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Innovation</strong></td>
-                                    <td>We are driven by continuous improvement.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Professionalism</strong></td>
-                                    <td>We are qualified, skilled, and committed.</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <h5 class="mt-3 font-weight-bold">Sustainability Statement</h5>
-                            <p>SWMD continuously strives to enhance its current programs and develop innovative waste management practices in order to make certain that environmentally sound and sustainable solid waste management operations are put to practice. Through our curbside recycling program, brush recycling centers, household hazardous waste facilities and SWMD supported recycling initiatives, such as the multifamily recycling ordinance, a positive environmental impact is made every day that benefits San Antonio residents and future generations.</p>
-                            <h5 class="mt-3 font-weight-bold">Solid Waste Services Guide</h5>
-                            <p>Download the FY2018 Solid Waste Services Guide in PDF format. English and Spanish versions are available.</p>
-                            <ul>
-                                <li><a href="https://www.sanantonio.gov/Portals/0/Files/SWMD/ServicesGuide/Solid-Waste-Guide-FY2018-EN.pdf" target="_blank">English</a></li>
-                                <li><a href="https://www.sanantonio.gov/Portals/0/Files/SWMD/ServicesGuide/Solid-Waste-Guide-FY2018-SP.pdf" target="_blank">Spanish</a></li>
-                            </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+            <h5 class="mt-3 font-weight-bold">C.O.R.E. Values</h5>
+            <table width="100%" bgcolor="#ffffff">
+                <!--<colgroup><col width="30%"><col width="70"></colgroup>-->
+                <tbody>
+                <tr>
+                    <td><strong>Teamwork</strong></td>
+                    <td>We work together to make San Antonio better.</td>
+                </tr>
+                <tr>
+                    <td><strong>Integrity</strong></td>
+                    <td>We model ethical behavior.</td>
+                </tr>
+                <tr>
+                    <td><strong>Innovation</strong></td>
+                    <td>We are driven by continuous improvement.</td>
+                </tr>
+                <tr>
+                    <td><strong>Professionalism</strong></td>
+                    <td>We are qualified, skilled, and committed.</td>
+                </tr>
+                </tbody>
+            </table>
+            <h5 class="mt-3 font-weight-bold">Sustainability Statement</h5>
+            <p>SWMD continuously strives to enhance its current programs and develop innovative waste management practices
+                in order to make certain that environmentally sound and sustainable solid waste management operations are
+                put to practice. Through our curbside recycling program, brush recycling centers, household hazardous waste
+                facilities and SWMD supported recycling initiatives, such as the multifamily recycling ordinance, a positive
+                environmental impact is made every day that benefits San Antonio residents and future generations.</p>
+            <h5 class="mt-3 font-weight-bold">Solid Waste Services Guide</h5>
+            <p>Download the FY2018 Solid Waste Services Guide in PDF format. English and Spanish versions are available.</p>
+            <ul>
+                <li><a href="https://www.sanantonio.gov/Portals/0/Files/SWMD/ServicesGuide/Solid-Waste-Guide-FY2018-EN.pdf"
+                       target="_blank">English</a></li>
+                <li><a href="https://www.sanantonio.gov/Portals/0/Files/SWMD/ServicesGuide/Solid-Waste-Guide-FY2018-SP.pdf"
+                       target="_blank">Spanish</a></li>
+            </ul>
+
+        <h5 class="font-weight-bold">Programs and services include the following:</h5>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="d-flex justify-content-center">
+                    <img style="height:130px;width:100px;" th:src="@{/img/I_Love_Trash.png}"/>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://www.sanantonio.gov/swmd/Garbage" target="_blank"
+                       title="Garbage collection overview">Automated garbage collection</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="d-flex justify-content-center">
+                    <img style="height:130px;width:100px;" th:src="@{/img/recycle.png}"/>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://www.sanantonio.gov/swmd/Recycling" target="_blank" title="Recycling overview">Automated
+                        single-stream recycling collection</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="d-flex justify-content-center">
+                    <img style="height:130px;width:130px;" th:src="@{/img/brush.png}"/>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://www.sanantonio.gov/swmd/Brush" target="_blank" title="Brush collection overview">Residential
+                        brush collection</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4">
+                <div class="d-flex justify-content-center">
+                    <img style="height:130px;width:130px;" th:src="@{/img/bulk2.png}"/>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://www.sanantonio.gov/swmd/Bulky" target="_blank"
+                       title="Bulky item collection overview">Residential bulky item collection</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="d-flex justify-content-center">
+                    <img style="height:130px;width:160px;" th:src="@{/img/armadillo.png}"/>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://www.sanantonio.gov/swmd/Special-Collections/Dead-Animal-Pickup" target="_blank"
+                       title="Dead animal pickup">Dead animal pickup</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="d-flex justify-content-center">
+                    <img style="height:130px;width:130px;" th:src="@{/img/oilHazard.png}"/>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="https://www.sanantonio.gov/swmd/HHW" target="_blank" title="Dead animal pickup">Hazardous
+                        Waste Collection</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<footer>
+<footer class="mt-4">
     <p class="text-center">*** This is a Codeup student web application, not a City of San Antonio Webpage ***</p>
     <p class="text-center">*Learn more about our project <a th:href="@{/about}">here</a>!*</p>
 </footer>
-<th:block th:replace="partials :: scripts" />
+</div>
+<th:block th:replace="partials :: scripts"/>
+<script>
+    $('.carousel').carousel({
+        interval: 3000
+    })
+</script>
 </body>
 </html>

@@ -38,7 +38,7 @@
                 </td>
                 <td>
                     <input type="hidden" id="itemId" th:value="${item.id}"/>
-                    <form th:action="@{'/inventory/{id}/delete' (id=${item.id})}" method="get" th:object="${inventory}" class="col p-0 my-1">
+                    <form onsubmit="return confirm('Do you really want to delete this item?');" th:action="@{'/inventory/{id}/delete' (id=${item.id})}" method="get" th:object="${inventory}" class="col p-0 my-1">
                         <input type="hidden" name="_method" value="delete" />
                         <button type="submit" class="link btn btn-dark text-light px-2" th:method="delete">DELETE</button>
                     </form>

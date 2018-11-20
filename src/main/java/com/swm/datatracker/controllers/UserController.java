@@ -84,6 +84,11 @@ public class UserController {
         return "about";
     }
 
+    @GetMapping("/project-info")
+    public String showProjectPage(Model vModel) {
+        return "project-info";
+    }
+
     @GetMapping("/sign-up")
     public String showSignupForm(Model model){
         model.addAttribute("user", new User());

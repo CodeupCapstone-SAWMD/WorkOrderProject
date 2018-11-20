@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head('WasteManagement')"/>
+<body>
+<div th:replace="partials :: myNav"></div>
+<div class="container">
+
+
+    <h1 class="my-3 text-center">Project Information</h1>
+    <!--     <h1 class="text-center mt-3">About Page</h1> -->
+    <hr/>
+
+    <div class="row mt-3">
+        <div class="col border p-3">
+            <h4><u>The <a href="https://github.com/CodeupCapstone-SAWMD/WorkOrderProject">Project</a> Goal</u></h4>
+
+            <p>As Part of <a href="https://www.civtech-sa.com/">Civ Tech San Antonio's </a>
+                initiative to support public agencies, our group focused on a
+                <a href="https://www.civtech-sa.com/programs/">problem set </a>posed by the City's
+                <a href="https://www.sanantonio.gov/swmd">Solid Waste Management Department </a>(SWMD):
+            </p>
+            <p>"Waste management is one of the most pressing needs within a
+                rapidly growing city, and as San Antonio’s population on the rise,
+                the Solid Waste Management Department (SWMD) needs an agile,
+                responsive system to appropriately manage those services.
+                The SWMD currently has over 1 million different sized carts in circulation,
+                and services more than 350,000 households within the San Antonio area. Currently,
+                SWMD operates on a paper-based data tracking system, and the City is eager to
+                see a solution that has the latitude to revamp SWMD’s warehouse operations in
+                three distinct areas: inventory management, work order management,
+                and customer communication."
+            </p>
+        </div>
+        <div class="col border p-3">
+            <!--<div class="row">-->
+            <h4><u>Built with:</u></h4>
+            <ul>
+                <li>HTML/ CSS: Bootstrap - web framework</li>
+                <li>Dependency Management: Maven</li>
+                <li>Server: Apache Tomcat</li>
+                <li>Database: Apache Tomcat</li>
+                <li>Java!
+                    <ul>
+                        <li>Spring Boot</li>
+                        <li>Thymeleaf</li>
+                        <li>Hibernate</li>
+                    </ul>
+                </li>
+            </ul>
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="row border p-3 mb-3">
+        <h4 class="text-center"><u> Acknowledgements</u></h4>
+        <p>This is a capstone project as part of our <a href="https://codeup.com/">Codeup</a>
+            software development training program. Special thanks to the staff and instructors, most notably
+            Fernando Mendoza and Daniel Fryar, for their guidance and assistance. Also, big shoutout to open
+            source software for great resources available to developers everywhere!</p>
+    </div>
+</div>
+
+<th:block th:replace="partials :: scripts"/>
+</body>
+</html>

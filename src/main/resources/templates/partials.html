@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.simplex.min.css}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"/>
     <style>
         p, body{
             font-size: 16px;
+        }
+        .dark-red{
+            background-color: #832d23;
         }
     </style>
 </head>
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="myNav">
+<nav class="navbar navbar-expand-lg navbar-dark dark-red" th:fragment="myNav">
     <!--<a class="navbar-brand" href="#">WasteManagement</a>-->
     <span class="navbar-brand p-0">
         <img style="width:80px;height:80px" th:src="@{/img/swmd.png}"/>
@@ -26,46 +30,49 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
             </li>
             <li sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" href="/inventory">Inventory</a>
+                <a class="nav-link" href="/inventory"><i class="fas fa-trash"></i> Inventory</a>
             </li>
             <li sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" href="/workorders">Work Orders</a>
+                <a class="nav-link" href="/workorders"><i class="fas fa-file-alt"></i> Work Orders</a>
             </li>
             <li sec:authorize="hasRole('ROLE_EDITOR')">
-                <a class="nav-link" href="/workorders">Work Orders</a>
+                <a class="nav-link" href="/workorders"><i class="fas fa-file-alt"></i> Work Orders</a>
             </li>
             <li sec:authorize="hasRole('ROLE_USER')">
-                <a class="nav-link" th:href="@{/users/profile}">Profile</a>
+                <a class="nav-link" th:href="@{/users/profile}"><i class="fas fa-user-circle"></i> Profile</a>
             </li>
             <li sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" th:href="@{/admin/profile}">Profile</a>
+                <a class="nav-link" th:href="@{/admin/profile}"><i class="fas fa-user-circle"></i> Profile</a>
             </li>
             <li sec:authorize="hasRole('ROLE_EDITOR')">
-                <a class="nav-link" th:href="@{/emp/profile}">Profile</a>
+                <a class="nav-link" th:href="@{/emp/profile}"><i class="fas fa-user-circle"></i> Profile</a>
             </li>
             <li class="nav-item" sec:authorize="!hasRole('ROLE_ADMIN')">
-                <a class="nav-link" href="/contact">Contact</a>
+                <a class="nav-link" href="/contact"><i class="fas fa-file-signature"></i> Contact</a>
             </li>
             <li class="nav-item" sec:authorize="!hasRole('ROLE_ADMIN')">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" href="/about"><i class="fas fa-user-graduate"></i> About</a>
+            </li>
+            <li class="nav-item" sec:authorize="!hasRole('ROLE_ADMIN')">
+                <a class="nav-link" href="/project-info"><i class="fas fa-project-diagram"></i> Project Information</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                <a class="nav-link" th:href="@{/admin/view-users}">Users</a>
+                <a class="nav-link" th:href="@{/admin/view-users}"><i class="fas fa-users"></i> Users</a>
             </li>
             <li sec:authorize="isAuthenticated()">
-                <input type="submit" id="logout" value="Logout" class="nav-link btn-link hoverCursor border-0" form="logoutForm" />
+                <input type="submit" id="logout" value="Logout" class="nav-link btn-link hoverCursor border-0" form="logoutForm"/>
             </li>
             <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
             </li>
             <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/registration?error=false">Register</a>
+                <a class="nav-link" href="/registration?error=false"><i class="fas fa-user-plus"></i> Register</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/work-order/create">Create A Work Order!</a>
+                <a class="nav-link" href="/work-order/create"><i class="fas fa-plus"></i> Create A Work Order!</a>
             </li>
         </ul>
         <form sec:authorize="hasRole('ROLE_ADMIN')" class="form-inline my-2 my-lg-0" method="get" action="/workorders/search">

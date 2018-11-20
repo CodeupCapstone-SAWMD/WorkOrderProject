@@ -57,6 +57,7 @@ public class AdminController {
 
     @GetMapping("/admin/profile")
     public String adminProfile(Model vModel) {
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Status submitted = statusRepository.findOne(1L);
@@ -71,6 +72,7 @@ public class AdminController {
         vModel.addAttribute("submittedOrders", workOrderRepository.findAllByStatus(submitted));
         vModel.addAttribute("completeOrders", workOrderRepository.findAllByStatus(complete));
         vModel.addAttribute("allOrders", workOrderRepository.findAll());
+
         vModel.addAttribute("user", user);
         return "admin/profile";
     }
@@ -151,5 +153,24 @@ public class AdminController {
         User viewedUser = userRepository.findOne(Long.parseLong(id));
         vModel.addAttribute("user", viewedUser);
         return "admin/view-profile";
+    }
+
+    @GetMapping("/admin/edit")
+    public String getEditAdmin(Model vModel) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        vModel.addAttribute("updatedUser", user);
+        return "emp/edit";
+    }
+
+    @PostMapping("/admin/edit/{id}")
+    public String postEditAdmin(@ModelAttribute User newInfo, @PathVariable long id, Model vModel) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserRole ur = user.getRole();
+        newInfo.setRole(ur);
+        newInfo.setPassword(user.getPassword());
+        userRepository.save(newInfo);
+
+        return "admin/profile";
     }
 }

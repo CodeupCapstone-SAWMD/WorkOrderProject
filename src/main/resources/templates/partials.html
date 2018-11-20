@@ -7,9 +7,11 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.simplex.min.css}"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"/>
     <style>
+
         p, body{
-            font-size: 16px;
+            font-size: 18px;
         }
+
         body{
             margin-top: 4rem;
         }
@@ -36,12 +38,53 @@
             top: 0;
             width: 100%;
             z-index: 1000;
+
+        .code-up{
+            color: #ffffff;
+            border-color: rgb(23,99,23);
+            background-color: rgb(119,156,73);
+            margin-bottom: 0.25em;
+            text-shadow: 0 0.075em 0.075em rgba(0,0,0,0.5);
+            box-shadow: 0 0.25em 0 0 rgb(59,89,23), 0 4px 9px rgba(0,0,0,0.75);
+            border-radius: 0.25em;
         }
+        /*.civ-tech{*/
+            /*color: #702885;*/
+            /*border-color: rgb(23,99,23);*/
+            /*background-color: #e8dde7;*/
+            /*margin-bottom: 0.25em;*/
+            /*text-shadow: 0 0.075em 0.075em rgba(0,0,0,0.5);*/
+            /*box-shadow: 0 0.25em 0 0 #702885, 0 4px 9px rgba(0,0,0,0.75);*/
+            /*border-radius: 0.25em;*/
+        /*}*/
+
+        /*.swmd{*/
+            /*color: #ffffff;*/
+            /*border-color: rgb(23,99,23);*/
+            /*background-color: #ad312d;*/
+            /*margin-bottom: 0.25em;*/
+            /*text-shadow: 0 0.075em 0.075em rgba(0,0,0,0.5);*/
+            /*box-shadow: 0 0.25em 0 0 #832d23, 0 4px 9px rgba(0,0,0,0.75);*/
+            /*border-radius: 0.25em;*/
+        /*}*/
+
+        .project{
+            color: #ffffff;
+            border-color: rgb(23,99,23);
+            background-color: #51504f;
+            margin-bottom: 0.25em;
+            text-shadow: 0 0.075em 0.075em rgba(0,0,0,0.5);
+            box-shadow: 0 0.25em 0 0 #000000, 0 4px 9px rgba(0,0,0,0.75);
+            border-radius: 0.25em;
+        }
+          
     </style>
 </head>
 <body>
 
+
 <nav id="myNav" class="navbar sticky navbar-expand-lg navbar-dark dark-red mb-4" th:fragment="myNav">
+
     <!--<a class="navbar-brand" href="#">WasteManagement</a>-->
     <span class="navbar-brand p-0">
         <img style="width:80px;height:40px" th:src="@{/img/waste-management-logo.png}"/>

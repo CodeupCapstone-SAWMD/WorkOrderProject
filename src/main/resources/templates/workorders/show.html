@@ -10,7 +10,6 @@
     <h1 class="my-4 text-center text-light"><span th:text="${'Work Order ID: ' + workorder.id}"></span></h1>
  <div class="row">
     <div class="col-12 col-md-6">
-    <!--<div class="w-100 row justify-content-center">-->
         <div class="card m-1 w-100 justify-content-center" style="width: 18rem">
             <div class="card-body">
                 <p class="card-title"><b>Submitted Date:</b> <span class="font-italic" th:text="${#dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></span></p>
@@ -29,10 +28,10 @@
                 <p id="strNum" class="card-title"><b>Street Number:</b> <span class="font-italic" th:text="${workorder.streetNumber}"></span></p>
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>
                 <p class="card-text"><b>Zip Code:</b> <span th:text="${workorder.zipCode}"></span></p>
-                <ul class="nav nav-pills justify-content-center mt-auto form-group" >
+                <ul sec:authorize="!hasRole('ROLE_USER')" class="nav nav-pills justify-content-center mt-auto form-group" >
                     <li ><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
                     <li sec:authorize="hasRole('ROLE_ADMIN')"><!-- 1) create a form (because you are posting information) with form binding -->
-                        <form th:action="@{/admin/status/{id}/cancel(id=${workorder.id})}" method="post" th:object="${workorder}" >
+                        <form onsubmit="return confirm('Do you really want to cancel this item? The inventory from this work order will be added back to the inventory list.');" th:action="@{/admin/status/{id}/cancel(id=${workorder.id})}" method="post" th:object="${workorder}" >
                             <input type="hidden" name="_method" value="cancel" />
                             <button type="submit" class="btn btn-dark btn-sm ml-2" th:method="post">Cancel</button>
                         </form>
@@ -57,20 +56,16 @@
                     mapTypeId: "satellite"
                 };
 
-            // var strNum = $('#strNum').val();
-
             var rest2 = "6957 Sebastopol Ave, Sebastopol, CA, 95472";
 
             var strNum = [[${workorder.streetNumber}]];
             var strName = [[${workorder.streetName}]];
-            var city = "Schertz";
+            var city = "San Antonio";
             var state = "TX";
             var zip = [[${workorder.zipCode}]];
 
             var addy = strNum + " " + strName + ", " + city + ", "  + state + ", " + zip;
-            console.log(addy);
 
-                // console.log(rest1);
                 var bistro = {lat: 38.4019, lng: -122.8238};
 
                 // CREATE GEOCODE OBJECT INSTANCE
@@ -83,21 +78,16 @@
                 geocoder.geocode({"address": addy}, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         map.setCenter(results[0].geometry.location);
+
+                        var marker = new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map: map,
+                            animation: google.maps.Animation.DROP
+                        });
                     } else {
                         alert("Geocoding was not successful - STATUS: " + status);
                     }
                 });
-
-            var marker = new google.maps.Marker({
-                position: addy,
-                map: map,
-                animation: google.maps.Animation.DROP
-            });
-
-            marker.addListener('mouseover', function() {
-                infowindow.open(map, marker);
-            });
-
             })();
     </script>
 </div>

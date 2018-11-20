@@ -31,10 +31,10 @@
     <div class="tab-pane active show mt-4" id="allOrders">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link show" data-toggle="tab" href="#allCard">Card View</a>
+                <a class="show mr-3" data-toggle="tab" href="#allCard"><button class="btn btn-danger">Card View</button></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#aAllTable">Table View</a>
+            <li class="nav-item mb-4">
+                <a class="active" data-toggle="tab" href="#aAllTable"><button class="btn btn-danger">Table View</button></a>
             </li>
         </ul>
         <div id="tabAllSubContent" class="tab-content fade active show">
@@ -42,6 +42,7 @@
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%" th:each="workorder : ${all}">
                         <ul class="card-body d-flex flex-column">
+                            <p>Work Order # <span th:text="${workorder.id}"></span></p>
                             <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                             <p>Status: <span th:text="${workorder.status.name}"></span></p>
                             <p>Category: <span th:text="${workorder.category.name}"></span></p>
@@ -105,10 +106,10 @@
     <div class="tab-pane fade mt-4" id="submittedOrders" sec:authorize="hasRole('ROLE_ADMIN')">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#card">Card View</a>
+                    <a class="mr-3" data-toggle="tab" href="#card"><button class="btn btn-danger">Card View</button></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active show" data-toggle="tab" href="#aTable">Table View</a>
+                <li class="mb-4">
+                    <a class="active show" data-toggle="tab" href="#aTable"><button class="btn btn-danger">Table View</button></a>
                 </li>
             </ul>
             <div id="tabSubContent" class="tab-content fade active show ">
@@ -116,6 +117,7 @@
                         <div class="row justify-content-center">
                             <div class="card m-1" style="width:30%;background-color:#d2eaf4" th:each="workorder : ${submitted}">
                                 <ul class="card-body d-flex flex-column">
+                                    <p>Work Order # <span th:text="${workorder.id}"></span></p>
                                     <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                                     <p>Status: <span th:text="${workorder.status.name}"></span></p>
                                     <p>Category: <span th:text="${workorder.category.name}"></span></p>
@@ -182,10 +184,10 @@
     <div class="tab-pane fade mt-4" id="processingOrders">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#card3">Card View</a>
+                <a class="mr-3" data-toggle="tab" href="#card3"><button class="btn btn-danger">Card View</button></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#aTable3">Table View</a>
+            <li class="nav-item mb-4">
+                <a class="active" data-toggle="tab" href="#aTable3"><button class="btn btn-danger">Table View</button></a>
             </li>
         </ul>
         <div id="tab3SubContent" class="tab-content fade active show">
@@ -193,6 +195,7 @@
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;background-color:#e8dbeb" th:each="workorder : ${processing}">
                         <ul class="card-body d-flex flex-column">
+                            <p>Work Order # <span th:text="${workorder.id}"></span></p>
                             <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                             <p>Status: <span th:text="${workorder.status.name}"></span></p>
                             <p>Category: <span th:text="${workorder.category.name}"></span></p>
@@ -256,10 +259,10 @@
     <div class="tab-pane fade mt-4" id="reviewedOrders">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#card4">Card View</a>
+                <a class="mr-3" data-toggle="tab" href="#card4"><button class="btn btn-danger">Card View</button></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#aTable4">Table View</a>
+            <li class="nav-item mb-4">
+                <a class="active" data-toggle="tab" href="#aTable4"><button class="btn btn-danger">Table View</button></a>
             </li>
         </ul>
         <div id="tab4SubContent" class="tab-content fade active show">
@@ -267,12 +270,13 @@
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;background-color:#f1d4d0" th:each="workorder : ${review}">
                         <ul class="card-body d-flex flex-column">
+                            <p>Work Order # <span th:text="${workorder.id}"></span></p>
                             <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                             <p>Status: <span th:text="${workorder.status.name}"></span></p>
                             <p>Category: <span th:text="${workorder.category.name}"></span></p>
                             <p>Description: <span th:text="${workorder.description}"></span></p>
                             <p>Notes: <span th:text="${workorder.notes}"></span></p>
-                            <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}">></span></p>
+                            <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}"></span></p>
                             <ul class="nav nav-pills justify-content-center mt-auto form-group">
                                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
@@ -284,6 +288,7 @@
             <div class="tab-pane fade active show mt-4" id="aTable4">
                 <table class="table table-hover">
                     <tr class="table-primary">
+                        <th scope="col">Work Order #</th>
                         <th scope="col">Submitted</th>
                         <th scope="col">Created By</th>
                         <th scope="col">Category</th>
@@ -329,10 +334,10 @@
     <div class="tab-pane fade mt-4" id="completedOrders">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#card5">Card View</a>
+                <a class="mr-3" data-toggle="tab" href="#card5"><button class="btn btn-danger">Card View</button></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#aTable5">Table View</a>
+            <li class="nav-item mb-4">
+                <a class=" active" data-toggle="tab" href="#aTable5"><button class="btn btn-danger">Table View</button></a>
             </li>
         </ul>
         <div id="tab5SubContent" class="tab-content fade active show">
@@ -340,6 +345,7 @@
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;background-color:#dde9d0" th:each="workorder : ${complete}">
                         <ul class="card-body d-flex flex-column">
+                            <p>Work Order # <span th:text="${workorder.id}"></span></p>
                             <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                             <p>Status: <span th:text="${workorder.status.name}"></span></p>
                             <p>Category: <span th:text="${workorder.category.name}"></span></p>
@@ -402,11 +408,11 @@
     </div>
     <div class="tab-pane fade mt-4" id="cancelledOrders">
         <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#card6">Card View</a>
+            <li class="nav-item ">
+                <a class="mr-3" data-toggle="tab" href="#card6"><button class="btn btn-danger">Card View</button></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#aTable6">Table View</a>
+            <li class="nav-item mb-4">
+                <a class="active" data-toggle="tab" href="#aTable6"><button class="btn btn-danger">Table View</button></a>
             </li>
         </ul>
         <div id="tab6SubContent" class="tab-content fade active show">
@@ -414,6 +420,7 @@
                 <div class="row justify-content-center">
                     <div class="card m-1" style="width:30%;" th:each="workorder : ${cancelled}">
                         <ul class="card-body d-flex flex-column">
+                            <p>Work Order # <span th:text="${workorder.id}"></span></p>
                             <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                             <p>Status: <span th:text="${workorder.status.name}"></span></p>
                             <p>Category: <span th:text="${workorder.category.name}"></span></p>

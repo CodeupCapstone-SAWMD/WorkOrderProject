@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="partials :: head('WasteManagement')"/>
 <body>
 
@@ -26,15 +26,19 @@
 
         <div class="tab-pane fade active show mt-4 active" id="searchByIdResults">
 
-            <h3>Work Order Id Results</h3>
+            <h3 class="my-3">Work Order Id Results</h3>
+            <div class="row">
             <div class="card m-1" style="width:30%" th:each="workorder : ${searchByIdResults}">
                 <ul class="card-body d-flex flex-column">
                     <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                     <p>Status: <span th:text="${workorder.status.name}"></span></p>
                     <p>Category: <span th:text="${workorder.category.name}"></span></p>
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <p>Address: <span th:text="${workorder.streetNumber + ' ' + workorder.streetName}"></span></p>
+                    </div>
                     <p>Description: <span th:text="${workorder.description}"></span></p>
                     <p>Notes: <span th:text="${workorder.notes}"></span></p>
-                    <p>Employee: <span th:text="${workorder.employee}"></span></p>
+                    <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
                     <ul class="nav nav-pills justify-content-center mt-auto form-group">
                         <li><a th:href="@{/work-order/{id}(id=${workorder.id})}">
                             <button class="btn btn-primary btn-sm mr-2">View</button>
@@ -45,20 +49,24 @@
                     </ul>
                 </ul>
             </div>
-
+            </div>
         </div>
 
         <div class="tab-pane fade mt-4" id="searchZipResults">
 
-            <h3>Work Order Zip Code Results</h3>
+            <h3 class="my-3">Work Order Zip Code Results</h3>
+            <div class="row">
             <div class="card m-1" style="width:30%" th:each="workorder : ${searchByZipResults}">
                 <ul class="card-body d-flex flex-column">
                     <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                     <p>Status: <span th:text="${workorder.status.name}"></span></p>
                     <p>Category: <span th:text="${workorder.category.name}"></span></p>
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <p>Address: <span th:text="${workorder.streetNumber + ' ' + workorder.streetName}"></span></p>
+                    </div>
                     <p>Description: <span th:text="${workorder.description}"></span></p>
                     <p>Notes: <span th:text="${workorder.notes}"></span></p>
-                    <p>Employee: <span th:text="${workorder.employee}"></span></p>
+                    <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
                     <ul class="nav nav-pills justify-content-center mt-auto form-group">
                         <li><a th:href="@{/work-order/{id}(id=${workorder.id})}">
                             <button class="btn btn-primary btn-sm mr-2">View</button>
@@ -69,17 +77,48 @@
                     </ul>
                 </ul>
             </div>
+            </div>
         </div>
         <div class="tab-pane fade mt-4" id="searchDescNotesResults">
-            <h3>Work Order Description/ Notes Results</h3>
+            <h3 class="my-3">Work Order Description/ Notes Results</h3>
+            <div class="row">
             <div class="card m-1" style="width:30%" th:each="workorder : ${searchDescNotesResults}">
                 <ul class="card-body d-flex flex-column">
                     <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                     <p>Status: <span th:text="${workorder.status.name}"></span></p>
                     <p>Category: <span th:text="${workorder.category.name}"></span></p>
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <p>Address: <span th:text="${workorder.streetNumber + ' ' + workorder.streetName}"></span></p>
+                    </div>
                     <p>Description: <span th:text="${workorder.description}"></span></p>
                     <p>Notes: <span th:text="${workorder.notes}"></span></p>
-                    <p>Employee: <span th:text="${workorder.employee}"></span></p>
+                    <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
+                    <ul class="nav nav-pills justify-content-center mt-auto form-group">
+                        <li><a th:href="@{/work-order/{id}(id=${workorder.id})}">
+                            <button class="btn btn-primary btn-sm mr-2">View</button>
+                        </a></li>
+                        <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}">
+                            <button class="btn btn-danger btn-sm">Edit</button>
+                        </a></li>
+                    </ul>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="tab-pane fade mt-4" id="searchByStreetResults">
+            <h3 class="my-3">Street Name Search Results</h3>
+            <div class="row">
+            <div class="card m-1" style="width:30%" th:each="workorder : ${searchByStreetResults}">
+                <ul class="card-body d-flex flex-column">
+                    <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
+                    <p>Status: <span th:text="${workorder.status.name}"></span></p>
+                    <p>Category: <span th:text="${workorder.category.name}"></span></p>
+                    <div sec:authorize="hasRole('ROLE_ADMIN' or 'ROLE_EDITOR')">
+                        <p>Address: <span th:text="${workorder.streetNumber + ' ' + workorder.streetName}"></span></p>
+                    </div>
+                    <p>Description: <span th:text="${workorder.description}"></span></p>
+                    <p>Notes: <span th:text="${workorder.notes}"></span></p>
+                    <p>Employee: <span th:text="${workorder.employee.firstName + ' ' + workorder.employee.lastName}"></span></p>
                     <ul class="nav nav-pills justify-content-center mt-auto form-group">
                         <li><a th:href="@{/work-order/{id}(id=${workorder.id})}">
                             <button class="btn btn-primary btn-sm mr-2">View</button>
@@ -91,26 +130,6 @@
                 </ul>
             </div>
         </div>
-        <div class="tab-pane fade mt-4" id="searchByStreetResults">
-            <h3>Work Order Description/ Notes Results</h3>
-            <div class="card m-1" style="width:30%" th:each="workorder : ${searchByStreetResults}">
-                <ul class="card-body d-flex flex-column">
-                    <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
-                    <p>Status: <span th:text="${workorder.status.name}"></span></p>
-                    <p>Category: <span th:text="${workorder.category.name}"></span></p>
-                    <p>Description: <span th:text="${workorder.description}"></span></p>
-                    <p>Notes: <span th:text="${workorder.notes}"></span></p>
-                    <p>Employee: <span th:text="${workorder.employee}"></span></p>
-                    <ul class="nav nav-pills justify-content-center mt-auto form-group">
-                        <li><a th:href="@{/work-order/{id}(id=${workorder.id})}">
-                            <button class="btn btn-primary btn-sm mr-2">View</button>
-                        </a></li>
-                        <li><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}">
-                            <button class="btn btn-danger btn-sm">Edit</button>
-                        </a></li>
-                    </ul>
-                </ul>
-            </div>
         </div>
     </div>
 </div>

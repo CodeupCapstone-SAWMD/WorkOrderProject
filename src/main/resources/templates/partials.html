@@ -11,13 +11,39 @@
         p, body{
             font-size: 18px;
         }
-        .dark-red {
+
+        body{
+            margin-top: 4rem;
+        }
+        .dark-red{
             background-color: #832d23;
         }
+        .page_background {
+            background-image: url(../img/civtech.jpg);
+            background-size: 100%;
+            opacity: 0.8;
+            /*background-size: inherit;*/
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-blend-mode: lighten;
+            color: black;
+        }
 
+<<<<<<< HEAD
         .btn-darkRed {
             background-color: #832d23 !important;
             color: white;
+=======
+        card{
+            opacity: 0.2;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+>>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
         }
 
         .code-up{
@@ -58,11 +84,14 @@
             box-shadow: 0 0.25em 0 0 #000000, 0 4px 9px rgba(0,0,0,0.75);
             border-radius: 0.25em;
         }
+          
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark dark-red" th:fragment="myNav">
+
+<nav id="myNav" class="navbar sticky navbar-expand-lg navbar-dark dark-red mb-4" th:fragment="myNav">
+
     <!--<a class="navbar-brand" href="#">WasteManagement</a>-->
     <span class="navbar-brand p-0">
         <img style="width:80px;height:80px" th:src="@{/img/logo.png}"/>
@@ -127,9 +156,22 @@
     <form th:action="@{/logout}" method="post" id="logoutForm" class="d-none">
     </form>
 </nav>
-
 <th:block th:fragment="scripts">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        (function() {
+            "use strict";
+            var height = $('#myNav').height() + 40;
+            console.log(height);
+
+            if ($('#myNav').height() >= 0) {
+                // $(".page_background").css("margin-top", ($("#myNav").height()));
+                $(".page_background").css("margin-top", height);
+
+            }
+
+        })();
+
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </th:block>

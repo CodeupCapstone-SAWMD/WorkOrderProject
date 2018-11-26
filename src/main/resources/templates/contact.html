@@ -4,13 +4,14 @@
 <head th:replace="partials :: head('WasteManagement')"/>
 <body>
 <div th:replace="partials :: myNav"></div>
+<div class="page_background">
 <div class="container">
 
     <h1 class="text-center my-3">Contact Page</h1>
     <hr/>
     <!--<div class="">-->
         <div class="row mt-3 justify-content-center">
-            <div class="card m-1 p-2 border text-center">
+            <div class="card col-5 m-1 p-2 border text-center">
                 <h3>Contact Information</h3>
                 <div id="request-service3">
                     <p>
@@ -30,7 +31,7 @@
                     </p>
                 </div>
             </div>
-            <div class="card m-1 p-2 border">
+            <div class="card col-5 m-1 p-2 border">
                 <h3 class="text-center">Customer Service</h3>
                 <div id="request-service2">
                     <p class="text-center">
@@ -42,7 +43,7 @@
                         TTY use Texas Relay by dialing 7-1-1 or <br/>
                         1-800-RELAY TX (210.735.2989)<br/>
                     <br />
-                        <p><a href="http://311.sanantonio.gov" title="Request a City Service Online">
+                        <p class="text-center"><a href="http://311.sanantonio.gov" title="Request a City Service Online">
                         Request a City Service Online
                         </a></p>
                     </p>
@@ -50,8 +51,8 @@
             </div>
     <!--</div>-->
     <!--<div class="row justify-content-center">-->
-        <div class=" card m-1 p-2 border">
-            <h4>Contact Our Team!</h4>
+        <div class="card col-10 m-1 p-2 border">
+            <h4 class="text-center">Contact Our Team!</h4>
             <form th:action="@{/contact}" method="post">
                 <div class="form-group">
                     <label for="mess">Your Message:</label>
@@ -64,6 +65,7 @@
         </div>
         </div>
     <!--</div>-->
+</div>
 </div>
 <footer>
     <p class="text-center">*** This is a Codeup student web application, not a City of San Antonio Webpage ***</p>

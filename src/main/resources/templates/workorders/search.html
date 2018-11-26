@@ -113,7 +113,7 @@
                     <p th:text="${'Submitted Date: ' + #dates.format(workorder.submittedDate, 'dd-MM-yyyy')}"></p>
                     <p>Status: <span th:text="${workorder.status.name}"></span></p>
                     <p>Category: <span th:text="${workorder.category.name}"></span></p>
-                    <div sec:authorize="hasRole('ROLE_ADMIN' or 'ROLE_EDITOR')">
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
                         <p>Address: <span th:text="${workorder.streetNumber + ' ' + workorder.streetName}"></span></p>
                     </div>
                     <p>Description: <span th:text="${workorder.description}"></span></p>

@@ -3,9 +3,10 @@
 <head th:replace="partials :: head('WasteManagement')"/>
 <body>
 <div th:replace="partials :: myNav"></div>
+
 <div class="page_background">
-    <h1 class="my-3 text-center">The Development Team</h1>
 <div class="container">
+    <div class="card" style="height:1100px;">
 
     <h1 class="my-3 text-center" style="padding-bottom:2rem;padding-top:3.5rem">The Development Team</h1>
 
@@ -78,8 +79,22 @@
             <!--Fernando Mendoza and Daniel Fryar, for their guidance and assistance. Also, big shoutout to open-->
             <!--source software for great resources available to developers everywhere!</p>-->
     <!--</div>-->
-</div>
+        </div>
+    </div>
 </div>
 <th:block th:replace="partials :: scripts"/>
+<!--<script>-->
+    <!--(function(){-->
+    <!--var myWidth = 0, myHeight = 0;-->
+
+        <!--myWidth = window.innerWidth;-->
+        <!--myHeight = window.innerHeight;-->
+        <!--alert(myHeight);-->
+
+        <!--$('body').css("height", "160%");-->
+
+    <!--})();-->
+<!--</script>-->
 </body>
+
 </html>

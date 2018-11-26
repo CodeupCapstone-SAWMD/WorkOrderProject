@@ -4,7 +4,7 @@
 <body>
     <div th:replace="partials :: myNav"></div>
     <div class="container">
-        <h1 class="text-center mt-3">Create a New Inventory Item</h1>
+        <h1 class="text-center mt-3" style="padding-bottom:2rem;padding-top:1rem">Create a New Inventory Item</h1>
         <hr/>
         <div class="card">
             <form th:class="card-body" th:action="@{/inventory/create}" th:method="post" th:object="${inventory}">

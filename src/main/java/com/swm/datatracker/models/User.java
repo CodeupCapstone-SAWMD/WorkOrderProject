@@ -55,7 +55,7 @@ public class User {
 //    @JoinColumn(name="user_role_id")
 //    private UserRole role;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private UserRole userRole;
 

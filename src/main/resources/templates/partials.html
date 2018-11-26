@@ -29,6 +29,10 @@
             color: black;
         }
 
+        .btn-darkRed {
+            background-color: #832d23 !important;
+            color: white;
+        }
         card{
             opacity: 0.2;
         }
@@ -88,7 +92,7 @@
 
     <!--<a class="navbar-brand" href="#">WasteManagement</a>-->
     <span class="navbar-brand p-0">
-        <img style="width:80px;height:40px" th:src="@{/img/waste-management-logo.png}"/>
+        <img style="width:80px;height:80px" th:src="@{/img/trashytech_logo.png}"/>
     </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -129,9 +133,6 @@
             <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="nav-link" th:href="@{/admin/view-users}"><i class="fas fa-users"></i> Users</a>
             </li>
-            <li sec:authorize="isAuthenticated()">
-                <input type="submit" id="logout" value="Logout" class="nav-link btn-link hoverCursor border-0" form="logoutForm"/>
-            </li>
             <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
             </li>
@@ -142,8 +143,14 @@
                 <a class="nav-link" href="/work-order/create"><i class="fas fa-plus"></i> Create A Work Order!</a>
             </li>
         </ul>
+        <div class="justify-content-right" style="display:inline;color:white" >
+            <div sec:authorize="isAuthenticated()">
+                <i class="fas fa-sign-out-alt" style="color:#ddccc9;display:inline;margin:0 0;border:none;"></i><input type="submit" id="logout" style="color:#ddccc9;display:inline;padding-left:3px;" value="Logout" class="nav-link btn-link hoverCursor border-0" form="logoutForm"/>
+            </div>
+        </div>
         <form sec:authorize="hasRole('ROLE_ADMIN')" class="form-inline my-2 my-lg-0" method="get" action="/workorders/search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search work orders" name="searchTerm"/>
+
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Work Orders" name="searchTerm"/>
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -162,7 +169,6 @@
                 $(".page_background").css("margin-top", height);
 
             }
-
         })();
 
     </script>

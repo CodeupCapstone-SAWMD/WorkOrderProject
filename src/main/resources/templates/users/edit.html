@@ -6,7 +6,7 @@
 <div class="container">
 
     <!--<h1>Edit Your Account</h1>-->
-    <h1 class="text-center mt-3">Edit Your Account</h1>
+    <h1 class="text-center" style="padding-bottom:2rem;padding-top:1rem">Edit Your Account</h1>
     <hr/>
     <form th:action="@{/users/edit/{id}(id=${updatedUser.id})}" method="POST" th:object="${updatedUser}">
         <div class="form-group">

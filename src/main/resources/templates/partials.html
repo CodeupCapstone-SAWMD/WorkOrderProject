@@ -29,6 +29,10 @@
             color: black;
         }
 
+        .btn-darkRed {
+            background-color: #832d23 !important;
+            color: white;
+        }
         card{
             opacity: 0.2;
         }
@@ -88,7 +92,7 @@
 
     <!--<a class="navbar-brand" href="#">WasteManagement</a>-->
     <span class="navbar-brand p-0">
-        <img style="width:80px;height:40px" th:src="@{/img/waste-management-logo.png}"/>
+        <img style="width:80px;height:80px" th:src="@{/img/trashytech_logo.png}"/>
     </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -145,7 +149,7 @@
             </div>
         </div>
         <form sec:authorize="hasRole('ROLE_ADMIN')" class="form-inline my-2 my-lg-0" method="get" action="/workorders/search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="searchTerm"/>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Work Orders" name="searchTerm"/>
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>

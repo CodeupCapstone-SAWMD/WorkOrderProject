@@ -81,7 +81,7 @@
           
     </style>
 </head>
-<body>
+<body class="page_background">
 
 
 <nav id="myNav" class="navbar sticky navbar-expand-lg navbar-dark dark-red mb-4" th:fragment="myNav">
@@ -143,7 +143,7 @@
             </li>
         </ul>
         <form sec:authorize="hasRole('ROLE_ADMIN')" class="form-inline my-2 my-lg-0" method="get" action="/workorders/search">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="searchTerm"/>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search work orders" name="searchTerm"/>
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>

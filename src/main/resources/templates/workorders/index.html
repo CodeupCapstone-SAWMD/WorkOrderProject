@@ -4,7 +4,7 @@
 
 <div th:replace="partials :: myNav"></div>
 <div class="container">
-    <h1 class="text-center mt-3">List of Work Orders</h1>
+    <h1 class="text-center mt-3" style="padding-bottom:2rem;padding-top:3rem">List of Work Orders</h1>
     <hr/>
 <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -50,13 +50,8 @@
                             <p>Notes: <span th:text="${workorder.notes}"></span></p>
                             <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}">></span></p>
                             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-<<<<<<< HEAD
                                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm">Edit</button></a></li>
-=======
-                                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-md mr-2">View</button></a></li>
-                                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-md">Edit</button></a></li>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                             </ul>
                         </ul>
                     </div>
@@ -102,11 +97,7 @@
                                 <!--</div>-->
                             <!--</form>-->
                         <!--</td>-->
-<<<<<<< HEAD
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></td>
-=======
-                        <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-md mr-2 mt-1">View</button></a></td>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                     </tr>
                 </table>
             </div>
@@ -134,13 +125,8 @@
                                     <p>Notes: <span th:text="${workorder.notes}"></span></p>
                                     <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}">></span></p>
                                     <ul class="nav nav-pills justify-content-center mt-auto form-group">
-<<<<<<< HEAD
-                                        <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></li>
-                                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
-=======
                                         <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-md mr-2">View</button></a></li>
                                         <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-md">Edit</button></a></li>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                                     </ul>
                                 </ul>
                             </div>
@@ -189,11 +175,7 @@
                                         <!--</div>-->
                                     <!--</form>-->
                                 <!--</td>-->
-<<<<<<< HEAD
                                 <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></td>
-=======
-                                <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-md mr-2 mt-1">View</button></a></td>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                             </tr>
                         </table>
                 </div>
@@ -221,13 +203,8 @@
                             <p>Notes: <span th:text="${workorder.notes}"></span></p>
                             <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}">></span></p>
                             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-<<<<<<< HEAD
                                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
-=======
-                                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-md mr-2">View</button></a></li>
-                                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-md">Edit</button></a></li>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                             </ul>
                         </ul>
                     </div>
@@ -273,11 +250,7 @@
                                 </div>
                             </form>
                         </td>
-<<<<<<< HEAD
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></td>
-=======
-                        <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-md mr-2 mt-1">View</button></a></td>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                     </tr>
                 </table>
             </div>
@@ -305,13 +278,8 @@
                             <p>Notes: <span th:text="${workorder.notes}"></span></p>
                             <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}"></span></p>
                             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-<<<<<<< HEAD
                                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
-=======
-                                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-md mr-2">View</button></a></li>
-                                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-md">Edit</button></a></li>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                             </ul>
                         </ul>
                     </div>
@@ -357,11 +325,7 @@
                                 </div>
                             </form>
                         </td>
-<<<<<<< HEAD
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></td>
-=======
-                        <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-md mr-2 mt-1">View</button></a></td>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                     </tr>
                 </table>
             </div>
@@ -389,13 +353,8 @@
                             <p>Notes: <span th:text="${workorder.notes}"></span></p>
                             <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}">></span></p>
                             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-<<<<<<< HEAD
                                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
-=======
-                                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-md mr-2">View</button></a></li>
-                                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-md">Edit</button></a></li>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                             </ul>
                         </ul>
                     </div>
@@ -441,11 +400,7 @@
                                 <!--</div>-->
                             <!--</form>-->
                         <!--</td>-->
-<<<<<<< HEAD
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></td>
-=======
-                        <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-md mr-2 mt-1">View</button></a></td>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                     </tr>
                 </table>
             </div>
@@ -473,13 +428,8 @@
                             <p>Notes: <span th:text="${workorder.notes}"></span></p>
                             <p>Employee: <span th:utext="${workorder.employee.firstName +' ' + workorder.employee.lastName}">></span></p>
                             <ul class="nav nav-pills justify-content-center mt-auto form-group">
-<<<<<<< HEAD
                                 <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
-=======
-                                <li><a th:href="@{/work-order/{id}(id=${workorder.id})}"><button class="btn btn-primary btn-md mr-2">View</button></a></li>
-                                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-md">Edit</button></a></li>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                             </ul>
                         </ul>
                     </div>
@@ -525,11 +475,7 @@
                                 <!--</div>-->
                             <!--</form>-->
                         <!--</td>-->
-<<<<<<< HEAD
                         <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed btn-sm mr-2">View</button></a></td>
-=======
-                        <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn-md mr-2 mt-1">View</button></a></td>
->>>>>>> 9d3131ed02e4c5e86cc883114fce0ec820bc10e3
                     </tr>
                 </table>
             </div>

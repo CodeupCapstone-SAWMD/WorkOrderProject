@@ -4,9 +4,10 @@
 <head th:replace="partials :: head('WasteManagement')"/>
 <body>
 <div th:replace="partials :: myNav"></div>
+<div class="page_background">
 <div class="container">
 
-    <h1 class="text-center my-3">Contact Page</h1>
+    <h1 class="text-center my-3" style="padding-bottom:2rem;padding-top:3rem">Contact Page</h1>
     <hr/>
     <!--<div class="">-->
         <div class="row mt-3 justify-content-center">
@@ -17,7 +18,7 @@
                         <strong>Physical Address</strong><br/>
                         City Hall 100 Military Plaza<br/>
                         San Antonio, TX 78205
-                    </p>
+                    </p>r
                     <p>
                         <strong>Mailing Address</strong><br/>
                         PO Box 839966 <br/>
@@ -69,6 +70,7 @@
     <p class="text-center">*** This is a Codeup student web application, not a City of San Antonio Webpage ***</p>
     <p class="text-center">*Learn more about our project <a th:href="@{/about}">here</a>!*</p>
 </footer>
+</div>
 <th:block th:replace="partials :: scripts"/>
 
 </body>

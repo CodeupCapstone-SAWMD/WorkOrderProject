@@ -29,11 +29,11 @@
                 <p class="card-text"><b>Street Name:</b> <span th:text="${workorder.streetName}"></span></p>
                 <p class="card-text"><b>Zip Code:</b> <span th:text="${workorder.zipCode}"></span></p>
                 <ul sec:authorize="!hasRole('ROLE_USER')" class="nav nav-pills justify-content-center mt-auto form-group" >
-                    <li ><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-danger btn-sm">Edit</button></a></li>
+                    <li ><a th:href="@{/work-order/{id}/edit(id=${workorder.id})}"><button class="btn btn-darkRed px-4">Edit</button></a></li>
                     <li sec:authorize="hasRole('ROLE_ADMIN')"><!-- 1) create a form (because you are posting information) with form binding -->
                         <form onsubmit="return confirm('Do you really want to cancel this item? The inventory from this work order will be added back to the inventory list.');" th:action="@{/admin/status/{id}/cancel(id=${workorder.id})}" method="post" th:object="${workorder}" >
                             <input type="hidden" name="_method" value="cancel" />
-                            <button type="submit" class="btn btn-dark btn-sm ml-2" th:method="post">Cancel</button>
+                            <button type="submit" class="btn btn-dark px-4 ml-2" th:method="post">Cancel</button>
                         </form>
                     </li>
                 </ul>

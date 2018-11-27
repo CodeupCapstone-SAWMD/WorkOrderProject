@@ -107,7 +107,7 @@
                     </div>
 
                     <ul class="nav nav-pills justify-content-center form-group">
-                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-danger font-weight-bold text-light">EDIT WORKORDER</button></li>
+                        <li class="nav-item font-weight-bold w-50"><button type="submit" class="nav-link active w-100 btn btn-darkRed font-weight-bold text-light">EDIT WORKORDER</button></li>
                     </ul>
                 </form>
                 <form onsubmit="return confirm('Do you really want to delete this work order?');" th:action="@{'/work-order/{id}/delete' (id=${workorder.id})}" method="get" th:object="${workorder}" class="my-3">

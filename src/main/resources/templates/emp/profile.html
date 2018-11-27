@@ -10,7 +10,7 @@
     <h1 class="text-center mt-3" style="padding-bottom:2rem;padding-top:3rem">Employee Profile Information</h1>
     <hr/>
     <div class="text-center">
-        <a href="/emp/edit"><button class="btn btn-danger btn-md ml-2 mb-3">Edit Profile</button></a>
+        <a href="/emp/edit"><button class="btn btn-darkRed px-4 ml-2 mb-3">Edit Profile</button></a>
 
     </div>
     <ul class="nav nav-tabs">
@@ -100,7 +100,7 @@
                     <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                     <td th:text="${order.category.name}"></td>
                     <td th:text="${order.status.name}"></td>
-                    <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn- mr-2">View</button></a></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed px-4 mr-2">View</button></a></td>
                 </tr>
             </table>
         </div>
@@ -120,7 +120,7 @@
                     <td th:text="${order.customer.firstName + ' ' + order.customer.lastName}"></td>
                     <td th:text="${order.category.name}"></td>
                     <td th:text="${order.status.name}"></td>
-                    <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-primary btn- mr-2">View</button></a></td>
+                    <td><a th:href="@{/work-order/{id}(id=${order.id})}"><button class="btn btn-darkRed px-4 mr-2">View</button></a></td>
                 </tr>
             </table>
         </div>

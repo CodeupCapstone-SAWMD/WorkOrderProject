@@ -54,13 +54,13 @@
     <!--<div class="row justify-content-center">-->
         <div class="card col-10 m-1 p-2 border">
             <h4 class="text-center">Contact Our Team!</h4>
-            <form th:action="@{/contact}" method="post">
+            <form onsubmit="return confirm('Do you want this message to be sent?');" th:action="@{/contact}" method="post">
                 <div class="form-group">
                     <label for="mess">Your Message:</label>
                     <textarea class="form-control" rows="10" cols="70" id="mess" name="mess" type="text"></textarea>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-darkRed" type="submit">Submit</button>
+                <div class="form-group" >
+                    <button class="btn btn-darkRed px-4" type="submit">Submit</button>
                 </div>
             </form>
         </div>

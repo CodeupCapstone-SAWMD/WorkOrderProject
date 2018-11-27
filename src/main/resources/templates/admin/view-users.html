@@ -39,7 +39,8 @@
                     <td th:text="${eachuser.username}"></td>
                     <td th:text="${eachuser.email}"></td>
                     <td th:text="${eachuser.firstName} + ' ' + ${eachuser.lastName}"></td>
-                    <td><a th:href="@{/admin/view-profile/{id}(id=${eachuser.id})}">View Profile</a></td>
+                    <!--<td><a th:href="@{/admin/view-profile/{id}(id=${eachuser.id})}">View Profile</a></td>-->
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${eachuser.id})}"><button class="btn btn-darkRed px-4 mr-2 mt-1">View Profile</button></a></td>
                 </tr>
             </table>
         </div>
@@ -66,12 +67,14 @@
                                     <option value="ROLE_EDITOR">Employee</option>
                                     <option value="ROLE_USER">Customer</option>
                                 </select>
-                                <input type="submit" class="btn btn-danger active in ml-2" placeholder="Update" value="Edit"/>
+                                <input type="submit" class="btn btn-darkRed px-4 active in ml-2" placeholder="Update" value="Update Role"/>
                             </div>
                             <input type="hidden" class="btn active" th:value="${admin.id}" />
                         </form>
                     </td>
-                    <td><a th:href="@{/admin/view-profile/{id}(id=${admin.id})}">View Profile</a></td>
+                    <!--<td><a th:href="@{/admin/view-profile/{id}(id=${admin.id})}">View Profile</a></td>-->
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${admin.id})}"><button class="btn btn-darkRed px-4 mr-2">View Profile</button></a></td>
+
                 </tr>
             </table>
         </div>
@@ -98,12 +101,14 @@
                                     <option value="ROLE_ADMIN">Administrator</option>
                                     <option value="ROLE_USER">Customer</option>
                                 </select>
-                                <input type="submit" class="btn btn-danger active in ml-2" placeholder="Update" value="Edit"/>
+                                <input type="submit" class="btn btn-darkRed px-4 active in ml-2" placeholder="Update" value="Update Role"/>
                             </div>
                             <input type="hidden" class="btn active" th:value="${emp.id}" />
                         </form>
                     </td>
-                    <td><a th:href="@{/admin/view-profile/{id}(id=${emp.id})}">View Profile</a></td>
+                    <!--<td><a th:href="@{/admin/view-profile/{id}(id=${emp.id})}">View Profile</a></td>-->
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${emp.id})}"><button class="btn btn-darkRed px-4 mr-2">View Profile</button></a></td>
+
                 </tr>
             </table>
         </div>
@@ -131,12 +136,13 @@
                                     <option value="ROLE_EDITOR">Employee</option>
                                     <option value="ROLE_ADMIN">Administrator</option>
                                 </select>
-                            <input type="submit" class="btn btn-danger active in ml-2" placeholder="Update" value="Edit"/>
+                            <input type="submit" class="btn btn-darkRed px-4 active in ml-2" placeholder="Update" value="Update Role"/>
                             </div>
                             <input type="hidden" class="btn active" th:value="${customer.id}" />
                         </form>
                     </td>
-                    <td><a th:href="@{/admin/view-profile/{id}(id=${customer.id})}">View Profile</a></td>
+                    <!--<td><a th:href="@{/admin/view-profile/{id}(id=${customer.id})}">View Profile</a></td>-->
+                    <td><a th:href="@{/admin/view-profile/{id}(id=${customer.id})}"><button class="btn btn-darkRed px-4 mr-2">View Profile</button></a></td>
                 </tr>
             </table>
         </div>

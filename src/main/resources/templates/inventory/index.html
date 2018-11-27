@@ -33,7 +33,7 @@
                     <!--<button class="link btn btn-warning col-2" th:name="edit" th:type="submit" th:value="Edit"><a class="link text-light" th:href="@{'/inventory/' + ${item.id} + '/edit'}">EDIT</a></button>-->
                     <form th:action="@{'/inventory/' + ${item.id} + '/edit'}" method="get" th:object="${inventory}" class="col p-0 my-1">
                         <!--<input type="hidden" name="_method" value="get" />-->
-                        <button type="submit" class="link btn btn-danger text-light px-3" th:method="get">EDIT</button>
+                        <button type="submit" class="link btn btn-darkRed text-light px-3" th:method="get">EDIT</button>
                     </form>
                 </td>
                 <td>
